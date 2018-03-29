@@ -1,0 +1,79 @@
+@font-face {
+    font-family: 'Roboto2';
+    src: url('/assets/fonts/roboto2-regular.eot');
+    src: url('/assets/fonts/roboto2-regular.eot?#iefix') format('embedded-opentype'),
+         url('/assets/fonts/roboto2-regular.woff2') format('woff2'),
+         url('/assets/fonts/roboto2-regular.woff') format('woff'),
+         url('/assets/fonts/roboto2-regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Roboto2';
+    src: url('/assets/fonts/roboto2-bold.eot');
+    src: url('/assets/fonts/roboto2-bold.eot?#iefix') format('embedded-opentype'),
+         url('/assets/fonts/roboto2-bold.woff2') format('woff2'),
+         url('/assets/fonts/roboto2-bold.woff') format('woff'),
+         url('/assets/fonts/roboto2-bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+
+}
+body {
+   font-family: "Roboto2", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.sink {
+  padding: 10px;
+  margin: 10px;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
+  background-color: #fff;
+}
+
+.navbar-content {
+  display:flex;
+}
+.navbar-title {
+  flex-grow: 1;
+  color:#1690c6;
+  display: flex;
+  align-items: center;
+}
+body.withNavbar {
+  min-height: 75rem;  padding-top: 4.5rem;
+}
+body.withSink {
+  background-color: #ebedef;
+}
+.withNavbar .navbar {
+  padding:0.3rem 1rem;   background-color: hsla(0,0%,100%,.87); box-shadow: 0 0 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
+}
+.navbar-icon img {
+  height: 2.5rem;
+}
+.storyBanner {
+  display:flex;
+  flex-direction: row;
+  cursor:pointer;
+  align-items: center;
+  /*justify-content: center;*/
+}
+.storyIcon img {
+  border-radius: 50%;
+  height: 100px;
+  margin: 0 20px 0 10px;
+  object-fit: cover;
+  width: 100px;
+}
+.storyInfo {
+  flex-grow:1;
+  color: #292b2c;
+}
+.storyInfo .storyLabel {
+  font-weight: bold;
+  font-size:110%;
+}
+.storyDescription {
+    color: #292b2c;
+}

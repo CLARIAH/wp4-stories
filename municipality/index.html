@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Data Stories: Populous Dutch Municipalities">
+  <meta name="author" content="Wouter Beek">
+  <link href="/assets/imgs/t.svg" icon="/assets/imgs/t.svg" rel="icon" type="image/x-icon">
+  <title>Data Stories: Populous Dutch Municipalities</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+    crossorigin="anonymous">
+  <!-- Custom styles for this template -->
+  <link href='/assets/css/main.css' rel='stylesheet' type='text/css' />
+  <link href='https://nightly.yasgui.triply.cc/build/yasgui.min.css' rel='stylesheet' type='text/css' />
+</head>
+
+<body class="withNavbar">
+  <nav class="navbar fixed-top ">
+    <div class="navbar-content">
+      <div class="navbar-icon">
+        <a class="navbar-brand" href="/">
+          <img src="/assets/imgs/triply.svg" />
+        </a>
+      </div>
+      <div class="navbar-title">
+        <a class="navbar-brand" href="/">Data Stories</a>
+      </div>
+    </div>
+  </nav>
+  <div class="container story" data-endpoint="https://data.pdok.nl/sparql" data-output="geo3d">
+    <h1>Data Stories: Populous Dutch Municipalities</h1>
+    <p>Amsterdamse wijken</p>
+    <!-- <query data-endpoint="https://data.pdok.nl/sparql" data-output="leaflet" data-query-sparql="amsterdam-buurt.rq"></query> -->
+    <query data-endpoint="https://data.pdok.nl/sparql" data-output="geo" data-query-ref="./amsterdam-buurt.rq"></query>
+    <p>Amsterdamse buurten</p>
+    <query data-query-ref="amsterdam-wijk.rq"></query>
+    <p>
+      We want to show the 25 Dutch municipalities with the largest surface. Unfortunately, GeoSPARQL does not have an area function.
+      We therefore decided
+      <em>to implement this function ourselves in SPARQL</em>. We use the
+      <tt>geof:envelope</tt>
+      function in order to extract the closest bounding box of a municipality, for which we can calculate the area using simple
+      arithmetic and geometric conversion (from long/lat distance to meters). The following shows the shape of
+      <a href="https://bag.basisregistraties.overheid.nl/bag/doc/woonplaats/1527">Baak</a>
+      and the smallest bounding box that holds it:
+    </p>
+    <query data-query-ref="baarn-surface.rq"></query>
+    <h2>The biggest Dutch municipalities</h2>
+    <p>
+      We can now sort the municipalities based on their surface. The following gives an overview of the 25 largest municipalities.
+      Zeewolde is larger than Amsterdam!
+    </p>
+    <query data-query-ref="largest-municipalities.rq" data-output="geo">
+    </query>
+    <p>
+      The same result can also be shown on a map. Notice that big municipalities often have a large water surface.
+    </p>
+    <query data-query-ref="largest-municipalities-map.rq"></query>
+    <h2>Most populous Dutch municipalities</h2>
+    <p>
+      Using SPARQL federation, we can dynamically pull in the population numbers for each municipality. This allows us to display
+      the 25 most populous municipalities. With YASGUI, we are able to put these results on a map and show nice popups per
+      result. The popup shows the name of the municipality, the population, the surface, and also links to the RDF resource
+      (using URI dereferencing).
+    </p>
+    <query data-query-ref="most-populous-municipalities.rq"></div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+    crossorigin="anonymous"></script>
+  <script src='https://nightly.yasgui.triply.cc/build/yasgui.min.js'></script>
+  <script type="text/javascript">
+    window.onload = function () {
+      Yasgui.stories()
+    };
+  </script>
+</body>
+
+</html>
