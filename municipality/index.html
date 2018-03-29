@@ -28,7 +28,7 @@
       </div>
     </div>
   </nav>
-  <div class="container story" data-endpoint="https://data.pdok.nl/sparql" data-output="geo3d">
+  <div class="container story" data-endpoint="https://data.pdok.nl/sparql" data-output="geo">
     <h1>Data Stories: Populous Dutch Municipalities</h1>
     <p>Amsterdamse wijken</p>
     <!-- <query data-endpoint="https://data.pdok.nl/sparql" data-output="leaflet" data-query-sparql="amsterdam-buurt.rq"></query> -->
@@ -45,18 +45,18 @@
       <a href="https://bag.basisregistraties.overheid.nl/bag/doc/woonplaats/1527">Baak</a>
       and the smallest bounding box that holds it:
     </p>
-    <query data-query-ref="baarn-surface.rq"></query>
+    <query data-query data-query-ref="baarn-surface.rq"></query>
     <h2>The biggest Dutch municipalities</h2>
     <p>
       We can now sort the municipalities based on their surface. The following gives an overview of the 25 largest municipalities.
       Zeewolde is larger than Amsterdam!
     </p>
-    <query data-query-ref="largest-municipalities.rq" data-output="geo">
-    </query>
+    <div data-query data-query-ref="largest-municipalities.rq" data-output="geo">
+    </div>
     <p>
       The same result can also be shown on a map. Notice that big municipalities often have a large water surface.
     </p>
-    <query data-query-ref="largest-municipalities-map.rq"></query>
+    <div data-query data-query-sparql="largest-municipalities-map.rq"></div>
     <h2>Most populous Dutch municipalities</h2>
     <p>
       Using SPARQL federation, we can dynamically pull in the population numbers for each municipality. This allows us to display
@@ -64,7 +64,7 @@
       result. The popup shows the name of the municipality, the population, the surface, and also links to the RDF resource
       (using URI dereferencing).
     </p>
-    <query data-query-ref="most-populous-municipalities.rq"></div>
+    <query data-query data-query-sparql="most-populous-municipalities.rq"></div>
   </div>
   <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
     crossorigin="anonymous"></script>
