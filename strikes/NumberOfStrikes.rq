@@ -1,0 +1,12 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX gg: <http://www.gemeentegeschiedenis.nl/gg-schema#>
+PREFIX strikes: <https://iisg.amsterdam/vocab/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?year (COUNT(?strike) as ?strikes) {
+  ?strike strikes:date ?sdate .
+  BIND (substr (STR(?sdate),1,4) as ?year)
+  FILTER (?sdate >= '1972-01-01'^^xsd:date && ?sdate < '1985-01-01'^^xsd:date)
+}
+ORDER BY ?year

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Strikes: collective action in times of economic progress?">
+    <meta name="author" content="Richard Zijdeman">
+    <link href="/assets/imgs/t.svg" icon="/assets/imgs/t.svg" rel="icon" type="image/x-icon">
+    <title>Data Stories: Growth and Inequality</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+        crossorigin="anonymous">
+    <!-- Custom styles for this template -->
+    <link href='/assets/css/main.css' rel='stylesheet' type='text/css' />
+    <link href='https://nightly.yasgui.triply.cc/build/yasgui.min.css' rel='stylesheet' type='text/css' />
+</head>
+
+<body class="withNavbar">
+    <nav class="navbar fixed-top ">
+        <div class="navbar-content">
+            <div class="navbar-icon">
+                <a class="navbar-brand" href="/">
+                    <img src="https://www.clariah.nl/images/logo-clariah.svg"
+                    />
+                </a>
+            </div>
+            <div class="navbar-title">
+                <a class="navbar-brand" href="/">Data Stories</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container story" data-endpoint="https://api.druid.datalegend.net/datasets/dataLegend/strikes/services/strikes/sparql">
+        <h1>Strikes: collective action in times of economic progress?</h1>
+        <p>An often heard claim in the social sciences is that strikes occur most often, not during crises, but in the prosperous
+            years after. As this is counter intuitive, it sounds like an interesting problem. One reason that might explain
+            this phenomenon is that people only strike when they dare to. In economic prosperous times the job market has
+            a shortage, and employees can demand more favourable conditions. Another argument is that of relative deprivation.
+            When a more prosperous era starts, not everyone will benefit at the same time and degree. Thus people may become
+            unhappy, when they see others already benefitting from the improved conditions and as a result they will strike
+            for equal benefits.
+        </p>
+        <p>
+            To see whether these arguments makes sense, we turn to the Netherlands, in the period 1970-1985. The Netherlands was struck
+            by two crises after which more prosperous periods followed.
+        </p>
+        <p>
+            Figure 1 below shows the total number of strikes in the Netherlands and the GDP per capita. [NB: GDP per capita not in query
+            as there is no data on it]
+        </p>
+        <query data-query-ref="NumberOfStrikes.rq"></query>
+        <p>There's no apparent correlation between GDP and the number of strikes. But to be fair, we have regarded strikes all
+            to be the same (e.g. same type, same number of persons involved, equal length and same industry). One way to
+            distinguish between types is to study the different number of strikes by industry.
+        </p>
+        <query data-query-ref="typesOfStrikes.rq" data-output="gchart"></query>
+        We can also look at the regional distribution of strikes. This is another way to visualize the above, as types of industries
+        are clustered regionally.
+        </p>
+        <query data-query-ref="regionally.rq"></query>
+    </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
+    <script src='https://nightly.yasgui.triply.cc/build/yasgui.min.js'></script>
+    <script type="text/javascript">
+        window.onload = function () {
+            Yasgui.stories()
+        };
+    </script>
+</body>
+
+</html>
