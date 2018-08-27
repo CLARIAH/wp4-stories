@@ -31,7 +31,16 @@
             </div>
         </div>
     </nav>
+    <!---
+    This `data-endpoint` part configures the whole story to execute on this endpoint.
+    But, if you want you can also overwrite this by adding a different `data-endpoint` value to e.g. a `query` element
+    -->
     <div class="container story" data-endpoint="https://api.druid.datalegend.net/datasets/dataLegend/strikes/services/strikes/sparql">
+
+      <!--
+      START OF DATA STORY
+      -->
+
         <h1>Strikes: collective action in times of economic progress?</h1>
         <p>An often heard claim in the social sciences is that strikes occur most often, not during crises, but in the prosperous
             years after. As this is counter intuitive, it sounds like an interesting problem. One reason that might explain
@@ -50,15 +59,28 @@
             as there is no data on it]
         </p>
         <query data-query-ref="NumberOfStrikes.rq"></query>
+
+
+
+
         <p>There's no apparent correlation between GDP and the number of strikes. But to be fair, we have regarded strikes all
             to be the same (e.g. same type, same number of persons involved, equal length and same industry). One way to
             distinguish between types is to study the different number of strikes by industry.
         </p>
         <query data-query-ref="typesOfStrikes.rq" data-output="gchart"></query>
+
+
+
+
         We can also look at the regional distribution of strikes. This is another way to visualize the above, as types of industries
         are clustered regionally.
         </p>
         <query data-query-ref="regionally.rq"></query>
+
+
+        <!--
+        END OF DATA STORY
+        -->
     </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
