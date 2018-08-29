@@ -77,3 +77,7 @@ body.withSink {
 .storyDescription {
     color: #292b2c;
 }
+.pvtUi {
+  table-layout: fixed;
+  width: 100%
+}

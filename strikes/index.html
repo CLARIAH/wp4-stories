@@ -22,8 +22,7 @@
         <div class="navbar-content">
             <div class="navbar-icon">
                 <a class="navbar-brand" href="/">
-                    <img src="https://www.clariah.nl/images/logo-clariah.svg"
-                    />
+                    <img src="https://www.clariah.nl/images/logo-clariah.svg" />
                 </a>
             </div>
             <div class="navbar-title">
@@ -37,7 +36,7 @@
     -->
     <div class="container story" data-endpoint="https://api.druid.datalegend.net/datasets/dataLegend/strikes/services/strikes/sparql">
 
-      <!--
+        <!--
       START OF DATA STORY
       -->
 
@@ -58,7 +57,7 @@
             Figure 1 below shows the total number of strikes in the Netherlands and the GDP per capita. [NB: GDP per capita not in query
             as there is no data on it]
         </p>
-        <query data-query-ref="NumberOfStrikes.rq"></query>
+        <query data-query-ref="NumberOfStrikes.rq" data-config="http://127.0.0.1:8080/strikes/#query=PREFIX%20rdf%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20gg%3A%20%3Chttp%3A%2F%2Fwww.gemeentegeschiedenis.nl%2Fgg-schema%23%3E%0APREFIX%20strikes%3A%20%3Chttps%3A%2F%2Fiisg.amsterdam%2Fvocab%2F%3E%0APREFIX%20xsd%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E%0A%0ASELECT%20%3Fyear%20(COUNT(%3Fstrike)%20as%20%3Fstrikes)%20%7B%0A%20%20%3Fstrike%20strikes%3Adate%20%3Fsdate%20.%0A%20%20BIND%20(substr%20(STR(%3Fsdate)%2C1%2C4)%20as%20%3Fyear)%0A%20%20FILTER%20(%3Fsdate%20%3E%3D%20'1972-01-01'%5E%5Exsd%3Adate%20%26%26%20%3Fsdate%20%3C%20'1985-01-01'%5E%5Exsd%3Adate)%0A%7D%0AORDER%20BY%20%3Fyear%0A&endpoint=https%3A%2F%2Fapi.druid.datalegend.net%2Fdatasets%2FdataLegend%2Fstrikes%2Fservices%2Fstrikes%2Fsparql&requestMethod=POST&tabTitle=Query&headers=%7B%7D&contentTypeConstruct=text%2Fturtle%2C*%2F*%3Bq%3D0.9&contentTypeSelect=application%2Fsparql-results%2Bjson%2C*%2F*%3Bq%3D0.9&outputFormat=gchart&outputSettings=%7B%22chartConfig%22%3A%7B%22dataTable%22%3A%7B%22cols%22%3A%5B%7B%22id%22%3A%22%22%2C%22label%22%3A%22year%22%2C%22pattern%22%3A%22%22%2C%22type%22%3A%22string%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22id%22%3A%22%22%2C%22label%22%3A%22strikes%22%2C%22pattern%22%3A%22%22%2C%22type%22%3A%22number%22%7D%5D%2C%22rows%22%3A%5B%7B%22c%22%3A%5B%7B%22v%22%3A%221972%22%7D%2C%7B%22v%22%3A53%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%221973%22%7D%2C%7B%22v%22%3A52%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%221974%22%7D%2C%7B%22v%22%3A62%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%221975%22%7D%2C%7B%22v%22%3A40%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%221976%22%7D%2C%7B%22v%22%3A52%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%221977%22%7D%2C%7B%22v%22%3A55%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%221978%22%7D%2C%7B%22v%22%3A71%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%221979%22%7D%2C%7B%22v%22%3A110%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%221980%22%7D%2C%7B%22v%22%3A65%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%221981%22%7D%2C%7B%22v%22%3A73%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%221982%22%7D%2C%7B%22v%22%3A72%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%221983%22%7D%2C%7B%22v%22%3A43%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%221984%22%7D%2C%7B%22v%22%3A42%7D%5D%7D%5D%7D%2C%22options%22%3A%7B%22hAxis%22%3A%7B%22useFormatFromData%22%3Atrue%2C%22viewWindow%22%3Anull%2C%22minValue%22%3Anull%2C%22maxValue%22%3Anull%2C%22viewWindowMode%22%3Anull%2C%22title%22%3A%22Years%22%7D%2C%22legacyScatterChartLabels%22%3Atrue%2C%22legend%22%3A%22in%22%2C%22useFirstColumnAsDomain%22%3Atrue%2C%22vAxes%22%3A%5B%7B%22useFormatFromData%22%3Atrue%2C%22viewWindow%22%3A%7B%22max%22%3Anull%2C%22min%22%3Anull%7D%2C%22minValue%22%3Anull%2C%22maxValue%22%3Anull%7D%2C%7B%22useFormatFromData%22%3Atrue%2C%22viewWindow%22%3A%7B%22max%22%3Anull%2C%22min%22%3Anull%7D%2C%22minValue%22%3Anull%2C%22maxValue%22%3Anull%7D%5D%2C%22booleanRole%22%3A%22certainty%22%2C%22lineWidth%22%3A2%2C%22width%22%3A%22100%25%22%2C%22height%22%3A%22100%25%22%2C%22title%22%3A%22Figure%201%20Strikes%20per%20capita%22%2C%22curveType%22%3A%22%22%2C%22domainAxis%22%3A%7B%22direction%22%3A1%7D%2C%22interpolateNulls%22%3Afalse%2C%22theme%22%3A%22maximized%22%2C%22series%22%3A%7B%220%22%3A%7B%22lineWidth%22%3A4%2C%22targetAxisIndex%22%3A0%2C%22errorBars%22%3A%7B%22errorType%22%3A%22none%22%7D%7D%7D%7D%2C%22state%22%3A%7B%7D%2C%22view%22%3A%7B%22columns%22%3Anull%2C%22rows%22%3Anull%7D%2C%22isDefaultVisualization%22%3Afalse%2C%22chartType%22%3A%22LineChart%22%7D%7D"></query>
 
 
 
@@ -67,7 +66,7 @@
             to be the same (e.g. same type, same number of persons involved, equal length and same industry). One way to
             distinguish between types is to study the different number of strikes by industry.
         </p>
-        <query data-query-ref="typesOfStrikes.rq" data-output="gchart"></query>
+        <query data-config="https://api.druid.datalegend.net/datasets/dataLegend/strikes/services/strikes/sparql#query=PREFIX%20rdf%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20gg%3A%20%3Chttp%3A%2F%2Fwww.gemeentegeschiedenis.nl%2Fgg-schema%23%3E%0APREFIX%20strikes%3A%20%3Chttps%3A%2F%2Fiisg.amsterdam%2Fvocab%2F%3E%0APREFIX%20xsd%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E%0A%0ASELECT%20%3Fstype%20%3Fyear%20%20(COUNT(%3Fstrike)%20as%20%3Fstrikes)%20%20%7B%0A%20%20%3Fstrike%20strikes%3Adate%20%3Fsdate%20.%0A%20%20%3Fstrike%20strikes%3Asector%20%3Fstype%20.%0A%20%20BIND%20(substr%20(STR(%3Fsdate)%2C1%2C4)%20as%20%3Fyear)%0A%20%20FILTER%20(%3Fsdate%20%3E%3D%20'1972-01-01'%5E%5Exsd%3Adate%20%26%26%20%3Fsdate%20%3C%20'1985-01-01'%5E%5Exsd%3Adate)%0A%7D%0AORDER%20BY%20%3Fyear%20DESC(%3Fstrikes)%0A&endpoint=https%3A%2F%2Fapi.druid.datalegend.net%2Fdatasets%2FdataLegend%2Fstrikes%2Fservices%2Fstrikes%2Fsparql&requestMethod=POST&tabTitle=Query&headers=%7B%7D&contentTypeConstruct=text%2Fturtle%2C*%2F*%3Bq%3D0.9&contentTypeSelect=application%2Fsparql-results%2Bjson%2C*%2F*%3Bq%3D0.9&outputFormat=pivot&outputSettings=%7B%22pivotConfig%22%3A%7B%22cols%22%3A%5B%22year%22%5D%2C%22rows%22%3A%5B%22stype%22%5D%2C%22rendererName%22%3A%22Line%20Chart%22%2C%22aggregatorName%22%3A%22Integer%20Sum%22%2C%22vals%22%3A%5B%22strikes%22%5D%7D%7D"></query>
 
 
 
@@ -75,7 +74,7 @@
         We can also look at the regional distribution of strikes. This is another way to visualize the above, as types of industries
         are clustered regionally.
         </p>
-        <query data-query-ref="regionally.rq"></query>
+        <query data-config="https://api.druid.datalegend.net/datasets/dataLegend/strikes/services/strikes/sparql#query=PREFIX%20rdf%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20gg%3A%20%3Chttp%3A%2F%2Fwww.gemeentegeschiedenis.nl%2Fgg-schema%23%3E%0APREFIX%20strikes%3A%20%3Chttps%3A%2F%2Fiisg.amsterdam%2Fvocab%2F%3E%0APREFIX%20xsd%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E%0APREFIX%20geo%3A%20%3Chttp%3A%2F%2Fwww.opengis.net%2Font%2Fgeosparql%23%3E%0ASELECT%20%3Fmuni%20%3Fpolygon%20%3FpolygonColor%20%20%3Fstrikes%20%3Fmax%20%3FpolygonLabel%20%7B%0A%20%20%7B%0A%0A%20%20%20%20%20%20%20%20SELECT%20%3Fmuni%20(SAMPLE(%3F_polygon)%20AS%20%3Fpolygon)%20%20(COUNT(%3Fstrike)%20as%20%3Fstrikes)%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%3Fstrike%20strikes%3Aplace%20%3Fsplace%20.%0A%20%20%20%20%20%20%20%20%20%20%3Fstrike%20strikes%3Adate%20%3Fsdate%20.%0A%20%20%20%20%20%20%20%20%20%20%3Fmuni%20rdf%3Atype%20gg%3AMunicipality%20.%0A%20%20%20%20%20%20%20%20%20%20%3Fmuni%20rdfs%3Alabel%20%3Fggplace%20.%0A%20%20%20%20%20%20%20%20%20%20%3Fmuni%20geo%3AhasGeometry%20%2F%20geo%3AasWKT%20%3F_polygon%20.%0A%20%20%20%20%20%20%20%20%20%20%23%20not%20in%20grouping%20result%20set%20error%0A%20%20%20%20%20%20%20%20%20%20FILTER%20(%3Fsdate%20%3E%3D%20'1972-01-01'%5E%5Exsd%3Adate%20%26%26%20%3Fsdate%20%3C%20'1985-01-01'%5E%5Exsd%3Adate)%0A%20%20%20%20%20%20%20%20%20%20FILTER(str(%3Fsplace)%20%3D%20str(%3Fggplace))%0A%20%20%20%20%20%20%20%20%7D%20GROUP%20BY%20%3Fmuni%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%0A%20%20bind%20('%23strikes%3A%20%7B%7Bstrikes%7D%7D'%20as%20%3FpolygonLabel)%20%0A%20%20%23For%20simplicity%2C%20we're%20not%20calculating%20the%20maximum%20number%20of%20strikes%2C%20but%20hardcoding%20it%20to%202900%0A%20%20bind%20(concat('viridis%2C'%2C%20xsd%3Afloat(%3Fstrikes)%20%2F%20xsd%3Afloat(2900))%20as%20%3FpolygonColor)%20%0A%7D%20GROUP%20BY%20%3Fstrikes%0AORDER%20BY%20DESC(%3Fstrikes)%0ALIMIT%20100&endpoint=https%3A%2F%2Fapi.druid.datalegend.net%2Fdatasets%2FdataLegend%2Fstrikes%2Fservices%2Fstrikes%2Fsparql&requestMethod=POST&tabTitle=Query&headers=%7B%7D&contentTypeConstruct=text%2Fturtle%2C*%2F*%3Bq%3D0.9&contentTypeSelect=application%2Fsparql-results%2Bjson%2C*%2F*%3Bq%3D0.9&outputFormat=geo&outputSettings=%7B%22map%22%3A%22osm%22%2C%22grouped%22%3Afalse%7D"></query>
 
 
         <!--

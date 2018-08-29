@@ -2,11 +2,12 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX geo: <http://www.opengis.net/ont/geosparql#>
 PREFIX cliovocab: <https://iisg.amsterdam/clio/vocab/>
 PREFIX sdmxdim: <http://purl.org/linked-data/sdmx/2009/dimension#>
-SELECT ?gdp ?gdpindex ?wktColor ?wkt WHERE {
+SELECT ?gdp ?gdpindex ?wktColor ?wkt ?wktTooltip WHERE {
   ?refarea skos:exactMatch / geo:hasGeometry / geo:asWKT ?wkt .
   ?sub cliovocab:GDP_per_Capita ?gdp .
   ?sub sdmxdim:refArea ?refarea .
   ?sub sdmxdim:refPeriod "2010-01-01"^^xsd:gYear .
   bind(?gdp / 40000 as ?gdpindex ) .
-  bind(concat('viridis,', str(?gdpindex)) as ?wktColor)
+  bind(concat('viridis,', str(?gdpindex)) as ?wktColor) .
+  bind(?gdp as ?wktTooltip)
 }
