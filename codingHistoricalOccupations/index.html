@@ -49,17 +49,10 @@
     This inequality is for example reflected in the saying that he who is born for a dime will never be w to different occupations, giving rise to the idea that some jobs or occupational positions are worth more than others.
     This is for example reflected in the saying "he who is born for a dime, will never be worth a quarter", but already 
     </p>
-    <p>Why are some countries rich and others poor? Because economic growth is a long-term process, history is part of the answer.
-      To help understand long-term economic growth, economic historians have been working on reconstructing historical national
-      accounts. Collecting such data in a comparable way (expressing them in at one level of prices) was started by Angus
-      Maddison. Today it is a collaborative project that continues under his name. The differences in today's world are very
-      big. A small group of rich countries is up to ten times richer than a lot of poor countries.
-    </p>
 
 
 
 
-    <p>Bla bla bla</p>
     <query
     data-query-ref="hisco_sources_languages.rq" data-config="https://nightly.yasgui.triply.cc/#query=PREFIX%20rdf%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rdf%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20dct%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fdc%2Fterms%2F%3E%0APREFIX%20hisco%3A%20%3Chttps%3A%2F%2Fiisg.amsterdam%2Fhisco%2F%3E%0APREFIX%20skos%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2004%2F02%2Fskos%2Fcore%23%3E%0APREFIX%20prov%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2Fns%2Fprov%23%3E%0A%0ASELECT%20distinct%20%3Fprovenance%20(count(%3Fprovenance)%20as%20%3Fprov_count)%20%3Flanguage%0AWHERE%20%7B%0A%09hisco%3AjobHoard%20skos%3Amember%20%3Fjob%20.%0A%20%20%09%3Fjob%20skos%3AprefLabel%20%3Flabel%20.%0A%20%20%20%20hisco%3Acategory%20skos%3Amember%20%3Fhisco.%0A%20%20%20%20OPTIONAL%20%7Bhisco%3Ajob%20skos%3AhiddenLabel%20%3Flabel%7D%20.%0A%20%20%20%20%3Fjob%20prov%3AwasDerivedFrom%20%3Fprovenance%20.%0A%20%20%20%20BIND(lang(%3Flabel)%20AS%20%3Flanguage)%20.%0A%20%20%09%23%20FILTER(lang(%3Flabel)%20%3D%20%22nl%22)%20.%20uncomment%20to%20filter%20for%20a%20specific%20language%0A%7D%20group%20by%20%3Fprovenance%20%3Flanguage%0AORDER%20BY%20%3Flanguage&endpoint=https%3A%2F%2Fdruid.datalegend.net%2F_api%2Fdatasets%2FdataLegend%2FjobHoard%2Fservices%2Fmonitor%2Fsparql&requestMethod=POST&tabTitle=Query&headers=%7B%7D&contentTypeConstruct=text%2Fturtle%2C*%2F*%3Bq%3D0.9&contentTypeSelect=application%2Fsparql-results%2Bjson%2C*%2F*%3Bq%3D0.9&outputFormat=table"
     >
