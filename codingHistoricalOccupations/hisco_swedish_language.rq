@@ -1,0 +1,18 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX hisco: <https://iisg.amsterdam/hisco/>
+PREFIX hiscam: <https://iisg.amsterdam/hiscam/v131/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+
+SELECT distinct ?label ?hisco ?hiscam_value ?provenance
+WHERE {
+ hisco:jobHoard skos:member ?job .
+ ?job skos:prefLabel ?label . # for standardized titles 
+ OPTIONAL {hisco:job skos:hiddenLabel ?label} . # comment this out if you're just looking for 'proper' occupational titles
+ hisco:category skos:member ?hisco.
+ ?hisco skos:member ?job . 
+  FILTER(lang(?label) = "se") . # filter on a given language, like "es", "nl"
+ ?job prov:wasDerivedFrom ?provenance . 
+} 
+
