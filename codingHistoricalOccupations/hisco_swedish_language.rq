@@ -16,3 +16,4 @@ WHERE {
  ?job prov:wasDerivedFrom ?provenance . 
 } 
 
+LIMIT 20
