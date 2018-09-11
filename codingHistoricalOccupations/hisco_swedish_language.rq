@@ -15,5 +15,3 @@ WHERE {
   FILTER(lang(?label) = "se") . # filter on a given language, like "es", "nl"
  ?job prov:wasDerivedFrom ?provenance . 
 } 
-
-LIMIT 20
