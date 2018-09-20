@@ -16,4 +16,6 @@ WHERE {
   FILTER regex(?label, "^ak", "i") . # uncomment this line if you want to filter for a specific (part of a) job title
  ?job prov:wasDerivedFrom ?provenance . 
  ?hisco hiscam:u1 ?hiscam_value .
-} 
+}
+
+ORDER BY DESC(?hiscam_value) 
