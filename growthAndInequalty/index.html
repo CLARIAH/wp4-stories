@@ -12,7 +12,7 @@
     crossorigin="anonymous">
   <!-- Custom styles for this template -->
   <link href='/assets/css/main.css' rel='stylesheet' type='text/css' />
-  <link href='https://nightly.yasgui.triply.cc/build/yasgui.min.css' rel='stylesheet' type='text/css' />
+  <link href='/assets/css/yasgui.min.css' rel='stylesheet' type='text/css' />
   <link href='https://nightly.yasgui.triply.cc/yasgui.bootstrap.css' rel='stylesheet' type='text/css' />
 </head>
 
@@ -72,7 +72,7 @@
     <p>
       Locations on map: Africa and Asia very poor now mostly Africa
     </p>
-    <query data-query-ref="africaGdp.rq" data-config="http://localhost:8080/growthAndInequalty/#query=PREFIX%20skos%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2004%2F02%2Fskos%2Fcore%23%3E%0APREFIX%20geo%3A%20%3Chttp%3A%2F%2Fwww.opengis.net%2Font%2Fgeosparql%23%3E%0APREFIX%20cliovocab%3A%20%3Chttps%3A%2F%2Fiisg.amsterdam%2Fclio%2Fvocab%2F%3E%0APREFIX%20sdmxdim%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flinked-data%2Fsdmx%2F2009%2Fdimension%23%3E%0ASELECT%20%3Fgdp%20%3Fgdpindex%20%3FwktColor%20%3Fwkt%20%3FwktTooltip%20WHERE%20%7B%0A%20%20%3Frefarea%20skos%3AexactMatch%20%2F%20geo%3AhasGeometry%20%2F%20geo%3AasWKT%20%3Fwkt%20.%0A%20%20%3Fsub%20cliovocab%3AGDP_per_Capita%20%3Fgdp%20.%0A%20%20%3Fsub%20sdmxdim%3ArefArea%20%3Frefarea%20.%0A%20%20%3Fsub%20sdmxdim%3ArefPeriod%20%222010-01-01%22%5E%5Exsd%3AgYear%20.%0A%20%20bind(%3Fgdp%20%2F%2040000%20as%20%3Fgdpindex%20)%20.%0A%20%20bind(concat('viridis%2C'%2C%20str(%3Fgdpindex))%20as%20%3FwktColor)%20.%0A%20%20bind(%3Fgdp%20as%20%3FwktTooltip)%0A%7D%0A&endpoint=https%3A%2F%2Fapi.druid.datalegend.net%2Fdatasets%2FdataLegend%2Fclio-infra%2Fservices%2Fclio-infra%2Fsparql&requestMethod=POST&tabTitle=Query&headers=%7B%7D&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%20json&outputFormat=geo&outputSettings=%7B%22map%22%3A%22osm%22%2C%22grouped%22%3Afalse%7D"
+    <query data-query-ref="africaGdp.rq" data-config="http://localhost:8080/growthAndInequalty/#query=PREFIX%20skos%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2004%2F02%2Fskos%2Fcore%23%3E%0APREFIX%20geo%3A%20%3Chttp%3A%2F%2Fwww.opengis.net%2Font%2Fgeosparql%23%3E%0APREFIX%20cliovocab%3A%20%3Chttps%3A%2F%2Fiisg.amsterdam%2Fclio%2Fvocab%2F%3E%0APREFIX%20sdmxdim%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flinked-data%2Fsdmx%2F2009%2Fdimension%23%3E%0ASELECT%20%3Fgdp%20%3Fgdpindex%20%3FwktColor%20%3Fwkt%20%3FwktTooltip%20WHERE%20%7B%0A%20%20%3Frefarea%20skos%3AexactMatch%20%2F%20geo%3AhasGeometry%20%2F%20geo%3AasWKT%20%3Fwkt%20.%0A%20%20%3Fsub%20cliovocab%3AGDP_per_Capita%20%3Fgdp%20.%0A%20%20%3Fsub%20sdmxdim%3ArefArea%20%3Frefarea%20.%0A%20%20%3Fsub%20sdmxdim%3ArefPeriod%20%222010-01-01%22%5E%5Exsd%3AgYear%20.%0A%20%20bind(%3Fgdp%20%2F%2040000%20as%20%3Fgdpindex%20)%20.%0A%20%20bind(concat('viridis%2C'%2C%20str(%3Fgdpindex))%20as%20%3FwktColor)%20.%0A%20%20bind(%3Fgdp%20as%20%3FwktTooltip)%0A%7D%0A&endpoint=https%3A%2F%2Fapi.druid.datalegend.net%2Fdatasets%2FdataLegend%2Fclio-infra%2Fservices%2Fclio-infra%2Fsparql&requestMethod=POST&tabTitle=Query&headers=%7B%7D&contentTypeConstruct=text%2Fturtle&contentTypeSelect=application%2Fsparql-results%2Bjson&outputFormat=geo&outputSettings=%7B%22map%22%3A%22osm%22%2C%22visualization%22%3A%22vanilla%22%2C%22grouped%22%3Afalse%7D"
       data-output="geo">
     </query>
 
@@ -121,7 +121,7 @@
   </div>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
     crossorigin="anonymous"></script>
-  <script src='https://nightly.yasgui.triply.cc/build/yasgui.min.js'></script>
+  <script src='/assets/js/yasgui.min.js'></script>
   <script type="text/javascript">
     window.onload = function () {
       Yasgui.stories()
