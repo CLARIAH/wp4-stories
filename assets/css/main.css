@@ -81,3 +81,9 @@ body.withSink {
   table-layout: fixed;
   width: 100%
 }
+.copy_btn {
+  box-sizing: unset
+}
+.yasgui .yasqe .CodeMirror.CodeMirror-fullscreen {
+  top: 57.6px;
+}

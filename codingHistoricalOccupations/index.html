@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Data Stories: Growth and Inequality">
+  <meta name="author" content="Richard Zijdeman">
+  <link href="/assets/imgs/t.svg" icon="/assets/imgs/t.svg" rel="icon" type="image/x-icon">
+  <title>'High' and 'Low' Occupations: determining the position of occupations in the historical occupational structure.
+</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+    crossorigin="anonymous">
+  <!-- Custom styles for this template -->
+  <link href='/assets/css/main.css' rel='stylesheet' type='text/css' />
+  <link href='/assets/css/yasgui.min.css' rel='stylesheet' type='text/css' />
+  <link href='https://nightly.yasgui.triply.cc/yasgui.bootstrap.css' rel='stylesheet' type='text/css' />
+</head>
+
+<body class="withNavbar">
+  <nav class="navbar fixed-top ">
+    <div class="navbar-content">
+      <div class="navbar-icon">
+        <a class="navbar-brand" href="/">
+          <img src="https://www.clariah.nl/images/logo-clariah.svg" />
+        </a>
+      </div>
+      <div class="navbar-title">
+        <a class="navbar-brand" href="/">Data Stories</a>
+      </div>
+    </div>
+  </nav>
+  <!---
+  This `data-endpoint` part configures the whole story to execute on this endpoint.
+  But, if you want you can also overwrite this by adding a different `data-endpoint` value to e.g. a `query` element
+  -->
+
+  <!--
+  <div class="container story" data-endpoint="https://druid.datalegend.net/_api/datasets/dataLegend/jobHoard/services/monitor/sparql">
+  -->
+  
+  <div class="container story" data-endpoint="https://api.druid.datalegend.net/datasets/dataLegend/jobHoard/services/monitor/sparql">
+
+
+    <!--
+    START OF DATA STORY
+    -->
+    <h1>'High' and 'low' occupations in the past</h1>
+
+    <p>For some reason, we value fellow humans differently, giving rise to the idea that some are 'more equal than others'. The idea of unequal standing is pretty persistent, as it was already mentioned some 23 centuries ago by Plato in his 'Republic'. Three classes of people were referred to as bronze, silver and gold, but more interestingly, these classes were more or less defined by the occupations performed in these classes. Today, occupations still lead to inequality, simply because some pay more than others, provide more social capital than others and because some are regarded as more prestigious than others. Now this may be sound cumbersome, and it is often highlighted in newspapers, but scholars of inequality are interested in an even more fundamental issue: the inheritance of good and bad jobs from one generation to the next, also known as lack of social mobility.
+This inequality is for example reflected in the saying that he who is born for a dime will never be worth a quarter.
+    </p>
+    <p>
+    When interested in equal opportunity, it is important to understand changes in patterns of social mobility. As social mobility patterns are known to change only gradually, we need long periods of time to observe changes. We thus turn to historical data on occupations to observe patterns in social mobility. But because job names changes over time, or even the activities within a job change while the name of the occupation doesn't, we need some system to categorize occupations. Based on the contemporary categorization of occupations by the ILO, the International Standard Classification of Occupations (ISCO) a historical version, 'HISCO', was made by Van Leeuwen, Maas and Miles, based on the input of a small army of occupational historians from dozens of research institutes. These codes provide information on what occupations entailed, for roughly 1800-1950, for multiple languages. HISCO thus allows for occupations to be compared over time and across languages. Today the database that was first published with the book, now contains many more sources, from an even larger array of languages: 
+    </p>
+    <query data-query-ref="hisco_sources_languages.rq">
+    </query>
+
+    <!--
+    <query data-query-ref="https://github.com/CLARIAH/wp4-queries-hisco/blob/master/sources_languages_counts.rq">
+    </query>
+    -->
+
+    <p>
+    Most often researchers are interested in occupations from just one language. As our underlying data are converted to Linked Data, we can easily select a single particular language. Below we find all Swedish occupations available in jobHoard: a community based repository of coded occupations. If you click on the 'arrow up' image just above the table, the actual query is shown. You can change the query, in such a way that e.g. Spanish occupations are represented rather than Swedish ones, by replacing 'se' with 'es'.
+    </p>
+    <query data-query-ref="hisco_swedish_language.rq">
+    </query>
+    <p>
+    To download the results, click on the arrow up button above the results table and next on the black 'download as csv' button, next to where it reads '3947 results in 1.594 seconds'.
+    </p>
+
+
+
+
+    <p>
+    To focus on a particular occupation we can narrow down the list by looking for a particular string (piece of text). For example, we could focus on all occupations starting with 'ak'. For those occupations we also might want to know the position in the occupational hierarchy - the HISCAM score. HISCAM scores have theoretical limits between 0 and 100, the higher scores representing 'more valued' occupations. Again click on the 'arrow up' button, to see the underlying query. If you do so you can change the string into an occupation title you're interested in!
+    </p>
+    <query data-query-ref="hisco_hiscam_source_single_occ.rq">
+    </query>
+
+ The selection of Swedish occupational titles starting with 'ak', available in the database, show a variety of lower ('akterstäderska') and higher ('akademidocent') occupations. It is always important to keep in mind that HISCO codes are representative of groups of occupations, not individual occupations. Moreover, not for every HISCO code a specific HISCAM score exist, because empirically it proved not possible to distinguish between these HISCO groups. It could thus occur that occupations with different HISCO codes have similar HISCAM scores.
+    
+    <!--
+    END OF DATA STORY
+    -->
+    <p>
+    <br>
+    <a href="https://twitter.com/intent/tweet?screen_name=rlzijdeman&ref_src=twsrc%5Etfw" class="twitter-mention-button" data-size="large" data-text="Finding and coding high and low occupations from the past in multiple languages http://stories.datalegend.net/codingHistoricalOccupations/ #HISCO #HISCO #LOD #dataStories" data-related="rlzijdeman" data-lang="en" data-show-count="false">Tweet this data story</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </p>
+
+  </div>
+  </div>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+    crossorigin="anonymous"></script>
+    <script src='/assets/js/yasgui.min.js'></script>
+    <script type="text/javascript">
+    window.onload = function () {
+      Yasgui.stories()
+    };
+  </script>
+</body>
+
+</html>
