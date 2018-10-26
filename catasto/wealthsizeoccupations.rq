@@ -5,7 +5,8 @@ PREFIX catastodim: <https://iisg.amsterdam/catasto/dimension/>
 PREFIX catasto: <https://iisg.amsterdam/catasto/>
 PREFIX relationcode: <https://iisg.amsterdam/catasto/code/relationToHead/>
 
-SELECT ?occupation (count(distinct ?sub) as ?n_hh) (avg(?wealth) as ?avg_wealth) (avg(?hh_members) as ?avg_hh_memers) WHERE { SELECT (count(?members) as ?hh_members) ?occupation ?sub ?wealth
+SELECT ?occupation (count(distinct ?sub) as ?n_hh) (avg(?wealth) as ?avg_wealth) (avg(?hh_members) as ?avg_hh_members) WHERE
+{ SELECT (count(?members) as ?hh_members) ?occupation ?sub ?wealth
 
 WHERE {
  
