@@ -1,0 +1,22 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX catastodim: <https://iisg.amsterdam/catasto/dimension/>
+PREFIX catasto: <https://iisg.amsterdam/catasto/>
+
+SELECT  ?region ?total_inhab ?total_poor ?percentage_poor WHERE { SELECT ?region ?total_inhab ?total_poor (?total_poor *100 / ?total_inhab as ?percentage_poor) ?total_inhab  WHERE { SELECT(COUNT(?assets) as ?total_inhab) (sum(?no_assets) as ?total_poor) ?region 
+WHERE {
+
+ 
+  ?sub a catasto:household ;
+  		catastodim:householdMember ?members ;
+  		catastodim:TOTAL ?assets ;
+  		catastodim:NUMSER / skos:prefLabel ?regionlabel .
+  
+  BIND(xsd:integer(if(?assets < 1,"1", "")) as ?no_assets)
+  BIND(REGEX(?regionlabel, "Contado") as ?rural)
+  BIND(xsd:string(if(?rural = 1, "Rural", "Cities and villages")) as ?region)
+
+}}}
+
+ORDER BY ?region
