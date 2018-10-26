@@ -3,9 +3,8 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX catastodim: <https://iisg.amsterdam/catasto/dimension/>
 PREFIX catasto: <https://iisg.amsterdam/catasto/>
-PREFIX relationcode: <https://iisg.amsterdam/catasto/code/relationToHead/>
 
-SELECT  ?occupation ?occupationlabel (COUNT(?sub) as ?households) (avg(?valueofassets) as ?avg_value_assets) (avg(?allindiv) as ?avg_people_per_household) WHERE {
+SELECT  ?occupationlabel (COUNT(?sub) as ?households) (avg(?valueofassets) as ?avg_value_assets) (avg(?allindiv) as ?avg_people_per_household) WHERE {
   SELECT ?valueofassets ?occupation ?sub ?occupationlabel (count(?members) as ?allindiv) WHERE {
 
  
@@ -16,7 +15,6 @@ SELECT  ?occupation ?occupationlabel (COUNT(?sub) as ?households) (avg(?valueofa
   ?sub catastodim:NUMSER <https://iisg.amsterdam/catasto/code/NUMSER/6> .
   ?occupation skos:prefLabel ?occupationlabel .
  
- # FILTER regex(?regionlabel, "Firenze")
   FILTER(lang(?occupationlabel)="en")
 }
   }
