@@ -12,7 +12,7 @@ WHERE {
  		catastodim:NUMSER / skos:prefLabel ?regionlabel ;
  		catastodim:TOTAL ?wealth ; 
 		catastodim:METIER ?occ .
- ?occ skos:prefLabel ?occupation .
+ ?occ skos:altLabel ?occupation .
  ?sub catastodim:NOMFAM ?familyname .
   
   
