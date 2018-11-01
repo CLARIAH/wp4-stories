@@ -5,20 +5,21 @@ PREFIX catastodim: <https://iisg.amsterdam/catasto/dimension/>
 PREFIX catasto: <https://iisg.amsterdam/catasto/>
 
 
-SELECT ?wealth ?occupation ?familyname
+SELECT ?total_assets ?occupation ?family_lastname
 WHERE {
  
  ?sub a catasto:household ;
- 		catastodim:NUMSER / skos:prefLabel ?regionlabel ;
- 		catastodim:TOTAL ?wealth ; 
-		catastodim:METIER ?occ .
- ?occ skos:altLabel ?occupation .
+ 	catastodim:NUMSER / skos:prefLabel ?regionlabel ;
+ 	catastodim:TOTAL ?assets ; 
+	catastodim:METIER ?occ .
+ ?occ skos:altLabel ?occupationlabel .
  ?sub catastodim:NOMFAM ?familyname .
   
   
-FILTER regex(?regionlabel, "Fi")
-FILTER (!regex(?regionlabel, "C"))
-FILTER(lang(?occupation)="en")
+	BIND(STR(?assets) as ?total_assets)
+  	BIND(CONCAT(UCASE(SUBSTR(?familyname, 1, 1)), LCASE(SUBSTR(?familyname, 2))) as ?name)
+  	BIND(STR(?name) as ?family_lastname)
+  	BIND(STR(?occupationlabel) as ?occupation)
 } 
-ORDER BY DESC (?wealth)
+ORDER BY DESC (?assets)
 LIMIT 10
