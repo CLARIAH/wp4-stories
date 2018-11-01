@@ -17,7 +17,7 @@ WHERE {
      catastodim:CREDPUB ?privcred ;
      catastodim:NUMSER / skos:prefLabel ?regionlabel .
 ?sub catastodim:METIER ?occ .
-?occ skos:prefLabel ?occupation .
+?occ skos:altLabel ?occupation .
 
   FILTER regex(?regionlabel, "Firenze")
   FILTER(lang(?occupation)="en")
