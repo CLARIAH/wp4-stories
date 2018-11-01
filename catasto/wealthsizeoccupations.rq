@@ -3,9 +3,9 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX catastodim: <https://iisg.amsterdam/catasto/dimension/>
 PREFIX catasto: <https://iisg.amsterdam/catasto/>
-PREFIX relationcode: <https://iisg.amsterdam/catasto/code/relationToHead/>
+PREFIX catastoregion: <https://iisg.amsterdam/catasto/code/NUMSER/>
 
-SELECT ?occupation (count(distinct ?sub) as ?n_hh) (avg(?wealth) as ?avg_wealth) (avg(?hh_members) as ?avg_hh_members) WHERE
+SELECT ?occupation (count(distinct ?sub) as ?n_hh) (round(avg(?wealth)) as ?avg_wealth_rounded) (avg(?hh_members) as ?avg_hh_members) WHERE
 { SELECT (count(?members) as ?hh_members) ?occupation ?sub ?wealth
 
 WHERE {
@@ -15,14 +15,12 @@ WHERE {
      catastodim:DEDUCT ?debt ;
      catastodim:CREANCE ?pubcred ;
      catastodim:CREDPUB ?privcred ;
-     catastodim:NUMSER / skos:prefLabel ?regionlabel .
+     catastodim:NUMSER catastoregion:1 .
 ?sub catastodim:METIER ?occ .
-?occ skos:altLabel ?occupation .
-
-  FILTER regex(?regionlabel, "Firenze")
-  FILTER(lang(?occupation)="en")
-  FILTER(?wealth > 1500)
+?occ skos:altLabel ?occupationlabel .
+  
+ BIND(STR(?occupationlabel) as ?occupation)
+ FILTER(?wealth > 1500)
   }}
 
-  
-ORDER BY  DESC(?n_hh)
+ ORDER BY  DESC(?n_hh)
