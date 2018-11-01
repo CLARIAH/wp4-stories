@@ -4,19 +4,19 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX catastodim: <https://iisg.amsterdam/catasto/dimension/>
 PREFIX catasto: <https://iisg.amsterdam/catasto/>
 PREFIX catastoregion: <https://iisg.amsterdam/catasto/code/NUMSER/>
-
+PREFIX relationcode: <https://iisg.amsterdam/catasto/code/relationToHead/>
 
 SELECT  ?age (count(distinct ?florence) as ?n_florence)  (count(distinct ?contado) as ?n_contado)
 
 WHERE {{
-    ?florence a catasto:individual .
-    ?florence catastodim:age ?age .
-    ?florence catastodim:inHousehold /catastodim:NUMSER catastoregion:1 .
+	?florence a catasto:individual ;
+    catastodim:age ?age ;
+    catastodim:inHousehold /catastodim:NUMSER catastoregion:1 .
 }
   UNION {
-    ?contado a catasto:individual .
-    ?contado catastodim:age ?age .
-    ?contado catastodim:inHousehold /catastodim:NUMSER catastoregion:6 .
+    ?contado a catasto:individual ;
+    catastodim:age ?age ;
+    catastodim:inHousehold /catastodim:NUMSER catastoregion:6 .
     } 
   FILTER(?age > 22)
 }
