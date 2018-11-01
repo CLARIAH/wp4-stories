@@ -3,7 +3,8 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX catastodim: <https://iisg.amsterdam/catasto/dimension/>
 PREFIX catasto: <https://iisg.amsterdam/catasto/>
-PREFIX relationcode: <https://iisg.amsterdam/catasto/code/relationToHead/>
+PREFIX catastoregion: <https://iisg.amsterdam/catasto/code/NUMSER/>
+
 
 SELECT ?householdsize  (avg(?wealth) as ?avg_wealth) (avg(?debt) as ?avg_debt) (avg(?pubcred + ?privcred) as ?avg_investments) 
 WHERE { SELECT  (count(?members) as ?householdsize) ?wealth ?sub ?debt ?pubcred ?privcred
@@ -15,9 +16,9 @@ WHERE {
      catastodim:DEDUCT ?debt ;
      catastodim:CREANCE ?pubcred ;
      catastodim:CREDPUB ?privcred ;
-     catastodim:NUMSER / skos:prefLabel ?regionlabel .
+     catastodim:NUMSER catastoregion:1 .
 
-    FILTER regex(?regionlabel, "Firenze")
+    
 }
 }
   
