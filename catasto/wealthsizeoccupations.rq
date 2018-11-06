@@ -23,5 +23,5 @@ WHERE {
  FILTER(?wealth > 1500)
   }}
 
- ORDER BY  DESC(?n_hh)
- LIMIT 10
+ ORDER BY  DESC(?n_hh)  
+LIMIT 10
