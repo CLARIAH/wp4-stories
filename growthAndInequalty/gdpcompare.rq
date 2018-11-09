@@ -1,0 +1,23 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX cliodim: <https://iisg.amsterdam/clio/dimension/>
+PREFIX sdmxdim: <http://purl.org/linked-data/sdmx/2009/dimension#>
+prefix clioctr: <https://iisg.amsterdam/clio/code/country/>
+
+SELECT ?year_string ?gdp_gbr ?gdp_nld ?gdp_uganda 
+WHERE {
+  ?gbr cliodim:GDP_per_Capita ?gdp_gbr ;
+	 sdmxdim:refPeriod ?year ;
+	 sdmxdim:refArea / cliodim:ccode clioctr:826 .
+  
+  ?nld cliodim:GDP_per_Capita ?gdp_nld ;
+	 sdmxdim:refPeriod ?year ;
+	 sdmxdim:refArea / cliodim:ccode clioctr:528 .
+  
+  optional{
+      ?uga cliodim:GDP_per_Capita ?gdp_uganda ;
+	 sdmxdim:refPeriod ?year ;
+	 sdmxdim:refArea / cliodim:ccode clioctr:800
+      }
+  BIND(STR(?year) as ?year_string)
+}
