@@ -73,7 +73,7 @@
     <p>Locations on map: Africa and Asia very poor now mostly Africa:</p>
 
     <query data-query-ref="africaGdp.rq" data-config="https://druid.datalegend.net/dataLegend/Clio-Infra/sparql/Clio-Infra#query=PREFIX%20skos%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2004%2F02%2Fskos%2Fcore%23%3E%0APREFIX%20geo%3A%20%3Chttp%3A%2F%2Fwww.opengis.net%2Font%2Fgeosparql%23%3E%0APREFIX%20cliodim%3A%20%3Chttps%3A%2F%2Fiisg.amsterdam%2Fclio%2Fdimension%2F%3E%0APREFIX%20sdmxdim%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flinked-data%2Fsdmx%2F2009%2Fdimension%23%3E%0A%0ASELECT%20%3Fgdp%20%3Fgdpindex%20%3FwktColor%20%3Fwkt%20%3FwktTooltip%20%0AWHERE%20%7B%0A%20%20%3Frefarea%20skos%3AexactMatch%20%2F%20geo%3AhasGeometry%20%2F%20geo%3AasWKT%20%3Fwkt%20.%0A%20%20%3Fsub%20cliodim%3AGDP_per_Capita%20%3Fgdp%20.%0A%20%20%3Fsub%20sdmxdim%3ArefArea%20%3Frefarea%20.%0A%20%20%3Fsub%20sdmxdim%3ArefPeriod%20%222010%22%5E%5Exsd%3AgYear%20.%0A%20%20bind(%3Fgdp%20%2F%2040000%20as%20%3Fgdpindex%20)%20.%0A%20%20bind(concat('viridis%2C'%2C%20str(%3Fgdpindex))%20as%20%3FwktColor)%20.%0A%20%20bind(%3Fgdp%20as%20%3FwktTooltip)%0A%7D&endpoint=https%3A%2F%2Fdruid.datalegend.net%2F_api%2Fdatasets%2FdataLegend%2FClio-Infra%2Fservices%2FClio-Infra%2Fsparql&requestMethod=POST&tabTitle=africagdp&headers=%7B%7D&contentTypeConstruct=text%2Fturtle%2C*%2F*%3Bq%3D0.9&contentTypeSelect=application%2Fsparql-results%2Bjson%2C*%2F*%3Bq%3D0.9&outputFormat=geo&outputSettings=%7B%22map%22%3A%22osm%22%2C%22visualization%22%3A%22vanilla%22%7D"
-    </query>
+    ></query>
 
 
 
