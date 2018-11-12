@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="author" content="Thomas de Groot and Wouter Beek">
+    <meta name="description" content="Quality Indicator 4 ― Encoding errors">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://www.clariah.nl/images/logo/clariah/CLARIAH_icon.png"
+          icon="https://www.clariah.nl/images/logo/clariah/CLARIAH_icon.png"
+          rel="icon"
+          type="image/x-icon">
+    <title>Data Stories: data Quality checks for IISG-KG</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link href='/assets/css/main.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/yasgui.min.css' rel='stylesheet' type='text/css' />
+    <link href='https://nightly.yasgui.triply.cc/yasgui.bootstrap.css' rel='stylesheet' type='text/css' />
+  </head>
+  <body class="withNavbar">
+    <nav class="navbar fixed-top ">
+      <div class="navbar-content">
+        <div class="navbar-icon">
+          <a class="navbar-brand" href="/">
+            <img src="https://www.clariah.nl/images/logo-clariah.svg" />
+          </a>
+        </div>
+        <div class="navbar-title">
+          <a class="navbar-brand" href="/iisg/collections-data-quality/">IISG Data Quality Overview</a>
+        </div>
+      </div>
+    </nav>
+    <div class="container story"
+         data-endpoint="https://druid.datalegend.net/iisg-acceptatie/IISG/sparql/IISG" >
+      <h1>Quality Indicator 4: Encoding errors</h1>
+
+      <section class="alert alert-info" role="alert">
+        <h2>Encoding errors</h2>
+        <p>It is a data quality issue when lexical forms contain encoding errors.</p>
+      </section>
+
+      <section>
+        <h2>Encoding errors for various properties</h2>
+        <p>The following tables enumerate encoding errors that occur with different properties.</p>
+
+        <h3>Encoding errors for property <code>schema:description</code></h3>
+        <query data-query-ref="../query/4-encoding-description.rq"
+               data-config="https://api.demo.triply.cc/s/S1lUCSTD7" ></query>
+
+        <h3>Encoding errors for property <code>schema:name</code></h3>
+        <query data-query-ref="../query/4-encoding-name.rq"
+               data-config="https://api.demo.triply.cc/s/S1bK0BpP7">
+        </query>
+
+        <h3>Encoding errors for property <code>rdfs:label</code></h3>
+        <query data-query-ref="../query/4-encoding-label.rq"
+               data-config="https://api.demo.triply.cc/s/HysJl8pvX">
+        </query>
+      </section>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src='/assets/js/yasgui.min.js'></script>
+    <script type="text/javascript">
+      window.onload = function () {
+        Yasgui.stories()
+      };
+    </script>
+  </body>
+</html>

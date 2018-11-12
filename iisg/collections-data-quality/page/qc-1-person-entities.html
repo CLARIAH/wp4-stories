@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="author" content="Thomas de Groot and Wouter Beek">
+    <meta name="description" content="Quality Comparison ― Person Entities">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://www.clariah.nl/images/logo/clariah/CLARIAH_icon.png"
+          icon="https://www.clariah.nl/images/logo/clariah/CLARIAH_icon.png"
+          rel="icon"
+          type="image/x-icon">
+    <title>Data Stories ― IISG Knowledge Graph ― Quality Comparison</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link href='/assets/css/main.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/yasgui.min.css' rel='stylesheet' type='text/css' />
+    <link href='https://nightly.yasgui.triply.cc/yasgui.bootstrap.css' rel='stylesheet' type='text/css' />
+  </head>
+  <body class="withNavbar">
+    <nav class="navbar fixed-top ">
+      <div class="navbar-content">
+        <div class="navbar-icon">
+          <a class="navbar-brand" href="/">
+            <img src="https://www.clariah.nl/images/logo-clariah.svg" />
+          </a>
+        </div>
+        <div class="navbar-title">
+          <a class="navbar-brand" href="/iisg/collections-data-quality/">IISG Data Quality Overview</a>
+        </div>
+      </div>
+    </nav>
+    <div class="container story" data-endpoint="https://demo.triply.cc/iisg/iisg-kg/services/sparql">
+      <h1>Quality Comparison: Person Entities</h1>
+      <p>This overview shows the quality improvements that have been made to the person entities in the IISG Knowledge Graph.</p>
+      <p>The first diagram shows the data <em>prior</em> to making the quality improvements (2017 version).  As shown in the diagram, there are many persons with more than one identifier.  The person identifiers are collected per combination of person name, title, and ‘word &amp; dates’ property.  The diagram only shows the persons with the largest number of works attributed to them.</p>
+      <query data-config="https://api.demo.triply.cc/s/BkXvkT1_7"
+             data-query-ref="../query/7-plot-old.rq">
+      </query>
+      <p>The second diagram shows the data <em>after</em> quality improvements have been made (version 2018-09).  A value of 1 for <code>number_of_occurrences</code> (red line) means that there are no duplicates for the corresponding person (displayed on the horizontal axis).  While there are still some duplicates left, very many duplicates have been resolved.</p>
+      <query data-config="https://api.demo.triply.cc/s/BkXvkT1_7"
+             data-endpoint="https://druid.datalegend.net/iisg-acceptatie/IISG/sparql/IISG"
+             data-query-ref="../query/7-plot-new.rq">
+      </query>
+      <p>The following table enumerates persons that still have multiple identifiers in the latest version of the data (2018-09).</p>
+      <query data-config="https://api.demo.triply.cc/s/HJuJYfpDm"
+             data-endpoint="https://druid.datalegend.net/iisg-acceptatie/IISG/sparql/IISG"
+             data-query-ref="../query/7-table-new.rq">
+      </query>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src='/assets/js/yasgui.min.js'></script>
+    <script type="text/javascript">
+      window.onload = function () {
+        Yasgui.stories()
+      };
+    </script>
+  </body>
+</html>

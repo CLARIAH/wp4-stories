@@ -1,0 +1,8 @@
+prefix iisg: <https://iisg.amsterdam/vocab/>
+select ?label (count(?item) as ?n) {
+  ?item iisg:dateOfManufacture ?date.
+  bind(datatype(?date) as ?d)
+  bind(strafter(str(?d), "#") as ?label)
+}
+group by ?label
+order by desc(?n)

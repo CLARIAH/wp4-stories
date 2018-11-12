@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="author" content="Thomas de Groot and Wouter Beek">
+    <meta name="description" content="Quality Indicator 5 ― Collection item size">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://www.clariah.nl/images/logo/clariah/CLARIAH_icon.png"
+          icon="https://www.clariah.nl/images/logo/clariah/CLARIAH_icon.png"
+          rel="icon"
+          type="image/x-icon">
+    <title>Data Stories ― IISG Knowledge Graph ― Quality Indicator 5</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link href='/assets/css/main.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/yasgui.min.css' rel='stylesheet' type='text/css' />
+    <link href='https://nightly.yasgui.triply.cc/yasgui.bootstrap.css' rel='stylesheet' type='text/css' />
+  </head>
+  <body class="withNavbar">
+    <nav class="navbar fixed-top ">
+      <div class="navbar-content">
+        <div class="navbar-icon">
+          <a class="navbar-brand" href="/">
+            <img src="https://www.clariah.nl/images/logo-clariah.svg" />
+          </a>
+        </div>
+        <div class="navbar-title">
+          <a class="navbar-brand" href="/iisg/collections-data-quality/">IISG Data Quality Overview</a>
+        </div>
+      </div>
+    </nav>
+    <div class="container story"
+         data-endpoint="https://druid.datalegend.net/iisg-acceptatie/IISG/sparql/IISG">
+      <h1>Quality Indicator 5: Size of collection items</h1>
+
+      <section class="alert alert-info" role="alert">
+        <h2>Deduplication of content</h2>
+        <p>When the same content is stored multiple times, data quality is enhanced by extracting the most valid variant of this content, and store it one single time.  Deduplicating content in this way enhances data quality, because users will not accidentally use low quality variantions, and data maintenance can focus on fixing and sustaining one instead of multiple versions.</p>
+      </section>
+
+      <section>
+        <p>Many collection items have information about their width <code>iisg:widthInCm</code> and their height <code>iisg:heightInCm</code> readily available in their properties. While most images do have their values inserted some miss either the height or the width of the image while this is available in the property <code>iisg:size</code>.  As shown in the table below, these items miss either their <code>iisg:heigthInCm</code> or their <code>iisg:widthInCm</code> while the <code>iisg:size</code> is always known.</p>
+        <query data-query-ref="../query/5-missing-values-size.rq"
+               data-config="https://api.demo.triply.cc/s/HJuJYfpDm">
+        </query>
+      </section>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src='/assets/js/yasgui.min.js'></script>
+    <script type="text/javascript">
+      window.onload = function () {
+        Yasgui.stories()
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+prefix iisg: <https://iisg.amsterdam/vocab/>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+select ?date (count(?date) as ?number_of_occurences) {
+  ?item iisg:dateOfPublication ?date.
+  filter(datatype(?date) = xsd:string)
+}
+group by ?date
+order by desc(?number_of_occurences)
+limit 100

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="author" content="Thomas de Groot and Wouter Beek">
+    <meta name="description" content="Quality Indicator 1 ― Person Authorities">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://www.clariah.nl/images/logo/clariah/CLARIAH_icon.png"
+          icon="https://www.clariah.nl/images/logo/clariah/CLARIAH_icon.png"
+          rel="icon"
+          type="image/x-icon">
+    <title>Data Stories ― IISG Knowledge Graph ― Quality Indicator 1</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link href='/assets/css/main.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/yasgui.min.css' rel='stylesheet' type='text/css' />
+    <link href='https://nightly.yasgui.triply.cc/yasgui.bootstrap.css' rel='stylesheet' type='text/css' />
+  </head>
+  <body class="withNavbar">
+    <nav class="navbar fixed-top ">
+      <div class="navbar-content">
+        <div class="navbar-icon">
+          <a class="navbar-brand" href="/">
+            <img src="https://www.clariah.nl/images/logo-clariah.svg" />
+          </a>
+        </div>
+        <div class="navbar-title">
+          <a class="navbar-brand" href="/iisg/collections-data-quality/">IISG Data Quality Overview</a>
+        </div>
+      </div>
+    </nav>
+    <div class="container story"
+         data-endpoint="https://demo.triply.cc/iisg/iisg-kg/services/sparql">
+      <h1>Quality Indicator 1: Dates &amp; Times</h1>
+
+      <section class="alert alert-info" role="alert">
+        <h2>Datatype compatibility</h2>
+	      <p>Literal values for a given property must have datatypes that are mutually compatible.  Suppose a dataset contains the <code>dct:created</code> property.  If all corresponding literals have datatype IRI <code>xsd:date</code>, or datatype IRIs that can be cast to it (e.g., <code>xsd:gYear</code>), then creation dates can be uniformly filtered and aggregated over.  However, if only some literals have datatype IRI <code>xsd:date</code> while others have ― for example ― datatype IRI <code>xsd:string</code>, values cannot be uniformly filtered or aggregated over.</p>
+      </section>
+
+      <section class="row">
+        <h2>Datatype overview: date of publication/manufacturing</h2>
+        <p>The following pie charts give an overview of the datatype compatibility for the properties <code>iisg:dateOfPublication</code> and <code>iisg:dateOfManufacturing</code>.  They quantify the number of literals for each datatype IRI.  The left hand side shows the results for the 2017 version of the IISG Knowledge Graph, while the right hand side shows the results for the 2018-09 version.</p>
+        <query class="col-sm-6"
+               data-query-ref="../query/1-date-of-publication-datatypes.rq"
+               data-config="https://api.demo.triply.cc/s/ryC95WpDX">
+        </query>
+        <query class="col-sm-6"
+               data-query-ref="../query/1-date-of-publication-datatypes.rq"
+               data-config="https://api.demo.triply.cc/s/ryC95WpDX"
+               data-endpoint="https://druid.datalegend.net/iisg-acceptatie/IISG/sparql/IISG">
+        </query>
+      </section>
+      <section class="row">
+        <h2>Uninterpretable dates: date of publication</h2>
+        <p>The following diagram shows the 100 most common string values for the predicate <code>iisg:dateOfPublication</code>.  The diagram shows that cleaning only the 10 most common strings will significantly improve the data quality of this property.</p>
+        <query class="w-100" data-query-ref="../query/1-date-of-publication-strings.rq"
+               data-config="https://api.demo.triply.cc/s/SJHSjb6v7">
+        </query>
+      </section>
+
+      <section class="row">
+        <h2>Datatype overview: date of manufacturing</h2>
+        <p>The following pie charts give an overview of the datatype compatibility for the property <code>iisg:dateOfManfacturing</code>.  Notice that many values have datatype IRI <code>xsd:string</code>, i.e., cannot be interpreted as dates.</p>
+        <query class="col-sm-6"
+               data-query-ref="../query/1-date-of-manufacturing-datatypes.rq"
+               data-config="https://api.demo.triply.cc/s/B1Gxcb6w7">
+        </query>
+        <query class="col-sm-6"
+               data-query-ref="../query/1-date-of-manufacturing-datatypes.rq"
+               data-config="https://api.demo.triply.cc/s/B1Gxcb6w7"
+               data-endpoint="https://druid.datalegend.net/iisg-acceptatie/IISG/sparql/IISG">
+        </query>
+      </section>
+
+      <section class="row">
+        <h2>Uninterpretable dates: date of manufacturing</h2>
+        <p>In following table below the first 100 types of misclassified data values are shownfor the predicate <code>iisg:dateOfManufacturing</code>.  Changing the first 10 elements will lower the number of misclassifications significantly.</p>
+        <query class="w-100" data-query-ref="../query/1-date-of-manufacturing-strings.rq"
+               data-config="https://api.demo.triply.cc/s/Syn0jZpv7">
+        </query>
+      </section>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src='/assets/js/yasgui.min.js'></script>
+    <script type="text/javascript">
+      window.onload = function () {
+        Yasgui.stories()
+      };
+    </script>
+  </body>
+</html>

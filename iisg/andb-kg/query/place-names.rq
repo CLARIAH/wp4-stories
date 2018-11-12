@@ -1,0 +1,10 @@
+prefix iisg: <https://iisg.amsterdam/vocab/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix schema: <http://schema.org/>
+select (str(?placeName) as ?placeName) (count(?s) as ?n) {
+  ?place a iisg:Place;
+    rdfs:label ?placeName.
+  ?s ?p ?place.
+}
+group by ?placeName
+order by desc(?n)

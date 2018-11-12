@@ -1,0 +1,7 @@
+prefix schema: <http://schema.org/>
+select * {
+  ?person a schema:Person;
+          schema:name ?name1, ?name2.
+  filter(?name1 > ?name2)
+}
+limit 100

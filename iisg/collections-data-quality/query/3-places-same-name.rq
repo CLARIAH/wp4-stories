@@ -1,0 +1,10 @@
+prefix schema: <http://schema.org/>
+select ?name (count(?name) as ?number_of_names) {
+  ?person1 a schema:Place;
+           schema:name ?name.
+  ?person2 a schema:Place;
+           schema:name ?name.
+  filter(?person1 > ?person2)
+}
+group by ?name
+order by desc(?number_of_names)

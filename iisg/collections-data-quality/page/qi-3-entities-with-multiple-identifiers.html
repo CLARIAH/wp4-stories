@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="author" content="Thomas de Groot and Wouter Beek">
+    <meta name="description" content="Quality Indicator 3 ― Multiple identifiers">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://www.clariah.nl/images/logo/clariah/CLARIAH_icon.png"
+          icon="https://www.clariah.nl/images/logo/clariah/CLARIAH_icon.png"
+          rel="icon"
+          type="image/x-icon">
+    <title>Data Stories ― IISG Knowledge Graph ― Data Quality Indicator 3</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <!-- Custom styles for this template -->
+    <link href='/assets/css/main.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/yasgui.min.css' rel='stylesheet' type='text/css' />
+    <link href='https://nightly.yasgui.triply.cc/yasgui.bootstrap.css' rel='stylesheet' type='text/css' />
+  </head>
+  <body class="withNavbar">
+    <nav class="navbar fixed-top ">
+      <div class="navbar-content">
+        <div class="navbar-icon">
+          <a class="navbar-brand" href="/">
+            <img src="https://www.clariah.nl/images/logo-clariah.svg" />
+          </a>
+        </div>
+        <div class="navbar-title">
+          <a class="navbar-brand" href="/iisg/collections-data-quality/">IISG Data Quality Overview</a>
+        </div>
+      </div>
+    </nav>
+    <div class="container story"
+         data-endpoint="https://demo.triply.cc/iisg/iisg-kg/services/sparql">
+      <h1>Quality Indicator 3: Persons &amp; locations with multiple identifiers</h1>
+
+      <section class="alert alert-info" role="alert">
+        <h2>Multiple identifiers</h2>
+        <p>Data quality is enhanced when entities have at most one IRI identifier.  Whenever multiple IRIs identify the same thing, it is more difficult to query the data.</p>
+      </section>
+
+      <section>
+        <h2>Person identifiers with the same name</h2>
+        <p>The following table enumerates persons with the exact same name.  While it is possible for different people to have the same name, this table may also include redundant identifiers that could be cleaned.</p>
+        <query data-query-ref="../query/3-persons-same-name.rq"
+               data-config="https://api.demo.triply.cc/s/HJqBrwpDQ">
+        </query>
+      </section>
+
+      <section>
+        <h2>Location identifiers with the same name</h2>
+        <p>The following table enumerates locations with the exact same name.  There are a number of places that have the same name but are given different identifiers.</p>
+        <query data-query-ref="../query/3-places-same-name.rq"
+               data-config="https://api.demo.triply.cc/s/SJIeEXpwm">
+        </query>
+      </section>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+            crossorigin="anonymous"></script>
+    <script src='/assets/js/yasgui.min.js'></script>
+    <script type="text/javascript">
+      window.onload = function () {
+        Yasgui.stories()
+      };
+    </script>
+  </body>
+</html>

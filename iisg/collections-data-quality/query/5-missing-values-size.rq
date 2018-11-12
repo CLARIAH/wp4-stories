@@ -1,0 +1,10 @@
+# widthInCm check for values All images with size or width or height with missing data
+
+prefix iisg: <https://iisg.amsterdam/vocab/>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+select ?item ?width ?height ?size {
+  ?item iisg:widthInCm ?width;
+        iisg:size ?size;
+        iisg:heightInCm ?height.
+  filter(datatype(?width)=xsd:string || datatype(?height)=xsd:string || str(?width)="NaN" || str(?height)="NaN")
+}

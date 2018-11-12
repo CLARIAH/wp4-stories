@@ -1,0 +1,8 @@
+prefix schema: <http://schema.org/>
+select ?datetype (count(?item) as ?numberOf) {
+  ?item schema:inLanguage ?lang
+  bind(xsd:string(if(datatype(?lang) = xsd:string,"xsd:string", "IRI")) as ?datetype)
+}
+group by ?datetype
+order by desc(?numberOf)
+limit 100

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="author" content="Thomas de Groot and Wouter Beek">
+    <meta name="description" content="Quality Indicator 2 ― Authorities with multiple spellings">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://www.clariah.nl/images/logo/clariah/CLARIAH_icon.png"
+          icon="https://www.clariah.nl/images/logo/clariah/CLARIAH_icon.png"
+          rel="icon"
+          type="image/x-icon">
+    <title>Data Stories ― IISG Knowledge Graph ― Quality Indicator 2</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link href='/assets/css/main.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/yasgui.min.css' rel='stylesheet' type='text/css' />
+    <link href='https://nightly.yasgui.triply.cc/yasgui.bootstrap.css' rel='stylesheet' type='text/css' />
+  </head>
+  <body class="withNavbar">
+    <nav class="navbar fixed-top ">
+      <div class="navbar-content">
+        <div class="navbar-icon">
+          <a class="navbar-brand" href="/">
+            <img src="https://www.clariah.nl/images/logo-clariah.svg" />
+          </a>
+        </div>
+        <div class="navbar-title">
+          <a class="navbar-brand" href="/iisg/collections-data-quality/">IISG Data Quality Overview</a>
+        </div>
+      </div>
+    </nav>
+    <div class="container story"
+         data-endpoint="https://druid.datalegend.net/iisg-acceptatie/IISG/sparql/IISG">
+      <h1>Quality Indicator 2: Persons &amp; locations with multiple labels</h1>
+
+      <section class="alert alert-info" role="alert">
+        <h2>Entity labels</h2>
+        <p>Data quality is enhanced when most entities have human-readble label.  Once such a label is available, data quality is higher when such labels do not contain typo's.  If a dataset has labels without typo's for all entities, it becomes easier to search for entities based on their name (text search).</p>
+      </section>
+
+      <section>
+        <h2>Potential misspellings of person names</h2>
+        <p>The following table shows entities that have multiple labels.  As can be observed, alternative labels often are typographic mistakes of a correct label, or they are abbreviations of the full label.  In both cases, such labels are redundant (abbreviated labels do not need to be stored separately, but can be based on the full label).</p>
+        <query data-query-ref="../query/2-names-misspelled.rq"
+               data-config="https://api.demo.triply.cc/s/r12TAf6PX">
+        </query>
+      </section>
+
+      <section>
+        <h2>Potential misspellings of location names</h2>
+        <p>The following table shows a place that has two different names.</p>
+        <query data-query-ref="../query/2-places-misspelled.rq"
+               data-config="https://api.demo.triply.cc/s/rJBneQpD7">
+        </query>
+      </section>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src='/assets/js/yasgui.min.js'></script>
+    <script type="text/javascript">
+      window.onload = function () {
+        Yasgui.stories()
+      };
+    </script>
+  </body>
+</html>

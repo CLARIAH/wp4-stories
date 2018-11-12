@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Data Stories ― IISG Knowledge Graph ― Diamantbewerkers">
+    <meta name="author" content="Wouter Beek">
+    <link href="https://www.clariah.nl/images/logo/clariah/CLARIAH_icon.png"
+          icon="https://www.clariah.nl/images/logo/clariah/CLARIAH_icon.png"
+          rel="icon"
+          type="image/x-icon">
+    <title>Data Stories ― IISG Knowledge Graph ― Diamantbewerkers</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link href='/assets/css/main.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/yasgui.min.css' rel='stylesheet' type='text/css' />
+    <link href='https://nightly.yasgui.triply.cc/yasgui.bootstrap.css' rel='stylesheet' type='text/css' />
+  </head>
+  <body class="withNavbar">
+    <nav class="navbar fixed-top ">
+      <div class="navbar-content">
+        <div class="navbar-icon">
+          <a class="navbar-brand" href="/">
+            <img src="https://www.clariah.nl/images/logo-clariah.svg" />
+          </a>
+        </div>
+        <div class="navbar-title">
+          <a class="navbar-brand" href="/">Data Stories</a>
+        </div>
+      </div>
+    </nav>
+    <div class="container story"
+         data-endpoint="https://druid.datalegend.net/iisg-acceptatie/andb-kg/sparql/andb-kg">
+      <h1>Diamantbewerkers</h1>
+      <hr>
+      <h2>Data Exploration</h2>
+      <h3>Age</h3>
+      <p>The age at which students finish their apprenticeship.</p>
+      <query data-config="https://api.demo.triply.cc/s/3tbPh1_qv"
+             data-query-ref="query/age.rq"></query>
+      <h3>Children per parent</h3>
+      <p>The number of children of each parent.</p>
+      <query data-config="https://api.demo.triply.cc/s/YKp0xjpwY"
+             data-query-ref="query/children-per-parent.rq"></query>
+      <hr>
+      <h2>Dataset Overview</h2>
+      <h3>Classes</h3>
+      <p>Overview of classes quantified by their number of instances.</p>
+      <query data-config="http://127.0.0.1:8080/iisg/diamantbewerkers/#query=select%20%3Fc%20(count(%3Fi)%20as%20%3Fn)%20%7B%0A%20%20graph%20%3Chttps%3A%2F%2Fiisg.amsterdam%2Fgraph%2Fdiamantbewerkers%3E%20%7B%0A%20%20%20%20%3Fi%20a%20%3Fc.%0A%20%20%7D%0A%7D%0Agroup%20by%20%3Fc%0Aorder%20by%20desc(%3Fn)%0A&endpoint=https%3A%2F%2Fapi.demo.triply.cc%2Fdatasets%2Fiisg%2Fdiamantbewerkers%2Fservices%2Fdiamantbewerkers%2Fsparql&requestMethod=POST&tabTitle=Query&headers=%7B%7D&contentTypeConstruct=text%2Fturtle%2C*%2F*%3Bq%3D0.9&contentTypeSelect=application%2Fsparql-results%2Bjson%2C*%2F*%3Bq%3D0.9&outputFormat=gchart&outputSettings=%7B%22chartConfig%22%3A%7B%22dataTable%22%3A%7B%22cols%22%3A%5B%7B%22id%22%3A%22%22%2C%22label%22%3A%22c%22%2C%22pattern%22%3A%22%22%2C%22type%22%3A%22string%22%7D%2C%7B%22id%22%3A%22%22%2C%22label%22%3A%22n%22%2C%22pattern%22%3A%22%22%2C%22type%22%3A%22number%22%7D%5D%2C%22rows%22%3A%5B%7B%22c%22%3A%5B%7B%22v%22%3A%22http%3A%2F%2Fschema.org%2FImageObject%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A1995%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22http%3A%2F%2Fschema.org%2FPerson%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A1039%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22https%3A%2F%2Fiisg.amsterdam%2Fvocab%2FWorkEvent%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A892%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22https%3A%2F%2Fiisg.amsterdam%2Fvocab%2FAddress%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A720%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22https%3A%2F%2Fiisg.amsterdam%2Fvocab%2FCard%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A665%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22https%3A%2F%2Fiisg.amsterdam%2Fvocab%2FStreet%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A295%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22https%3A%2F%2Fiisg.amsterdam%2Fvocab%2FAtelier%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A251%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22https%3A%2F%2Fiisg.amsterdam%2Fvocab%2FUnion%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A54%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22https%3A%2F%2Fiisg.amsterdam%2Fvocab%2FPlace%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A39%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22https%3A%2F%2Fiisg.amsterdam%2Fvocab%2FProfession%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A10%2C%22p%22%3A%7B%7D%7D%5D%7D%5D%7D%2C%22options%22%3A%7B%22hAxis%22%3A%7B%22useFormatFromData%22%3Atrue%2C%22viewWindow%22%3A%7B%22max%22%3Anull%2C%22min%22%3Anull%7D%2C%22minValue%22%3Anull%2C%22maxValue%22%3Anull%7D%2C%22legacyScatterChartLabels%22%3Atrue%2C%22vAxes%22%3A%5B%7B%22useFormatFromData%22%3Atrue%2C%22viewWindow%22%3A%7B%22max%22%3Anull%2C%22min%22%3Anull%7D%2C%22minValue%22%3Anull%2C%22maxValue%22%3Anull%7D%2C%7B%22useFormatFromData%22%3Atrue%2C%22viewWindow%22%3A%7B%22max%22%3Anull%2C%22min%22%3Anull%7D%2C%22minValue%22%3Anull%2C%22maxValue%22%3Anull%7D%5D%2C%22is3D%22%3Afalse%2C%22pieHole%22%3A0%2C%22booleanRole%22%3A%22certainty%22%2C%22width%22%3A%22100%25%22%2C%22height%22%3A%22100%25%22%7D%2C%22state%22%3A%7B%7D%2C%22view%22%3A%7B%22columns%22%3Anull%2C%22rows%22%3Anull%7D%2C%22isDefaultVisualization%22%3Afalse%2C%22chartType%22%3A%22PieChart%22%7D%7D"
+             data-query-ref="query/classes.rq"></query>
+      <hr>
+      <h3>Properties</h3>
+      <p>Overview of properties quantified by the number of triples in which they appear.</p>
+      <query data-config="http://127.0.0.1:8080/iisg/diamantbewerkers/#query=select%20%3Fp%20(count(%3Fs)%20as%20%3Fn)%20%7B%0A%20%20graph%20%3Chttps%3A%2F%2Fiisg.amsterdam%2Fgraph%2Fdiamantbewerkers%3E%20%7B%0A%20%20%20%20%3Fs%20%3Fp%20%3Fo.%0A%20%20%7D%0A%7D%0Agroup%20by%20%3Fp%0Aorder%20by%20desc(%3Fn)%0A&endpoint=https%3A%2F%2Fapi.demo.triply.cc%2Fdatasets%2Fiisg%2Fdiamantbewerkers%2Fservices%2Fdiamantbewerkers%2Fsparql&requestMethod=POST&tabTitle=Query&headers=%7B%7D&contentTypeConstruct=text%2Fturtle%2C*%2F*%3Bq%3D0.9&contentTypeSelect=application%2Fsparql-results%2Bjson%2C*%2F*%3Bq%3D0.9&outputFormat=gchart&outputSettings=%7B%22chartConfig%22%3A%7B%22dataTable%22%3A%7B%22cols%22%3A%5B%7B%22id%22%3A%22%22%2C%22label%22%3A%22p%22%2C%22pattern%22%3A%22%22%2C%22type%22%3A%22string%22%7D%2C%7B%22id%22%3A%22%22%2C%22label%22%3A%22n%22%2C%22pattern%22%3A%22%22%2C%22type%22%3A%22number%22%7D%5D%2C%22rows%22%3A%5B%7B%22c%22%3A%5B%7B%22v%22%3A%22http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A5960%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A3255%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22http%3A%2F%2Fschema.org%2FcontentSize%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A1995%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22http%3A%2F%2Fschema.org%2FencodingFormat%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A1995%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22http%3A%2F%2Fschema.org%2FcontentURL%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A1995%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22https%3A%2F%2Fiisg.amsterdam%2Fvocab%2Fmd5%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A1995%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22http%3A%2F%2Fschema.org%2FfamilyName%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A1036%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22http%3A%2F%2Fschema.org%2FgivenName%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A1032%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22https%3A%2F%2Fiisg.amsterdam%2Fvocab%2Fatelier%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A892%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22https%3A%2F%2Fiisg.amsterdam%2Fvocab%2FworkEvent%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A892%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22https%3A%2F%2Fiisg.amsterdam%2Fvocab%2Faddress%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A860%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22https%3A%2F%2Fiisg.amsterdam%2Fvocab%2Fplace%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A720%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22https%3A%2F%2Fiisg.amsterdam%2Fvocab%2Fstreet%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A710%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22https%3A%2F%2Fiisg.amsterdam%2Fvocab%2FhouseNumber%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A705%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22https%3A%2F%2Fiisg.amsterdam%2Fvocab%2Funion%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A700%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22http%3A%2F%2Fschema.org%2Fparent%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A665%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22http%3A%2F%2Fxmlns.com%2Ffoaf%2F0.1%2Fdepiction%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A665%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22https%3A%2F%2Fiisg.amsterdam%2Fvocab%2Fstudent%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A665%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22https%3A%2F%2Fiisg.amsterdam%2Fvocab%2Fmessage%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A665%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22http%3A%2F%2Fxmlns.com%2Ffoaf%2F0.1%2Fthumbnail%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A665%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22http%3A%2F%2Fschema.org%2Fidentifier%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A665%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22https%3A%2F%2Fiisg.amsterdam%2Fvocab%2FscreenVersion%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A665%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22http%3A%2F%2Fschema.org%2FbirthDate%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A658%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22https%3A%2F%2Fiisg.amsterdam%2Fvocab%2FadmissionDate%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A621%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22https%3A%2F%2Fiisg.amsterdam%2Fvocab%2FdepartmentNumber%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A444%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22https%3A%2F%2Fiisg.amsterdam%2Fvocab%2FhouseNumberAddition%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A428%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22https%3A%2F%2Fiisg.amsterdam%2Fvocab%2FtestTakenAt%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A411%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22http%3A%2F%2Fschema.org%2FbirthPlace%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A389%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22https%3A%2F%2Fiisg.amsterdam%2Fvocab%2FmembershipNumber%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A352%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22https%3A%2F%2Fiisg.amsterdam%2Fvocab%2Fbrothers%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A325%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22https%3A%2F%2Fiisg.amsterdam%2Fvocab%2Fbranch%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A298%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22https%3A%2F%2Fiisg.amsterdam%2Fvocab%2Fremarks%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A293%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22https%3A%2F%2Fiisg.amsterdam%2Fvocab%2Fprofession%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A290%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22https%3A%2F%2Fiisg.amsterdam%2Fvocab%2FfactoryDate%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A285%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22https%3A%2F%2Fiisg.amsterdam%2Fvocab%2Ftussenvoegsel%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A174%2C%22p%22%3A%7B%7D%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23comment%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22v%22%3A149%2C%22p%22%3A%7B%7D%7D%5D%7D%5D%7D%2C%22options%22%3A%7B%22hAxis%22%3A%7B%22useFormatFromData%22%3Atrue%2C%22viewWindow%22%3A%7B%22max%22%3Anull%2C%22min%22%3Anull%7D%2C%22minValue%22%3Anull%2C%22maxValue%22%3Anull%7D%2C%22legacyScatterChartLabels%22%3Atrue%2C%22vAxes%22%3A%5B%7B%22useFormatFromData%22%3Atrue%2C%22viewWindow%22%3A%7B%22max%22%3Anull%2C%22min%22%3Anull%7D%2C%22minValue%22%3Anull%2C%22maxValue%22%3Anull%7D%2C%7B%22useFormatFromData%22%3Atrue%2C%22viewWindow%22%3A%7B%22max%22%3Anull%2C%22min%22%3Anull%7D%2C%22minValue%22%3Anull%2C%22maxValue%22%3Anull%7D%5D%2C%22is3D%22%3Afalse%2C%22pieHole%22%3A0%2C%22booleanRole%22%3A%22certainty%22%2C%22width%22%3A%22100%25%22%2C%22height%22%3A%22100%25%22%7D%2C%22state%22%3A%7B%7D%2C%22view%22%3A%7B%22columns%22%3Anull%2C%22rows%22%3Anull%7D%2C%22isDefaultVisualization%22%3Afalse%2C%22chartType%22%3A%22PieChart%22%7D%7D"
+             data-query-ref="query/properties.rq"></query>
+      <hr>
+      <h2>Data Quality Overview</h2>
+      <h3>Unknown persons</h3>
+      <p>For some persons, no identifiable properties such a name are available.  These persons are currently represented by the same node.  The cards where these persons are related to can be displayed in the Linked Data Browser (open the back links (left pointing arrow).</p>
+      <a href="https://druid.datalegend.net/iisg-acceptatie/andb-kg/browser?resource=https%3A%2F%2Fiisg.amsterdam%2Fid%2Fperson%2F3e374573b39e6019f8293e6a67e2d3e1" target="_blank">
+        <button>Open in Linked Data Browser</button>
+      </a>
+      <hr>
+      <h3>Locations</h3>
+      <query data-query-ref="query/place-names.rq"></query>
+      <hr>
+      <h3>Professions</h3>
+      <query data-query-ref="query/profession.rq"></query>
+      <hr>
+      <h3>Street names</h3>
+      <query data-query-ref="query/street-names.rq"></query>
+      <hr>
+      <h3>House number additions</h3>
+      <query data-query-ref="query/house-number-additions.rq"></query>
+      <hr>
+      <h3>Union names</h3>
+      <query data-query-ref="query/union-names.rq"></query>
+      <hr>
+      <h3>Old dates</h3>
+      <query data-query-ref="query/old-dates.rq"></query>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src='/assets/js/yasgui.min.js'></script>
+    <script type="text/javascript">
+      window.onload = function () {
+        Yasgui.stories()
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+prefix iisg: <https://iisg.amsterdam/vocab/>
+prefix schema: <http://schema.org/>
+select *
+from <https://iisg.amsterdam/graph/data>
+{
+  {
+    select
+      ?name
+      ?title_or_word
+      ?numeration
+      (group_concat(distinct replace(str(?id),".*\\/","");separator=' ') as ?ids)
+      (count(distinct ?id) as ?number_of_ids)
+      (count(?work) as ?number_of_works)
+      (replace(str(sample(?work)),".*\\/","") as ?example_work)
+    {
+      ?work schema:author ?id.
+      ?id schema:name ?name.
+      optional { ?id iisg:titleOrWord ?title_or_word. }
+      optional { ?id iisg:numeration ?numeration. }
+    }
+    group by ?name ?title_or_word ?numeration
+  }
+  filter(?number_of_ids > 1)
+}
+order by desc(?number_of_ids) desc(?number_of_works)

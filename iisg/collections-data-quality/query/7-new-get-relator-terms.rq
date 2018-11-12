@@ -1,0 +1,11 @@
+prefix schema: <http://schema.org/>
+select ?person_id (group_concat(distinct(?str_pred), ", ") as ?relator)
+from <https://iisg.amsterdam/graph/data>
+{
+  ?work schema:author ?person_id.
+  ?work ?pred ?person_id.
+  filter(!regex(str(?pred),"schema"))
+  bind(strafter(str(?pred),"relators/") as ?str_pred)
+}
+group by ?person_id
+limit 100

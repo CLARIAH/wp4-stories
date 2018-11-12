@@ -1,0 +1,14 @@
+#+Author: Richard Zijdeman
+#+Description: The age in which students finish their apprenticeship.
+
+prefix schema: <http://schema.org/>
+prefix iisg: <https://iisg.amsterdam/vocab/>
+select ?firstName ((?endYear-?birthDate)/(60*60*24*365.25) as ?age) {
+  ?card a iisg:Card;
+    iisg:endOfApprenticeship ?endYear;
+    iisg:student [
+      schema:birthDate ?birthDate;
+      schema:familyName ?lastName;
+      schema:givenName ?firstName].
+}
+order by asc(?age)

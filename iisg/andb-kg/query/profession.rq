@@ -1,0 +1,6 @@
+prefix iisg: <https://iisg.amsterdam/vocab/>
+select ?profession (count(?s) as ?n) {
+  ?s iisg:profession ?profession.
+}
+group by ?profession
+order by desc(?n)
