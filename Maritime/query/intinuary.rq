@@ -1,0 +1,53 @@
+PREFIX schema: <http://schema.org/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX wgs84: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX def: <https://demo.triply.cc/huygens-ing/dutch-asiatic-shipping/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX das: <http://purl.org/collections/nl/dss/das/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX geonames: <http://www.geonames.org/ontology#>
+PREFIX shipdef: <https://demo.triply.cc/huygens-ing/dutch-asiatic-shipping/id/ship/>
+
+
+SELECT
+(str(?Chamber) AS ?bestuurskamer)
+(str(?nameShip) AS ?scheepsnaam)
+(str(?master) AS ?scheepsmeester)
+(str(?DepName) AS ?vertrekplaats)
+(str(?depDate) AS ?vertrekdatum)
+(str(?ArrName) AS ?aankomstplaats)
+(str(?arrDate) AS ?aankomstdatum)
+?Reiskleur
+WHERE {
+
+  BIND(shipdef:DAS_ship0010 as ?shipID)# 't Vliegend Hart' == DAS_ship0010
+
+   ?voy def:shipid ?shipID;
+        def:voymaster ?master;
+        def:voychamber ?Chamber;
+        def:voyarrivalplaceid ?idArr ;
+        def:voydepartureplaceid ?idDep .
+   ?idArr def:toponym_original ?ArrName.
+
+   ?idDep def:toponym_original ?DepName.
+
+   ?shipID def:shipname ?nameShip
+
+  BIND(<http://sws.geonames.org/3367577/> as ?geoIdKaap)
+
+
+  ?voy  def:voydepartureedtf ?depDate;
+        def:voycapedepartureedtf ?depCapeDate;
+        def:voyarrivaldateedtf ?arrDate;
+        def:voycapearrivaledtf ?arrCapeDate.
+
+  ?geoIdKaap geonames:name ?CapeName.
+
+      BIND(CONCAT("Duur van de reis: ", ((?arrDate - ?depDate)/(24*60*60)), " dagen" ) as ?totaleDuur)
+  BIND(IF(STRENDS(str(?voy),"6"), "groen", "rood") AS ?Reiskleur)
+
+}
+
+ORDER BY ?vertrekdatum

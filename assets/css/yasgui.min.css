@@ -2787,7 +2787,7 @@ article.story {
 .stories-query {
   margin: 15px 0;
   display: block; }
-  .stories-query.hideControls .pvtUi td:not(.pvtRendererArea) {
+  .stories-query.hideControls .pvtUi td:not(.pvtRendererArea):not(.pvtVal):not(.pvtTotal) {
     display: none; }
   .stories-query.showControls .pvtUi {
     table-layout: auto; }

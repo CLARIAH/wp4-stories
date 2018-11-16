@@ -1,0 +1,42 @@
+PREFIX das: <http://purl.org/collections/nl/dss/das/>
+PREFIX opvarenden: <https://demo.triply.cc/huygens-ing/voc-opvarenden-verrijkingen-carrieres/>
+PREFIX na: <http://archief.nl/def/>
+PREFIX plaats-na: <http://archief.nl/NL-HaNA/id/plaats/>
+PREFIX ship: <https://demo.triply.cc/huygens-ing/voc-opvarenden-verrijkingen-carrieres/id/ship/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT
+  ?professionName
+  (?personsPerProfession/?persons*1.0e2 As ?gemiddeldePercentage)
+  (?personsInShipPerProfession/?personsInShip*1.0e2 AS ?percentageVliegenthart)
+{
+  ?profession skos:prefLabel ?professionName.
+  {
+    select ?profession (xsd:double(count(?person)) as ?personsPerProfession) {
+      ?profession a <https://iisg.amsterdam/hisco/code/HISCO>.
+      ?person opvarenden:ExternalHiscoIdentifier ?profession.
+    }
+    group by ?profession
+  }
+  {
+    select ?profession (xsd:double(count(?person)) AS ?personsInShipPerProfession) {
+      ?profession a <https://iisg.amsterdam/hisco/code/HISCO>.
+      ?person opvarenden:ExternalHiscoIdentifier ?profession;
+              opvarenden:shipid ship:DAS_ship0010.
+  	}
+    group by ?profession
+  }
+  {
+    select (xsd:double(count(?person)) as ?persons) {
+      ?person opvarenden:ExternalHiscoIdentifier _:1.
+    }
+  }
+  {
+    SELECT (xsd:double(count(?person)) AS ?personsInShip) {
+      ?person opvarenden:ExternalHiscoIdentifier _:2;
+              opvarenden:shipid ship:DAS_ship0010.
+	  }
+  }
+}
+ORDER BY DESC(?percentageVliegenthart)
+LIMIT 20

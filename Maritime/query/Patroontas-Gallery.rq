@@ -1,0 +1,59 @@
+PREFIX edm: <http://www.europeana.eu/schemas/edm/>
+PREFIX dcterm: <http://purl.org/dc/terms/>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX hsm: <https://demo.triply.cc/maritieme-musea/Het-Scheepvaartmuseum/>
+PREFIX schema: <http://schema.org/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+SELECT ?widget  {
+	{
+	SELECT ?link ?name ?provider  WHERE {
+		?item dc:title ?name;
+					dcterm:isPartOf ?col.
+		?agg edm:aggregatedCHO ?item;
+				 edm:isShownBy ?link;
+				 edm:provider ?provider.
+	   FILTER (lang(?col) = 'nl' && REGEX( ?col,"'t Vliegend Hart") && REGEX (?name, "tas"))
+	}	LIMIT 1
+	} UNION {
+		SELECT ?link ?name ?provider WHERE {
+			?item dc:title ?name.
+			?agg edm:aggregatedCHO ?item.
+			?agg edm:isShownBy ?link.
+			?agg edm:provider ?provider.
+		  FILTER(str(?provider)= "Rijksdienst voor het Cultureel Erfgoed" && str(?name) != "Vulmiddel.")
+		} LIMIT 3
+	} UNION {
+		SELECT ?link ?name ?provider WHERE {
+			?item dc:title ?name;
+			 			dcterm:isPartOf ?col.
+			?agg edm:aggregatedCHO ?item;
+				 	 edm:isShownBy ?link;
+			 	 	 edm:provider ?provider.
+		  FILTER(str(?provider)= "Rijksmuseum" && REGEX( ?col,"'t Vliegend Hart"))
+
+		} LIMIT 3
+	} UNION {
+		SELECT ?link ?name ?provider ?linkUnClean WHERE {
+			?item a <https://demo.triply.cc/maritieme-musea/Het-Scheepvaartmuseum/def/Wrakvonst>;
+			 	  hsm:object_name ?name;
+				  foaf:depiction ?linkUnClean.
+			BIND(REPLACE(REPLACE(REPLACE(str(?linkUnClean), "http://www.maritiemdigitaal.nl/index.cfm\\?event=popup.viewimage&img=",""),"%3A",":"),"%2F","/") AS ?link)
+			BIND("Het Scheepvaartmuseum" as ?provider)
+		} LIMIT 3
+	}
+	bind(concat(
+		'<div style="position: relative;">',
+		'<img src="',str(?link),'" style="max-width: 400px;">',
+		'<h1 style="position: absolute; top: -11px; left: 0; width: 100%; line-height: 0px;">',
+		'<span style="color: white; font: bold 12px/24px Helvetica, Sans-Serif; line-height: 1.5em; letter-spacing: -1.05px; background: rgb(0, 0, 0); background: rgba(0, 0, 0, 0.7); padding: 2px;">',
+		str(?name), '</span></h1>',
+		'<h2 style="position: absolute; bottom: -11px; left: 0; width: 100%;">',
+		'<span style="color: white; font: bold 15px/45px Helvetica, Sans-Serif; letter-spacing: -1.05px; background: rgb(0, 0, 0); background: rgba(0, 0, 0, 0.7); padding: 1px;">',
+		str(?provider),
+		'</span></h2></div>') as ?widget)
+}
+
+LIMIT 1

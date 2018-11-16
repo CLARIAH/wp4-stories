@@ -1,0 +1,29 @@
+PREFIX edm: <http://www.europeana.eu/schemas/edm/>
+PREFIX dcterm: <http://purl.org/dc/terms/>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX hsm: <https://demo.triply.cc/maritieme-musea/Het-Scheepvaartmuseum/def/>
+
+SELECT ?widget WHERE {
+  BIND("Rijksdienst voor het Cultureel Erfgoed"^^xsd:string as ?provider )
+	?item edm:provider ?provider.
+
+	?item edm:aggregatedCHO ?info.
+	?item edm:isShownBy ?link.
+	?info dc:title ?name.
+
+  FILTER(str(?name) != "Vulmiddel.")
+
+  bind(concat(
+    '<div style="position: relative;">',
+    '<img src="',str(?link),'" style="max-width: 300px;">',
+    '<h1 style="position: absolute; top: -11px; left: 0; width: 100%;">',
+    '<span style="color: white; font: bold 25px/45px Helvetica, Sans-Serif; letter-spacing: -1.05px; background: rgb(0, 0, 0); background: rgba(0, 0, 0, 0.7); padding: 2px;">',
+    str(?name), '</span></h1>',
+    '<h2 style="position: absolute; bottom: -11px; left: 0; width: 100%;">',
+    '<span style="color: white; font: bold 15px/45px Helvetica, Sans-Serif; letter-spacing: -1.05px; background: rgb(0, 0, 0); background: rgba(0, 0, 0, 0.7); padding: 1px;">',
+    str(?provider),
+    '</span></h2></div>') as ?widget)
+}
+LIMIT 20
