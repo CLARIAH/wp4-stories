@@ -1,44 +1,43 @@
-PREFIX geonames: <http://www.geonames.org/ontology#>
-PREFIX owl: <http://www.w3.org/2002/07/owl#>
-PREFIX na: <http://archief.nl/def/>
-PREFIX plaats-na: <http://archief.nl/NL-HaNA/id/plaats/>
-PREFIX das: <http://purl.org/collections/nl/dss/das/>
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX def: <https://demo.triply.cc/huygens-ing/voc-opvarenden-verrijkingen-carrieres/>
-PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-PREFIX voyage1: <http://archief.nl/NL-HaNA/id/reis/VoyageDas:>
-PREFIX voyage2: <https://demo.triply.cc/huygens-ing/voc-opvarenden-verrijkingen-carrieres/id/dasTrip/>
-
-SELECT ?shape ?shapeColor ?shapeLabel  WHERE {
-  BIND(voyage1:2978.2 as ?tripID1)
-  BIND(voyage2:2978.2 as ?tripID2)
-  ?tripID1 na:voyageHasPassenger ?personNa.
-  ?personNa na:hasProfession ?beroep;
-            rdfs:label ?name;
-            <http://rdf.histograph.io/originatedFrom> ?plaats.
-  BIND(replace(str(?beroep), "http://archief.nl/NL-HaNA/id/beroep/", "") as ?beroepStr)
-  OPTIONAL {
-    ?personVer def:voynumberdas ?tripID2;
-               def:fullname ?name ;
-               def:rank ?rang;
-               def:ExternalHiscoIdentifier ?hisco;
-               def:ExternalIdentifier ?geo;
-               def:placeorigin ?place;
-               def:scanpermalink ?handle.
-    OPTIONAL {
-      ?personVer def:lon_arcgis ?lon ;
-                 def:lat_arcgis ?lat .
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix na: <http://archief.nl/def/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix opvarenden: <https://demo.triply.cc/huygens-ing/voc-opvarenden-verrijkingen-carrieres/>
+prefix skos: <http://www.w3.org/2004/02/skos/core#>
+prefix voyage-na: <http://archief.nl/NL-HaNA/id/reis/VoyageDas:>
+prefix voyage-huygens: <https://demo.triply.cc/huygens-ing/voc-opvarenden-verrijkingen-carrieres/id/dasTrip/>
+select ?shape ?shapeColor ?shapeLabel {
+  bind(voyage-na:2978.2 as ?trip1)
+  bind(voyage-huygens:2978.2 as ?trip2)
+  ?trip1
+    na:voyageHasPassenger [
+      na:hasProfession ?beroep;
+      rdfs:label ?name;
+      <http://rdf.histograph.io/originatedFrom> ?plaats].
+  bind(replace(str(?beroep),'http://archief.nl/NL-HaNA/id/beroep/','') as ?beroepStr)
+  optional {
+    ?personVer
+      opvarenden:voynumberdas ?tripID2;
+      opvarenden:fullname ?name ;
+      opvarenden:rank ?rang;
+      opvarenden:ExternalHiscoIdentifier ?hisco;
+      opvarenden:ExternalIdentifier ?geo;
+      opvarenden:placeorigin ?place;
+      opvarenden:scanpermalink ?handle.
+    optional {
+      ?personVer
+        opvarenden:lon_arcgis ?lon;
+        opvarenden:lat_arcgis ?lat.
     }
-    ?hisco a <https://iisg.amsterdam/hisco/code/HISCO>;
-           skos:prefLabel ?work.
-    BIND('<a target="_blank" noreferrer href="https://demo.triply.cc/maritieme-musea/maritieme-musea/browser?resource=' as ?href)
-    BIND(concat("Volledige naam: ",?href, ?personVer,'">' ,?name, "</a><br>",
-              " Geboorte Locatie: ",?href, ?geo,'">' ,?place, "</a><br>",
-              " HISCO: ",?href, ?hisco,'">', ?work, "</a><br>",
-              " Rank: ", ?rang, "<br>") as ?shapeLabel)
-
-    BIND(strdt(concat("POINT (",REPLACE(str(?lon),",",".")," ",REPLACE(str(?lat),",","."),")"),"http://www.openlinksw.com/schemas/virtrdf#Geometry") as ?shape)
-    BIND(if(STRSTARTS(STR(?hisco), "https://iisg.amsterdam/hisco/code/hisco/583"), "green", "blue") as ?shapeColor)
+    ?hisco
+      a <https://iisg.amsterdam/hisco/code/HISCO>;
+      skos:prefLabel ?work.
+    bind('<a target="_blank" noreferrer href="https://demo.triply.cc/maritieme-musea/maritieme-musea/browser?resource=' as ?href)
+    bind(concat('Volledige naam: ',?href,encode_for_uri(?personVer),'">',?name,'</a><br>',
+                'Geboorte Locatie: ',?href,encode_for_uri(?geo),'">',?place,'</a><br>',
+                'HISCO: ',?href,encode_for_uri(?hisco),'">',?work,'</a><br>',
+                'Rank: ',?rang,'<br>') as ?shapeLabel)
+    bind(strdt(concat("Point(",replace(str(?lon),',','.'),' ',replace(str(?lat),',','.'),')'),
+               geo:wktLiteral) as ?shape)
+    bind(if(strstarts(str(?hisco),'https://iisg.amsterdam/hisco/code/hisco/583'),'green','blue') as ?shapeColor)
   }
-} GROUP BY ?shape ?shapeColor ?shapeLabelPart1
+}
