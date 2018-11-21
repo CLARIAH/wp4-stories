@@ -28,7 +28,8 @@ select * {
       misc:year ?departureImageYear].
     optional {
       [ edm:isShownAt ?departureImage1;
-        edm:isShownBy ?departureImage2].
+        edm:isShownBy ?departureImage2;
+        edm:provider ?departureProvider].
     }
     bind(if(bound(?departureImage1)&&strends(str(?departureImage1),'.jpg'),?departureImage1,?departureImage2) as ?departureImageUrl)
   }
@@ -82,7 +83,7 @@ select * {
           <figure>
             {{departureImg}}
             <figcaption>
-              “{{departureImageDesc}}” door {{departureImageCreator}}, {{departureImageYear}}.
+              “{{departureImageDesc}}” door {{departureImageCreator}}, {{departureImageYear}} [Herkomstcollectie: {{departureProvider}}].
             </figcaption>
           </figure>
           ''',
@@ -95,7 +96,7 @@ select * {
        <figure>
          {{arrivalImg}}
          <figcaption>
-           “{{arrivalImageDesc}}” door {{arrivalImageCreator}}, {{arrivalImageYear}}.
+           “{{arrivalImageDesc}}” door {{arrivalImageCreator}}, {{arrivalImageYear}}
          </figcaption>
        </figure>
        ''' as ?arrivalShapeLabel)

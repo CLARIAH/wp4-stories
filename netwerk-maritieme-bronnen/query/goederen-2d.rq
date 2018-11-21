@@ -38,15 +38,16 @@ select
   }
   ?voy bgb:ship ?ship;
        bgb:voyarrivalplaceid/schema:name ?arrivalName.
-  ?havenaangezicht misc:place ?arrivalName;
-                   dce:creator ?imageCreator;
-                   dce:description ?imageDesc;
-                   foaf:depiction ?image1;
-                   misc:year ?imageYear;
-                   misc:ExternalGeoIdentifier ?arrivalGeo.
+  [ misc:place ?arrivalName;
+    dce:creator ?imageCreator;
+    dce:description ?imageDesc;
+    foaf:depiction ?image1;
+    misc:year ?imageYear;
+    misc:ExternalGeoIdentifier ?arrivalGeo].
   optional {
-    ?agg edm:isShownAt ?image1;
-         edm:isShownBy ?image2.
+    [ edm:isShownAt ?image1;
+      edm:isShownBy ?image2;
+      edm:provider ?provider].
   }
   bind(if(bound(?image1)&&strends(str(?image1),'.jpg'),?image1,?image2) as ?imageUrl)
   bind(if(bound(?imageUrl),
@@ -54,12 +55,14 @@ select
                    '<img src="',str(?imageUrl),'" style="width:300px;height:300px;">',
                    '<figcaption>',
                      '“',str(?imageDesc),'” door ',str(?imageCreator),', ',str(?imageYear),
+                     if(bound(?prvoder),concat('[Herkomstcollectie: ',str(?provider),']'),''),
+                     '.',
                    '</figcaption>',
                  '</figure>'),
           '') as ?figure)
   ?voy bgb:voydepartureplaceid/schema:name ?departureName.
-  ?ID2 das:toponym_original ?departureName;
-       owl:sameAs ?departureGeo.
+  [ das:toponym_original ?departureName;
+    owl:sameAs ?departureGeo].
   ?cargo
     bgb:voyageid ?voy;
     bgb:productid/schema:name ?type;

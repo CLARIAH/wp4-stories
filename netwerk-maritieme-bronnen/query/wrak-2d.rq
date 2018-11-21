@@ -27,7 +27,8 @@ select * {
       misc:year ?departureImageYear].
     optional {
       [ edm:isShownAt ?departureImage1;
-        edm:isShownBy ?departureImage2].
+        edm:isShownBy ?departureImage2;
+        edm:provider ?provider].
     }
     bind(if(bound(?departureImage1)&&strends(str(?departureImage1),'.jpg'),
             ?departureImage1,
@@ -52,7 +53,7 @@ select * {
        <figure>
          {{departureImg}}
          <figcaption>
-           “{{departureImageDesc}}” door {{departureImageCreator}}, {{departureImageYear}}.
+           “{{departureImageDesc}}” door {{departureImageCreator}}, {{departureImageYear}} [Herkomstcollectie: {{provider}}].
          </figcaption>
        </figure>
        ''' as ?departureShapeLabel)
