@@ -1,51 +1,34 @@
-PREFIX da: <https://www.wowman.org/index.php?id=1&type=get#>
-PREFIX schema: <http://schema.org/>
-PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-PREFIX owl: <http://www.w3.org/2002/07/owl#>
-PREFIX wgs84: <http://www.w3.org/2003/01/geo/wgs84_pos#>
-PREFIX def: <https://demo.triply.cc/huygens-ing/dutch-asiatic-shipping/>
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX das: <http://purl.org/collections/nl/dss/das/>
-PREFIX foaf: <http://xmlns.com/foaf/0.1/>
-PREFIX misc: <https://demo.triply.cc/huygens-ing/graph/misc/>
-PREFIX shipdef: <https://demo.triply.cc/huygens-ing/dutch-asiatic-shipping/id/ship/>
-
-
-SELECT ?shape
-?shape1 ?shape1Label
-?shape2 ?shape2Label
-WHERE {
-   BIND(shipdef:DAS_ship0010 as ?ship)# 't Vliegend Hart' == DAS_ship0010
-
-   ?ship def:shipname ?shipName.
-   ?voy def:shipid ?ship.
-   ?voy def:voydepartureplaceid ?idDep .
-   ?idDep def:toponym_original ?DepName.
-   ?voy def:voydepartureedtf ?depDate
-  FILTER NOT EXISTS{?voy def:voyarrivalplace ?arrivalPlace}
-
- OPTIONAL{
-      ?wreck schema:name ?shipName;
-             misc:lat ?latWreck;
-             misc:lon ?lonWreck;
-    		misc:locatie ?locatie;
-      		misc:historie ?description.
+prefix das: <https://demo.triply.cc/huygens-ing/dutch-asiatic-shipping/>
+prefix foaf: <http://xmlns.com/foaf/0.1/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix misc: <https://demo.triply.cc/huygens-ing/graph/misc/>
+prefix owl: <http://www.w3.org/2002/07/owl#>
+prefix schema: <http://schema.org/>
+prefix ship: <https://demo.triply.cc/huygens-ing/dutch-asiatic-shipping/id/ship/>
+prefix wgs84: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+select ?shape ?shape1 ?shape1Label ?shape2 ?shape2Label {
+  bind(ship:DAS_ship0010 as ?ship)# 't Vliegend Hart' == DAS_ship0010
+  ?ship das:shipname ?shipName.
+  ?voyage
+    das:shipid ?ship;
+    das:voydepartureedtf ?departureDate;
+    das:voydepartureplaceid [
+      das:toponym_original ?DepName;
+      owl:sameAs [
+        wgs84:long ?lonDep;
+        wgs84:lat ?latDep]].
+  filter not exists{ ?voyage das:voyarrivalplace ?arrival. }
+  optional {
+    ?wreck
+      schema:name ?shipName;
+      misc:lat ?latWreck;
+      misc:lon ?lonWreck;
+      misc:locatie ?locatie;
+      misc:historie ?description.
   }
-
-
-
-  ?idDep owl:sameAs ?geoIdDep .
-  ?geoIdDep wgs84:long ?lonDep .
-  ?geoIdDep wgs84:lat ?latDep .
-  BIND(strdt(concat("POINT (",?lonDep," ",?latDep,")"),"http://www.openlinksw.com/schemas/virtrdf#Geometry") as ?shape1)
-
-  BIND( concat("Vertrokken van ",?DepName,": ",?depDate, "<br>") as ?shape1Label)
-
-  BIND(strdt(concat("POINT (",?lonWreck," ",?latWreck,")"),"http://www.openlinksw.com/schemas/virtrdf#Geometry") as ?shape2)
-
-  BIND( concat("Gezonken op: ",?locatie,"<br> ",?description, "<br>") as ?shape2Label)
-
-  BIND(str(concat("POLYGON ((",?lonWreck," ",?latWreck,",",?lonDep," ",?latDep,"))")) as ?shape).
-
+  bind(strdt(concat('Point(',?lonDep,' ',?latDep,')'),geo:wktLiteral) as ?shape1)
+  bind(concat('Vertrokken van ',?DepName,': ',?departureDate, '<br>') as ?shape1Label)
+  bind(strdt(concat('Point(',?lonWreck,' ',?latWreck,')'),geo:wktLiteral) as ?shape2)
+  bind(concat('Gezonken op: ',?locatie,'<br> ',?description, '<br>') as ?shape2Label)
+  bind(str(concat('Polygon((',?lonWreck,' ',?latWreck,',',?lonDep,' ',?latDep,'))')) as ?shape).
 }
