@@ -1,24 +1,14 @@
-PREFIX schema: <http://schema.org/>
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX def: <https://demo.triply.cc/huygens-ing/boekhouder-generaal-batavia/>
-PREFIX wgs84: <http://www.w3.org/2003/01/geo/wgs84_pos#>
-PREFIX owl: <http://www.w3.org/2002/07/owl#>
-
-SELECT ?item ?Vertrekplaats ?Aankomstplaats (count(?item) as ?totaalgeteld)
-WHERE {
-  ?cargo def:voyageid ?voy;
-         def:productid ?product.
-  ?voy def:voydepartureplaceid ?depPlace ;
-       def:voyarrivalplaceid ?arrPlace .
-  ?depPlace schema:name ?Vertrekplaats.
-  ?arrPlace schema:name ?Aankomstplaats.
-  ?product schema:name ?item .
-  #  FILTER(str(?Vertrekplaats) = "Surat" || str(?Vertrekplaats) = "Batavia")
-  #  FILTER(str(?Aankomstplaats) = "Surat" || str(?Aankomstplaats) = "Batavia")
-
+prefix bgb: <https://demo.triply.cc/huygens-ing/boekhouder-generaal-batavia/>
+prefix schema: <http://schema.org/>
+select ?item ?departureName ?arrivalName (count(?item) as ?totaalgeteld) {
+  ?cargo
+    bgb:voyageid [
+      bgb:voydepartureplaceid/schema:name ?departureName;
+      bgb:voyarrivalplaceid/schema:name ?arrivalName];
+    bgb:productid/schema:name ?item.
+  filter(str(?departureName) in ("Batavia", "Ceylon", "Cochin", "Surat", "Zeeland"))
+  filter(str(?arrivalName) in ("Batavia", "Ceylon", "Cochin", "Surat", "Zeeland"))
 }
-
-GROUP BY ?item ?Vertrekplaats ?Aankomstplaats
-ORDER BY DESC(?totaalgeteld)
-LIMIT 50
+group by ?item ?departureName ?arrivalName
+order by desc(?totaalgeteld)
+limit 20
