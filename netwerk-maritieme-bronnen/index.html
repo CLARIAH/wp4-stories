@@ -3,16 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Ship: 't Vliegend Hart">
-    <meta name="author" content="Thomas de Groot">
+    <meta name="description" content="Data Story over het VOC schip 't Vliegend Hart">
+    <meta name="author" content="Thomas de Groot and Wouter Beek">
     <link href="/assets/imgs/t.svg" icon="/assets/imgs/t.svg" rel="icon" type="image/x-icon">
-    <title>Data Stories: 't Vliegend Hart</title>
+    <title>CLARIAH Data Stories: 't Vliegend Hart</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <!-- Custom styles for this template -->
     <link href='/assets/css/main.css' rel='stylesheet' type='text/css' />
     <link href="/assets/css/yasgui.min.css" rel="stylesheet" type="text/css" />
     <link href='https://nightly.yasgui.triply.cc/yasgui.bootstrap.css' rel='stylesheet' type='text/css' />
-    <link href="./tvliegendhart.css" rel='stylesheet' type='text/css'/>
     <style type="text/css">
       .shortGeo .yasr .yasr_results .leaflet {
         height: 332px;
@@ -58,12 +56,12 @@
       <h2>Een patroontas op de zeebodem</h2>
       <p><em>Bronnen: Rijksdienst voor het Cultureel Erfgoed, Rijksmuseum en Het Scheepvaartmuseum</em></p>
       <query
-        data-query-ref="../query/patroontas-gallery.rq"
+        data-query-ref="query/patroontas-gallery.rq"
         data-output = "gallery">
       </query>
       <p>Begin jaren tachtig vinden duikers voor de kust van Zeeland een patroontas uit de 18de eeuw. Het is een van de vele vondsten die worden gedaan in het wrak van <em>'t Vliegend Hart</em>, een VOC-schip dat op 3 februari 1735 vlak na vertrek uit Zeeland met man en muis vergaat. Aanleiding voor de ramp is een storm die het schip doet vastlopen op een zandbank. Hoewel het de bemanning nog lukt om los te komen van de zandbank, blijkt de romp dermate beschadigd dat het schip in de golven verdwijnt.</p>
       <p>In 1981 wordt het wrak van <em>'t Vliegend Hart</em> teruggevonden. Er komt een duikoperatie op gang waarbij gouden dukaten, zilveren munten en gebruiksvoorwerpen naar boven worden gehaald. De patroontas belandt uiteindelijk in de collectie van het Rijksmuseum, samen met vele andere objecten. Ook bij Het Scheepvaartmuseum en Zeeuws maritiem muZEEum komt een deel van de vondsten terecht. De overblijfselen van het schip zelf liggen nog op de zeebodem en zijn <a href="https://nos.nl/artikel/2257450-voc-wrak-bedreigd-door-paalworm.html" target="_blank" noreferrer>recent opnieuw onderzocht</a>, waarbij houtrot en paalwormen zijn waargenomen.</p>
-      <query data-query-ref="../query/wrak-2d.rq"
+      <query data-query-ref="query/wrak-2d.rq"
              data-output = "geo">
       </query>
       <p>De patroontas uit het wrak van <em>'t Vliegend Hart</em> bevat twaalf buizen voor patronen van musketten. Soldaten die dienstnemen bij de VOC worden van zo’n patroontas voorzien. In Azië bewaken deze militairen de handelsposten van de Compagnie, en worden ze ingezet bij oorlogen tegen inheemse vorsten en concurrerende Europese handelscompagnieën. Tijdens de schipbreuk van <em>'t Vliegend Hart</em> zijn er 76 soldaten aan boord. Eén van hen moet de eigenaar zijn geweest van de patroontas.</p>
@@ -72,24 +70,24 @@
       <p><em>Bronnen: Huygens ING en Nationaal Archief</em></p>
       <p>De 76 aangemonsterde soldaten op <em>'t Vliegend Hart</em> zijn onderdeel van een 256 koppen-tellende bemanning. Deze tabel toont de verschillende rangen aan boord van het schip en hun aandeel in het totaal van de opvarenden (in rood). Ook is te zien hoe deze percentages zich verhouden tot de gemiddelde samenstelling van bemanningen op VOC-schepen (in blauw). Hieruit blijkt bijvoorbeeld dat er bij vertrek meer militairen op <em>'t Vliegend Hart</em> zijn ingescheept dan gebruikelijk is op VOC-schepen. Daarentegen liggen de percentages <em>seamen</em> (matrozen en vergelijkbare lage functies) bij elkaar opgeteld dicht in de buurt van het algemene gemiddelde.</p>
       <query data-config= "http://127.0.0.1:3000/Maritime/page/tvliegendhart.html#query=PREFIX%20skos%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2004%2F02%2Fskos%2Fcore%23%3E%0APREFIX%20na%3A%20%3Chttp%3A%2F%2Farchief.nl%2Fdef%2F%3E%0APREFIX%20plaats-na%3A%20%3Chttp%3A%2F%2Farchief.nl%2FNL-HaNA%2Fid%2Fplaats%2F%3E%0APREFIX%20das%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fcollections%2Fnl%2Fdss%2Fdas%2F%3E%0APREFIX%20rdf%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20def%3A%20%3Chttps%3A%2F%2Fdemo.triply.cc%2Fhuygens-ing%2Fvoc-opvarenden-verrijkingen-carrieres%2F%3E%0APREFIX%20xsd%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E%0A%0ASELECT%20%3FHISCOName%20(%3Ftotal%2Fxsd%3Adouble(%3FtotalPers)*100%20As%20%3FGemiddeldePercentage)%20(%3FperShip%2Fxsd%3Adouble(%3FtotalpersShip)*100%20AS%20%3FPercentageVliegenthart)%20%7B%0A%0A%20%20BIND(%3Chttps%3A%2F%2Fdemo.triply.cc%2Fhuygens-ing%2Fvoc-opvarenden-verrijkingen-carrieres%2Fid%2Fship%2FDAS_ship0010%3E%20as%20%3Fship)%0A%0A%20%20%7BSELECT%20%3FHISCO%20(COUNT(%3Fperson)%20AS%20%3Ftotal)%20(COUNT(%3Fcount)%20as%20%3FperShip)%20%20WHERE%0A%20%20%20%20%7B%0A%20%20%20%20%20%20%20%3FHISCO%20a%20%3Chttps%3A%2F%2Fiisg.amsterdam%2Fhisco%2Fcode%2FHISCO%3E%20.%0A%20%20%20%20%20%20%20%3Fperson%20def%3AExternalHiscoIdentifier%20%3FHISCO%20.%0A%20%20%20%20%20%20OPTIONAL%7B%0A%20%20%20%20%20%20%20%20%3Fperson%20def%3Ashipid%20%3Fship%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20def%3Acountrycode%20%3Fcount.%0A%20%20%20%20%20%20%7D%0A%09%7D%0A%09%7D%0A%20%20%7BSELECT%20(COUNT(%3Fperson)%20AS%20%3FtotalPers)%20(COUNT(%3Fcount)%20as%20%3FtotalpersShip)%20%20WHERE%0A%20%20%20%20%7B%0A%20%20%20%20%20%20%20%3Fperson%20def%3AExternalHiscoIdentifier%20%3FHISCO%20.%0A%20%20%20%20%20%20OPTIONAL%7B%0A%20%20%20%20%20%20%20%20%3Fperson%20def%3Ashipid%20%3Fship%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20def%3Acountrycode%20%3Fcount.%0A%20%20%20%20%20%20%7D%0A%09%7D%0A%09%7D%0A%20%20%3FHISCO%20skos%3AprefLabel%20%3FHISCOName%0A%7D%0A%0AORDER%20BY%20DESC(%3FPercentageVliegenthart)%0A%0ALIMIT%2020%0A&endpoint=https%3A%2F%2Fapi.demo.triply.cc%2Fdatasets%2Fmaritieme-musea%2Fmaritieme-musea%2Fservices%2Fmaritieme-musea%2Fsparql&requestMethod=POST&tabTitle=Query&headers=%7B%7D&contentTypeConstruct=text%2Fturtle%2C*%2F*%3Bq%3D0.9&contentTypeSelect=application%2Fsparql-results%2Bjson%2C*%2F*%3Bq%3D0.9&outputFormat=gchart&outputSettings=%7B%22chartConfig%22%3A%7B%22dataTable%22%3A%7B%22cols%22%3A%5B%7B%22id%22%3A%22%22%2C%22label%22%3A%22HISCOName%22%2C%22pattern%22%3A%22%22%2C%22type%22%3A%22string%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22id%22%3A%22%22%2C%22label%22%3A%22GemiddeldePercentage%22%2C%22pattern%22%3A%22%22%2C%22type%22%3A%22number%22%2C%22p%22%3A%7B%7D%7D%2C%7B%22id%22%3A%22%22%2C%22label%22%3A%22PercentageVliegenthart%22%2C%22pattern%22%3A%22%22%2C%22type%22%3A%22number%22%7D%5D%2C%22rows%22%3A%5B%7B%22c%22%3A%5B%7B%22v%22%3A%22Ordinary%20Seaman%22%7D%2C%7B%22v%22%3A35.9565%7D%2C%7B%22v%22%3A38.133%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22Other%20Military%20Ranks%22%7D%2C%7B%22v%22%3A32.5794%7D%2C%7B%22v%22%3A27.7613%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22Seaman%2C%20Able%20or%20Ordinary%22%7D%2C%7B%22v%22%3A12.891%7D%2C%7B%22v%22%3A13.9935%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22Non-Commissioned%20Officer%22%7D%2C%7B%22v%22%3A4.11862%7D%2C%7B%22v%22%3A4.16935%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22Ship's%20Carpenter%22%7D%2C%7B%22v%22%3A2.55676%7D%2C%7B%22v%22%3A2.8811%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22Ships'%20Deck%20Officer%20or%20Pilot%2C%20Specialisation%20Unknown%22%7D%2C%7B%22v%22%3A1.91648%7D%2C%7B%22v%22%3A2.21851%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22Cooper%22%7D%2C%7B%22v%22%3A1.84792%7D%2C%7B%22v%22%3A2.08755%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22Boatswain%22%7D%2C%7B%22v%22%3A1.68927%7D%2C%7B%22v%22%3A1.89306%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22Able%20Seaman%22%7D%2C%7B%22v%22%3A1.44095%7D%2C%7B%22v%22%3A1.63453%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22Ship's%20Steward%22%7D%2C%7B%22v%22%3A1.04354%7D%2C%7B%22v%22%3A1.2115%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22Carpenter%2C%20General%22%7D%2C%7B%22v%22%3A0.480979%7D%2C%7B%22v%22%3A0.483855%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22Ship's%20Master%20(Sea%20or%20Inland%20Waterways)%22%7D%2C%7B%22v%22%3A0.355021%7D%2C%7B%22v%22%3A0.422526%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22Religious%20Worker%20(Member%20of%20Religious%20Order)%22%7D%2C%7B%22v%22%3A0.316888%7D%2C%7B%22v%22%3A0.374411%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22Locksmith%22%7D%2C%7B%22v%22%3A0.299483%7D%2C%7B%22v%22%3A0.265307%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22Bricklayer%20(Construction)%22%7D%2C%7B%22v%22%3A0.229063%7D%2C%7B%22v%22%3A0.223461%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22Working%20Proprietor%20(Wholesale%20Trade)%22%7D%2C%7B%22v%22%3A0.191063%7D%2C%7B%22v%22%3A0.222783%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22Instrumentalist%22%7D%2C%7B%22v%22%3A0.245007%7D%2C%7B%22v%22%3A0.216007%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22Officer%22%7D%2C%7B%22v%22%3A0.212588%7D%2C%7B%22v%22%3A0.213635%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22Blacksmith%2C%20General%22%7D%2C%7B%22v%22%3A0.263476%7D%2C%7B%22v%22%3A0.204317%7D%5D%7D%2C%7B%22c%22%3A%5B%7B%22v%22%3A%22General%20Physician%22%7D%2C%7B%22v%22%3A0.0756015%7D%2C%7B%22v%22%3A0.0855555%7D%5D%7D%5D%7D%2C%22options%22%3A%7B%22legacyScatterChartLabels%22%3Atrue%2C%22isStacked%22%3Afalse%2C%22booleanRole%22%3A%22certainty%22%2C%22vAxes%22%3A%5B%7B%22minValue%22%3Anull%2C%22maxValue%22%3Anull%2C%22viewWindow%22%3Anull%2C%22viewWindowMode%22%3Anull%2C%22useFormatFromData%22%3Atrue%2C%22textStyle%22%3A%7B%22color%22%3A%22%23222%22%2C%22fontSize%22%3A%2210%22%7D%2C%22title%22%3A%22HISCO%20label%22%7D%2C%7B%22useFormatFromData%22%3Atrue%7D%5D%2C%22hAxis%22%3A%7B%22viewWindow%22%3A%7B%22max%22%3Anull%2C%22min%22%3Anull%7D%2C%22minValue%22%3Anull%2C%22maxValue%22%3Anull%2C%22useFormatFromData%22%3Afalse%2C%22formatOptions%22%3A%7B%22scaleFactor%22%3Anull%2C%22source%22%3A%22inline%22%2C%22prefix%22%3A%22%22%2C%22suffix%22%3A%22%25%22%7D%2C%22logScale%22%3Afalse%2C%22format%22%3A%220.%23%23%22%2C%22title%22%3A%22Percentage(in%20procenten)%22%2C%22gridlines%22%3A%7B%22count%22%3A%225%22%7D%2C%22textStyle%22%3A%7B%22color%22%3A%22%23222%22%2C%22fontSize%22%3A%2210%22%7D%7D%2C%22legend%22%3A%22right%22%2C%22width%22%3A%22100%25%22%2C%22height%22%3A%22100%25%22%2C%22legendTextStyle%22%3A%7B%22color%22%3A%22%23222%22%2C%22fontSize%22%3A%2210%22%7D%2C%22title%22%3A%22Percentage%20bemanningsleden%20op%20het%20schip%22%7D%2C%22state%22%3A%7B%7D%2C%22view%22%3A%7B%22columns%22%3Anull%2C%22rows%22%3Anull%7D%2C%22isDefaultVisualization%22%3Afalse%2C%22chartType%22%3A%22BarChart%22%7D%7D"
-        data-query-ref="../query/bemanning-chart.rq">
+             data-query-ref="query/bemanning-chart.rq">
       </query>
       <p>Op deze kaart is de herkomst van de militairen en zeevarenden aangegeven. Van alle opvarenden komen de meeste lieden uit de Lage Landen. Daarnaast varen er bemanningsleden mee uit de Duitstalige gebieden, Frankrijk en Scandinavië. Het verschil tussen de militairen en zeevarenden is ook duidelijk. Terwijl de eerste categorie bijna volledig afkomstig is uit aan zee gelegen regio’s, stammen de militairen zowel uit kuststreken als landinwaarts gelegen gebieden.</p>
-      <query data-query-ref="../query/bemanning-2d.rq"
+      <query data-query-ref="query/bemanning-2d.rq"
              data-output = "geo">
       </query>
 
       <h2>Reizen en bestemmingen</h2>
       <p><em>Bronnen: Huygens ING</em></p>
       <p><em>'t Vliegend Hart</em> vaart in februari 1735 voor de tweede keer uit naar Azië. Het schip is in 1729 gebouwd door de kamer van Zeeland (een van de in totaal zes VOC-kamers) en begint in december 1730 vanuit Rammekens aan zijn eerste reis, samen met andere VOC-schepen in de jaarlijkse ‘kerstvloot’. Onderweg wordt aan Kaap de Goede Hoop een tussenstop gemaakt om de voorraden aan te vullen. Vervolgens zeilt het schip door naar Batavia, waar het in juli 1731 na een reis van zeven maanden aankomt. Daarmee vaart <em>'t Vliegend Hart</em> sneller dan gemiddeld: VOC-schepen doen er in de jaren 1730 zo’n acht maanden over om Azië te bereiken.</p>
-      <query data-query-ref="../query/kaap-route-2d.rq"
+      <query data-query-ref="query/kaap-route-2d.rq"
              data-output="geo">
       </query>
       <p>Aangekomen in Batavia wordt <em>'t Vliegend Hart</em> ingezet op de vaart binnen Azië. De eerste reis begint in augustus 1731 en voert in gezelschap van de VOC-schepen <em>Stadhuis van Delft</em> en <em>Langerode</em> naar Surat, een belangrijke haven voor de VOC in het westen van India. Hier koopt de Compagnie allerlei soorten textiel die in het Europa van de achttiende eeuw erg gewild zijn.</p>
       <p>Vanuit Surat vaart <em>'t Vliegend Hart</em> door naar Cochin aan de Malabarkust van India, waar de VOC gevestigd is voor de inkoop van peper. Daarna wordt nog een stop gemaakt op Ceylon voordat de terugreis naar Batavia aanvangt, waar het schip in juli 1732 terugkeert.</p>
       <p>Ruim een jaar later zeilt <em>'t Vliegend Hart</em> in december 1733 vanuit Ceylon weer naar Europa. Dit betekent dat het schip in de tussentijd van Batavia naar Ceylon moet zijn gevaren, en wellicht ook nog andere reizen heeft gemaakt. In de datasets die voor deze demo zijn gebruikt, wordt echter niets vermeld over reizen van het schip tussen juli 1732 en december 1733.</p>
       <p>Samen met vier andere VOC-schepen zet <em>'t Vliegend Hart</em> vanuit Ceylon koers naar Kaap de Goede Hoop, om daarna door te zeilen naar Zeeland. Na een reis van bijna acht maanden doemt het schip in augustus 1734 voor Rammekens op. De duur van de overtocht is daarmee gelijk aan de gemiddelde reistijd van VOC-schepen die in de jaren 1730 van Ceylon naar Europa varen.</p>
-      <query data-query-ref="../query/intinuary.rq"
+      <query data-query-ref="query/intinuary.rq"
              data-output = "table">
       </query>
 
@@ -97,13 +95,13 @@
       <p><em>Bronnen: Huygens ING</em></p>
       <p>In Azië is Europese handelswaar weinig gewild in de tijd van de VOC. De Compagnie kan alleen goud en zilver op grote schaal verhandelen, met name tegen textiel. Schepen uit Europa voeren dan ook enorme hoeveelheden edelmetaal aan. Daarnaast worden voor de handelsposten in Azië allerlei voorraden meegebracht, zoals <em>equipagegoederen</em> voor uitrusting van en onderhoud aan schepen, wapens en munitie voor militairen, bouwmaterialen voor forten en huizen, levensmiddelen, kleding en schrijfgerei. Als laatste hebben de schepen ook nog ballast aan boord, bijvoorbeeld zand, stenen of oud ijzer.</p>
       <p>Als <em>'t Vliegend Hart</em> in 1730 voor de eerste keer uitvaart, is het schip beladen met een grote hoeveelheid zilverstaven en zilveren munten in de vorm van markrealen en dukatons. Verder wordt er zeep meegenomen en een partij <em>equipagegoederen</em>, waaronder teer, pek en hout voor masten. De ballast bestaat uit koper, lood, steenkool en stenen.</p>
-      <query data-query-ref="../query/goederen-2d.rq"
+      <query data-query-ref="query/goederen-2d.rq"
              data-output = "geo">
       </query>
       <p>Na aankomst in Batavia worden alle goederen gelost om plaats te maken voor een nieuwe lading, ditmaal voor Surat. Het is niet duidelijk welke producten het schip dan precies aan boord heeft; alleen de gezamenlijke lading van <em>'t Vliegend Hart</em>, <em>Stadhuis van Delft</em> en <em>Langerode</em> is bekend. Het gaat onder meer om specerijen, suiker, ivoor, <em>equipagegoederen</em>, buskruit, wijn en bier. Ook voeren de schepen in totaal 37 paradijsvogels mee.</p>
       <p>In Surat worden de ruimen van <em>'t Vliegend Hart</em> gevuld met allerlei soorten textiel, 50 kisten zeep, een partij gom, zegellak en kwik. Op de terugweg naar Batavia stopt het schip nog in Cochin en op Ceylon om een deel van de lading af te staan, en wellicht ook nieuwe goederen in te nemen.</p>
       <query data-config="http://127.0.0.1:3000/Maritime/page/tvliegendhart.html#query=PREFIX%20schema%3A%20%3Chttp%3A%2F%2Fschema.org%2F%3E%0APREFIX%20rdf%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20def%3A%20%3Chttps%3A%2F%2Fdemo.triply.cc%2Fhuygens-ing%2Fboekhouder-generaal-batavia%2F%3E%0APREFIX%20wgs84%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2003%2F01%2Fgeo%2Fwgs84_pos%23%3E%0APREFIX%20owl%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2002%2F07%2Fowl%23%3E%0A%0ASELECT%20%3Fitem%20%3FVertrekplaats%20%3FAankomstplaats%20(count(%3Fitem)%20as%20%3Ftotaalgeteld)%0AWHERE%20%7B%0A%20%20%3Fcargo%20def%3Avoyageid%20%3Fvoy%3B%0A%20%20%20%20%20%20%20%20%20def%3Aproductid%20%3Fproduct.%0A%20%20%3Fvoy%20def%3Avoydepartureplaceid%20%3FdepPlace%20%3B%0A%20%20%20%20%20%20%20def%3Avoyarrivalplaceid%20%3FarrPlace%20.%0A%20%20%3FdepPlace%20schema%3Aname%20%3FVertrekplaats.%0A%20%20%3FarrPlace%20schema%3Aname%20%3FAankomstplaats.%0A%20%20%3Fproduct%20schema%3Aname%20%3Fitem%20.%0A%20%20%23%20%20FILTER(str(%3FVertrekplaats)%20%3D%20%22Surat%22%20%7C%7C%20str(%3FVertrekplaats)%20%3D%20%22Batavia%22)%0A%20%20%23%20%20FILTER(str(%3FAankomstplaats)%20%3D%20%22Surat%22%20%7C%7C%20str(%3FAankomstplaats)%20%3D%20%22Batavia%22)%0A%0A%7D%0A%0AGROUP%20BY%20%3Fitem%20%3FVertrekplaats%20%3FAankomstplaats%0AORDER%20BY%20DESC(%3Ftotaalgeteld)%0ALIMIT%2050%0A&endpoint=https%3A%2F%2Fapi.demo.triply.cc%2Fdatasets%2Fmaritieme-musea%2Fmaritieme-musea%2Fservices%2Fmaritieme-musea%2Fsparql&requestMethod=POST&tabTitle=Query&headers=%7B%7D&contentTypeConstruct=text%2Fturtle%2C*%2F*%3Bq%3D0.9&contentTypeSelect=application%2Fsparql-results%2Bjson%2C*%2F*%3Bq%3D0.9&outputFormat=pivot&outputSettings=%7B%22pivotConfig%22%3A%7B%22cols%22%3A%5B%22Vertrekplaats%22%2C%22Aankomstplaats%22%5D%2C%22rows%22%3A%5B%22item%22%5D%2C%22rendererName%22%3A%22Heatmap%22%2C%22aggregatorName%22%3A%22Sum%22%2C%22vals%22%3A%5B%22totaalgeteld%22%5D%7D%7D"
-             data-query-ref="../query/goederen-pivot.rq"
+             data-query-ref="query/goederen-pivot.rq"
              data-output="pivot">
       </query>
 
@@ -122,7 +120,7 @@
       <h2>Verder lezen</h2>
       <p>Publicaties over de VOC, opgevraagd uit de Linked Dataset van Worldcat:</p>
       <query data-config="http://127.0.0.1:8080/netwerk-maritieme-bronnen/page/tvliegendhart.html#query=prefix%20lib%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flibrary%2F%3E%0Aprefix%20schema%3A%20%3Chttp%3A%2F%2Fschema.org%2F%3E%0Aselect%20*%20%7B%0A%20%20%3Fitem%0A%20%20%20%20lib%3Aoclcnum%20%3Fid%3B%0A%20%20%20%20schema%3Aname%20%3Fnaam.%0A%20%20filter(regex(%3Fnaam%2C%22VOC%22))%0A%7D%0A&endpoint=https%3A%2F%2Fapi.druid.datalegend.net%2Fdatasets%2Fnetwerk-maritieme-bronnen%2Fdemo-netwerk-maritieme-bronnen%2Fservices%2Fdemo-netwerk-maritieme-bronnen%2Fsparql&requestMethod=POST&tabTitle=Query&headers=%7B%7D&contentTypeConstruct=text%2Fturtle%2C*%2F*%3Bq%3D0.9&contentTypeSelect=application%2Fsparql-results%2Bjson%2C*%2F*%3Bq%3D0.9&outputFormat=table&outputSettings=%7B%22pageSize%22%3A10%7D"
-             data-query-ref="../query/worldcat-table.rq">
+             data-query-ref="query/worldcat-table.rq">
       </query>
 
       <h2>Colofon</h2>
@@ -131,19 +129,14 @@
       <p>Design en infrastructuur: <a href="https://triply.cc" target="_blank" noreferrer>Triply</a></p>
       <p>Met dank aan Kees Hendriks en CLARIAH-CORE</p>
     </div>
-</div>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
-        crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
-        crossorigin="anonymous"></script>
-<script src='/assets/js/yasgui.min.js'></script>
-<script type="text/javascript">
-  window.onload = function () {
-    Yasgui.stories()
-  };
-</script>
-</body>
-
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src='/assets/js/yasgui.min.js'></script>
+    <script type="text/javascript">
+      window.onload = function () {
+        Yasgui.stories()
+      };
+    </script>
+  </body>
 </html>
