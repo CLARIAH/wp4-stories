@@ -1,67 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Query 8: double Events with same name">
-  <meta name="author" content="Thomas de Groot">
-  <link href="https://www.clariah.nl/images/logo/clariah/CLARIAH_icon.png"
-        icon="https://www.clariah.nl/images/logo/clariah/CLARIAH_icon.png"
-        rel="icon"
-        type="image/x-icon">
-  <title>CLARIAH Data Stories: data Quality checks for IISG-KG</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
-    crossorigin="anonymous">
-  <!-- Custom styles for this template -->
-  <link href='/assets/css/main.css' rel='stylesheet' type='text/css' />
-  <link href='/assets/css/yasgui.min.css' rel='stylesheet' type='text/css' />
-  <link href="/assets/css/yasgui.bootstrap.css" rel="stylesheet" type="text/css">
-</head>
-
-<body class="withNavbar">
-  <nav class="navbar fixed-top ">
-    <div class="navbar-content">
-      <div class="navbar-icon">
-        <a class="navbar-brand" href="/">
-            <img src="/assets/imgs/clariah-logo-square.png" />
-        </a>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="CLARIAH Data Stories ― IISG-KG Data Quality ― Events with same name">
+    <meta name="author" content="Thomas de Groot">
+    <link href="/assets/imgs/clariah-logo-square.png" rel="icon" type="image/png">
+    <title>CLARIAH Data Stories ― IISG-KG Data Quality ― Events with same name</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link href="/assets/css/main.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/yasgui.min.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/yasgui.bootstrap.css" rel="stylesheet" type="text/css">
+  </head>
+  <body class="withNavbar">
+    <nav class="navbar fixed-top ">
+      <div class="navbar-content">
+        <div class="navbar-icon">
+          <a class="navbar-brand" href="/">
+            <img src="/assets/imgs/clariah-logo-square.png">
+          </a>
+        </div>
+        <div class="navbar-title">
+          <a class="navbar-brand" href="/iisg/collections-data-quality/">IISG Data Quality Overview</a>
+        </div>
       </div>
-      <div class="navbar-title">
-        <a class="navbar-brand" href="/iisg/collections-data-quality/">IISG Data Quality Overview</a>
-      </div>
+    </nav>
+    <div class="container story"  data-endpoint="https://druid.datalegend.net/iisg-acceptatie/IISG/sparql/IISG">
+      <h3> Query 8: Double events with same name </h3>
+      <p>Every item in the IISG dataset can link to events for that item. For example, the "meeting notes of the CISL Congresso" can link to the event "CISL Congresso" but maybe also to a different event. The problem arises when an item points to two different events that both have the same name. As shown in the table below. Each item has multiple events linked to the item, but the events are equal as they have the same name. This could make linking attributes to certain events harder as different attributes are can now be linked to both items. </p>
+      <p>Even though events have the same name, events happened in different years and/or locations, thus the items bundle different events.</p>
+      <query data-query-ref="queries/query8_double_event.rq" data-config="https://api.demo.triply.cc/s/BJx5i8TwX"></query>
     </div>
-  </nav>
-  <!---
-  This `data-endpoint` part configures the whole story to execute on this endpoint.
-  But, if you want you can also overwrite this by adding a different `data-endpoint` value to e.g. a `query` element
-  -->
-  <div class="container story"  data-endpoint="https://druid.datalegend.net/iisg-acceptatie/IISG/sparql/IISG">
-    <h3> Query 8: Double events with same name </h3>
-
-    <!--Showcase Query 8 -->
-    <p>Every item in the IISG dataset can link to events for that item. For example, the "meeting notes of the CISL Congresso" can link to the event "CISL Congresso" but maybe also to a different event. The problem arises when an item points to two different events that both have the same name. As shown in the table below. Each item has multiple events linked to the item, but the events are equal as they have the same name. This could make linking attributes to certain events harder as different attributes are can now be linked to both items. </p>
-
-    Update: THis is correct as even though events have the same name, events happened in different years and/or locations, thus the items bundle different events.
-    <query data-query-ref="queries/query8_double_event.rq" data-config="https://api.demo.triply.cc/s/BJx5i8TwX" ></query>
-
-    <!--
-    END OF DATA STORY
-    -->
-  </div>
-  </div>
-  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
-    crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
-    crossorigin="anonymous"></script>
-  <script src='/assets/js/yasgui.min.js'></script>
-  <script type="text/javascript">
-    window.onload = function () {
-      Yasgui.stories()
-    };
-  </script>
-</body>
-
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="/assets/js/yasgui.min.js"></script>
+    <script type="text/javascript">
+      window.onload = function () {
+        Yasgui.stories()
+      };
+    </script>
+  </body>
 </html>
