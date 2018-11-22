@@ -1,8 +1,15 @@
 prefix lib: <http://purl.org/library/>
 prefix schema: <http://schema.org/>
-select * {
-  ?item
-    lib:oclcnum ?id;
-    schema:name ?naam.
-  filter(regex(?naam,"VOC"))
+select
+  ?werk
+  (str(?author) as ?auteur)
+  (str(?title) as ?titel)
+  (str(?published) as ?publicatiedatum)
+{
+  ?werk
+    schema:creator/schema:name ?author;
+    schema:datePublished ?published;
+    schema:name ?title.
+  filter(regex(?title,"VOC"))
 }
+order by desc(?published)
