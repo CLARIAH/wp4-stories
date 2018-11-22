@@ -2814,7 +2814,7 @@ article.story {
     display: none; }
   .stories-query.hideControls .yasr_header {
     display: none; }
-  .stories-query .yasgui .yasr .yasr_results * {
+  .stories-query .yasgui .yasr .yasr_results > * {
     margin-top: 0; }
   .stories-query .yasgui .yasr .leaflet-gesture-handling-scroll-warning::after,
   .stories-query .yasgui .yasr .leaflet-gesture-handling-touch-warning::after {
