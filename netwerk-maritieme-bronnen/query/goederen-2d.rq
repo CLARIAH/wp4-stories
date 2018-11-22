@@ -22,19 +22,17 @@ select
 {
   bind(ship2:4415 as ?ship) # 't Vliegend hart == 4415
   bind(ship1:DAS_ship0010 as ?das_ship) # "t Vliegend hart = DAS_ship0010
+  ?zeerol
+    rol:das_shipid ?das_ship;
+    rol:totaal_opvarenden ?totaal.
+  bind(concat('<br>Aantal opvarenden (juli 1733): ',?totaal) as ?s1)
   optional {
-    ?zeerol
-      rol:das_shipid ?das_ship;
-      rol:totaal_opvarenden ?totaal.
-    bind(concat('<br>Aantal opvarenden: ',?totaal) as ?s1)
-    optional {
-      ?zeerol rol:zeevarenden_europees ?europees.
-      bind(concat('<br>Aantal Europeese opvarenden: ',?europees) as ?s2)
-    }
-    optional {
-      ?zeerol rol:zeevarenden_aziatisch ?asiatisch.
-      bind(concat('<br>Aantal Aziatische opvarenden: ',?asiatisch) as ?s3)
-    }
+    ?zeerol rol:zeevarenden_europees ?europees.
+    bind(concat('<br>Aantal Europeese opvarenden (juli 1733): ',?europees) as ?s2)
+  }
+  optional {
+    ?zeerol rol:zeevarenden_aziatisch ?asiatisch.
+    bind(concat('<br>Aantal Aziatische opvarenden (juli 1733): ',?asiatisch) as ?s3)
   }
   ?voy bgb:ship ?ship;
        bgb:voyarrivalplaceid/schema:name ?arrivalName.
