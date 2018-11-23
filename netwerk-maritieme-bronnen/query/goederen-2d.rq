@@ -53,8 +53,9 @@ select
                    '<img src="',str(?imageUrl),'" style="width:300px;height:300px;">',
                    '<figcaption>',
                      '“',str(?imageDesc),'” door ',str(?imageCreator),', ',str(?imageYear),
-                     if(bound(?prvoder),concat('[Herkomstcollectie: ',str(?provider),']'),''),
-                     '.',
+                     ' [Herkomstcollectie: ',
+                     if(bound(?provider),str(?provider),'Nationaal Archief'),
+                     '].',
                    '</figcaption>',
                  '</figure>'),
           '') as ?figure)

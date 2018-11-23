@@ -22,7 +22,7 @@ select * {
   bind(strdt(concat('Point(',?departureLong,' ',?departureLat,')'),geo:wktLiteral) as ?departureShape)
   optional {
     [ dce:creator ?departureImageCreator;
-      dce:description ?departureImageDesc;
+      dce:description ?departureImageDescription;
       foaf:depiction ?departureImage1;
       misc:place ?departureName;
       misc:year ?departureImageYear].
@@ -36,7 +36,7 @@ select * {
   bind(if(bound(?departureImageUrl),'<img src="{{departureImageUrl}}" style="width:300px;height:300px;">','') as ?departureImg)
   optional {
     [ dce:creator ?arrivalImageCreator;
-      dce:description ?arrivalImageDesc;
+      dce:description ?arrivalImageDescription;
       foaf:depiction ?arrivalImage1;
       misc:place ?arrivalName;
       misc:year ?arrivalImageYear].
@@ -52,7 +52,7 @@ select * {
   bind(strdt(concat('Point(',?longKaap,' ',?latKaap,')'),geo:wktLiteral) as ?restShape)
   optional {
     [ dce:creator ?restImageCreator;
-      dce:description ?restImageDesc;
+      dce:description ?restImageDescription;
       foaf:depiction ?restImage;
       misc:ExternalGeoIdentifier ?kaap;
       misc:place ?restName;
@@ -76,14 +76,14 @@ select * {
        Aangekomen in {{arrivalName}}: {{arrivalDate}}<br>
        Duur van de reis: {{days}} dagen
        ''' as ?shape3Label)
-  bind(if(bound(?departureImageDesc),
+  bind(if(bound(?departureImageDescription),
           '''
           <h3>{{departureName}}</h3>
           <p>Vertrokken op {{departureDate}}</p>
           <figure>
             {{departureImg}}
             <figcaption>
-              “{{departureImageDesc}}” door {{departureImageCreator}}, {{departureImageYear}} [Herkomstcollectie: {{departureProvider}}].
+              “{{departureImageDescription}}” door {{departureImageCreator}}, {{departureImageYear}} [Herkomstcollectie: {{departureProvider}}].
             </figcaption>
           </figure>
           ''',
@@ -96,7 +96,7 @@ select * {
        <figure>
          {{arrivalImg}}
          <figcaption>
-           “{{arrivalImageDesc}}” door {{arrivalImageCreator}}, {{arrivalImageYear}}
+           {{arrivalImageDescription}} door {{arrivalImageCreator}}, {{arrivalImageYear}} [Herkomstcollectie: Nationaal Archief].
          </figcaption>
        </figure>
        ''' as ?arrivalShapeLabel)
@@ -106,7 +106,7 @@ select * {
        <figure>
          <img src="{{restImage}}" style="width:300px;height:300px;">
          <figcaption>
-           “{{restImageDesc}}” door {{restImageCreator}}, {{restImageYear}}.
+           “{{restImageDescription}}” door {{restImageCreator}}, {{restImageYear}} [Herkomstcollectie: Nationaal Archief].
          </figcaption>
        </figure>
        ''' as ?restShapeLabel)
