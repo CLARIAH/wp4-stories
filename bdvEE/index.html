@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="CLARIAH Data Stories ― Growth and Inequality">
+    <meta name="author" content="Richard Zijdeman">
+    <link href="/assets/imgs/clariah-logo-square.png" rel="icon" type="image/png">
+    <title>CLARIAH Data Stories ― Amsterdam Time Machine: Housing location dataset Boudien de Vries</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link href="/assets/css/main.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/yasgui.min.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/yasgui.bootstrap.css" rel="stylesheet" type="text/css">
+  </head>
+  <body class="withNavbar">
+    <nav class="navbar fixed-top ">
+      <div class="navbar-content">
+        <div class="navbar-icon">
+          <a class="navbar-brand" href="/">
+            <img src="/assets/imgs/clariah-logo-square.png">
+          </a>
+        </div>
+        <div class="navbar-title">
+          <a class="navbar-brand" href="/">CLARIAH Data Stories</a>
+        </div>
+      </div>
+    </nav>
+    <!---
+      This `data-endpoint` part configures the whole story to execute on this endpoint.
+      But, if you want you can also overwrite this by adding a different `data-endpoint` value to e.g. a `query` element
+    -->
+    <!--
+      <div class="container story" data-endpoint="https://druid.datalegend.net/_api/datasets/dataLegend/jobHoard/services/monitor/sparql">
+    -->
+    <div class="container story" data-endpoint="https://api.druid.datalegend.net/datasets/ivozandhuis/ivotemp-HISGIS/services/endpoint/sparql">
+      <h1>The distribution of political power in Amsterdam in the second half of the 19th century</h1>
+      <p>
+      In 1986, Boudien de Vries published her thesis Electoraat en Elite on the 19th century Amsterdam elite who were entitled to vote. Her data management skills were beyond state of the art, as she published her data with codebook and even deposited in DANS, the national data repository. For our study, we will be using her data again in two ways. For one, we want to answer the question of whether the elite were living in the area which mainly coincides with the parts of Amsterdam where the more poshly spoken Amsterdam language resides. In order to do so, we again bring the data of Boudien de Vries (and other datasets) to the frontier of data wrangling, by offering here data as Linked Open Data.
+      </p>
+      <p>
+      One of the first things to sort out in this study is the geographical location of residence of the Elite. The image below paints this picture. (Actually, ... it doesn't because the coordinates are in EPSG:28992 where WGS84 is expected.
+      </p>
+      <query data-query-ref="houses-gis-viz.rq">
+      </query>
+      <p><a href="https://twitter.com/intent/tweet?screen_name=rlzijdeman&ref_src=twsrc%5Etfw" class="twitter-mention-button" data-size="large" data-text="Finding and coding high and low occupations from the past in multiple languages http://stories.datalegend.net/codingHistoricalOccupations/ #HISCO #HISCO #LOD #dataStories" data-related="rlzijdeman" data-lang="en" data-show-count="false">Tweet this data story</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/gh/thednp/bootstrap.native@2.0.24/dist/bootstrap-native-v4.min.js" crossorigin="anonymous"></script>
+    <script src="//nightly.yasgui.triply.cc/yasgui.polyfill.min.js"></script>
+    <script src='/assets/js/yasgui.min.js'></script>
+    <script type="text/javascript">
+      window.onload = function () {
+        Yasgui.stories()
+      };
+    </script>
+  </body>
+</html>
