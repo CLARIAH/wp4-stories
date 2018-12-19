@@ -28,12 +28,10 @@
     <div class="container story"
          data-endpoint="https://druid.datalegend.net/iisg-acceptatie/IISG/sparql/IISG">
       <h1>Quality Indicator 3: Persons &amp; locations with multiple identifiers</h1>
-
       <section class="alert alert-info" role="alert">
         <h2>Multiple identifiers</h2>
         <p>Data quality is enhanced when entities have at most one IRI identifier.  Whenever multiple IRIs identify the same thing, it is more difficult to query the data.</p>
       </section>
-
       <section>
         <h2>Person identifiers with the same name</h2>
         <p>The following table enumerates persons with the exact same name.  While it is possible for different people to have the same name, this table may also include redundant identifiers that could be cleaned.</p>
@@ -41,7 +39,6 @@
                data-config="https://api.demo.triply.cc/s/HJqBrwpDQ">
         </query>
       </section>
-
       <section>
         <h2>Location identifiers with the same name</h2>
         <p>The following table enumerates locations with the exact same name.  There are a number of places that have the same name but are given different identifiers.</p>
@@ -49,14 +46,11 @@
                data-config="https://api.demo.triply.cc/s/SJIeEXpwm">
         </query>
       </section>
-
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/gh/thednp/bootstrap.native@2.0.24/dist/bootstrap-native-v4.min.js" type="application/javascript"
-            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/thednp/bootstrap.native@2.0.24/dist/bootstrap-native-v4.min.js" crossorigin="anonymous"></script>
     <script src="/assets/js/yasgui.min.js"></script>
-    <script type="text/javascript">
+    <script>
       window.onload = function () {
         Yasgui.stories()
       };
