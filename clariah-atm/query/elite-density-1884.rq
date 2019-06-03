@@ -15,6 +15,9 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 SELECT ?districtLabel ?districtWKT ?totPop ?elitePop 
 (1000*(5*(xsd:float(?elitePop))/(xsd:float(?totPop))) AS ?eliteDensity) 
+((?eliteDensity / 50) AS ?eliteDensityIndex)
+(?eliteDensity AS ?districtWKTTooltip)
+(CONCAT('viridis,', STR(?eliteDensityIndex)) AS ?districtWKTColor)
 WHERE {
 
 # determine population per district
