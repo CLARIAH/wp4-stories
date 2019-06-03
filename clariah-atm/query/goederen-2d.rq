@@ -1,0 +1,78 @@
+prefix bgb: <https://demo.triply.cc/huygens-ing/boekhouder-generaal-batavia/>
+prefix das: <https://demo.triply.cc/huygens-ing/dutch-asiatic-shipping/>
+prefix dce: <http://purl.org/dc/elements/1.1/>
+prefix edm: <http://www.europeana.eu/schemas/edm/>
+prefix foaf: <http://xmlns.com/foaf/0.1/>
+prefix misc: <https://demo.triply.cc/huygens-ing/graph/misc/>
+prefix owl: <http://www.w3.org/2002/07/owl#>
+prefix rol: <https://demo.triply.cc/huygens-ing/generale-zeemonsterrollen/>
+prefix schema: <http://schema.org/>
+prefix ship1: <https://demo.triply.cc/huygens-ing/generale-zeemonsterrollen/id/das_shiprol/>
+prefix ship2: <https://demo.triply.cc/huygens-ing/boekhouder-generaal-batavia/id/ship/>
+prefix wgs84: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+select
+  ?arrivalShape
+  (sample(?arrivalShapeLabel) as ?arrivalShapeLabel)
+  ?departureShape
+  (concat('<h3>',?departureName," ⇨ ",?arrivalName,'</h3>',
+          '<table style="width:100%" border="1">',
+          '<tr><th>Type</th><th>Hoeveelheid</th><th>Waarde</th></tr>',
+          group_concat(distinct ?row;separator=""),
+          '</table>') as ?departureShapeLabel)
+{
+  bind(ship2:4415 as ?ship) # 't Vliegend hart == 4415
+  bind(ship1:DAS_ship0010 as ?das_ship) # "t Vliegend hart = DAS_ship0010
+  ?zeerol
+    rol:das_shipid ?das_ship;
+    rol:totaal_opvarenden ?totaal.
+  bind(concat('<br>Aantal opvarenden (juli 1733): ',?totaal) as ?s1)
+  optional {
+    ?zeerol rol:zeevarenden_europees ?europees.
+    bind(concat('<br>Aantal Europeese opvarenden (juli 1733): ',?europees) as ?s2)
+  }
+  optional {
+    ?zeerol rol:zeevarenden_aziatisch ?asiatisch.
+    bind(concat('<br>Aantal Aziatische opvarenden (juli 1733): ',?asiatisch) as ?s3)
+  }
+  ?voy bgb:ship ?ship;
+       bgb:voyarrivalplaceid/schema:name ?arrivalName.
+  [ misc:place ?arrivalName;
+    dce:creator ?imageCreator;
+    dce:description ?imageDesc;
+    foaf:depiction ?image1;
+    misc:year ?imageYear;
+    misc:ExternalGeoIdentifier ?arrivalGeo].
+  optional {
+    [ edm:isShownAt ?image1;
+      edm:isShownBy ?image2;
+      edm:provider ?provider].
+  }
+  bind(if(bound(?image1)&&strends(str(?image1),'.jpg'),?image1,?image2) as ?imageUrl)
+  bind(if(bound(?imageUrl),
+          concat('<figure>',
+                   '<img src="',str(?imageUrl),'" style="width:300px;height:300px;">',
+                   '<figcaption>',
+                     '“',str(?imageDesc),'” door ',str(?imageCreator),', ',str(?imageYear),
+                     ' [Herkomstcollectie: ',
+                     if(bound(?provider),str(?provider),'Nationaal Archief'),
+                     '].',
+                   '</figcaption>',
+                 '</figure>'),
+          '') as ?figure)
+  ?voy bgb:voydepartureplaceid/schema:name ?departureName.
+  [ das:toponym_original ?departureName;
+    owl:sameAs ?departureGeo].
+  ?cargo
+    bgb:voyageid ?voy;
+    bgb:productid/schema:name ?type;
+    bgb:quantity ?quantity.
+  optional { ?cargo bgb:unitid/schema:name ?unit. }
+  optional { ?cargo bgb:valuelicht ?value. }
+  ?arrivalGeo wgs84:long ?lonArr; wgs84:lat ?latArr.
+  ?departureGeo wgs84:long ?lonDep; wgs84:lat ?latDep.
+  bind(concat('Polygon((',str(?lonArr),' ',str(?latArr),',' ,str(?lonDep),' ',str(?latDep) ,'))') as ?departureShape)
+  bind(concat('Point(',str(?lonArr),' ',str(?latArr),')') as ?arrivalShape)
+  bind(concat('<tr><td>',?type,'</td><td>',?quantity,if(bound(?unit),concat(' ',?unit),''),'</td><td>',?value,'</td></tr>') as ?row)
+  bind(concat('<h2>',?arrivalName,'</h2>',if(bound(?s1),?s1,''),if(bound(?s2),?s2,''),if(bound(?s3),?s3,''),?figure) as ?arrivalShapeLabel)
+}
+group by ?departureName ?departureShape ?arrivalName ?arrivalShape

@@ -1,0 +1,114 @@
+prefix dce: <http://purl.org/dc/elements/1.1/>
+prefix das: <https://demo.triply.cc/huygens-ing/dutch-asiatic-shipping/>
+prefix edm: <http://www.europeana.eu/schemas/edm/>
+prefix foaf: <http://xmlns.com/foaf/0.1/>
+prefix geo: <http://www.opengis.net/ont/geosparql#>
+prefix misc: <https://demo.triply.cc/huygens-ing/graph/misc/>
+prefix owl: <http://www.w3.org/2002/07/owl#>
+prefix ship: <https://demo.triply.cc/huygens-ing/dutch-asiatic-shipping/id/ship/>
+prefix wgs84: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+select * {
+  bind(ship:DAS_ship0010 as ?ship)# 't Vliegend Hart' == DAS_ship0010
+  ?voyage
+    das:shipid ?ship;
+    das:voyarrivalplaceid [
+      das:toponym_original ?arrivalName;
+      owl:sameAs [ wgs84:lat ?arrivalLat; wgs84:long ?arrivalLong]];
+    das:voydepartureplaceid [
+      das:toponym_original ?departureName;
+      owl:sameAs [ wgs84:lat ?departureLat; wgs84:long ?departureLong]].
+  bind(strdt(concat('Point(',?arrivalLong,' ',?arrivalLat,')'),geo:wktLiteral) as ?arrivalShape)
+  bind(strdt(concat('Point(',?departureLong,' ',?departureLat,')'),geo:wktLiteral) as ?departureShape)
+  optional {
+    [ dce:creator ?departureImageCreator;
+      dce:description ?departureImageDescription;
+      foaf:depiction ?departureImage1;
+      misc:place ?departureName;
+      misc:year ?departureImageYear].
+    optional {
+      [ edm:isShownAt ?departureImage1;
+        edm:isShownBy ?departureImage2;
+        edm:provider ?departureProvider].
+    }
+    bind(if(bound(?departureImage1)&&strends(str(?departureImage1),'.jpg'),?departureImage1,?departureImage2) as ?departureImageUrl)
+  }
+  bind(if(bound(?departureImageUrl),'<img src="{{departureImageUrl}}" style="width:300px;height:300px;">','') as ?departureImg)
+  optional {
+    [ dce:creator ?arrivalImageCreator;
+      dce:description ?arrivalImageDescription;
+      foaf:depiction ?arrivalImage1;
+      misc:place ?arrivalName;
+      misc:year ?arrivalImageYear].
+    optional {
+      [ edm:isShownAt ?arrivalImage1;
+        edm:isShownBy ?arrivalImage2].
+    }
+    bind(if(bound(?arrivalImage1),?arrivalImage1,?arrivalImage2) as ?arrivalImageUrl)
+  }
+  bind(if(bound(?arrivalImageUrl),'<img src="{{arrivalImageUrl}}" style="width:300px;height:300px;">','') as ?arrivalImg)
+  bind(<http://sws.geonames.org/3367577/> as ?kaap)
+  ?kaap wgs84:lat ?latKaap; wgs84:long ?longKaap.
+  bind(strdt(concat('Point(',?longKaap,' ',?latKaap,')'),geo:wktLiteral) as ?restShape)
+  optional {
+    [ dce:creator ?restImageCreator;
+      dce:description ?restImageDescription;
+      foaf:depiction ?restImage;
+      misc:ExternalGeoIdentifier ?kaap;
+      misc:place ?restName;
+      misc:year ?restImageYear].
+    filter(strends(str(?restImage),'.jpg'))
+  }
+  bind(strdt(if(xsd:integer(?departureLat)>45,
+                concat('LineString(',?departureLong,' ',?departureLat,',3.07966 51.77924,1.34205 50.87258,-2.08131 49.93115,-5.33326 48.67037,-9.77174 43.27050,-11.44166 36.68907,-14.78151 28.71317,-19.00026 18.92025,-23.87345 12.6475,-30.5023 -10.39992,-33.11856 -18.33260,-31.73428 -27.76883,-29.9325 -32.07113,-27.9500 -34.08019,-26.13816 -35.75632,-23.80906 -37.13492,-20.90867 -37.65861,-15.32761 -37.86705,-6.80222 -37.41468,2.64602 -36.71335,8.0073 -36.1831,12.36839 -36.07712,',?longKaap,' ',?latKaap,',18.35680 -35.39930,20.55277 -36.59887,26.11185 -37.56297,36.15953 -37.76297,44.45902 -38.03175,72.07865 -38.13552,97.47012 -38.35985,100.16931 -37.15799,102.45447 -35.40458,103.81677 -33.19029,104.45398 -29.83812,105.09119 -24.40449,104.82752 -17.17519,103.15760 -11.10593,',?arrivalLong,' ',?arrivalLat,')'),
+                concat('LineString(',?departureLong,' ',?departureLat,',74.5229 7.69870,71.78581 7.03825,69.14909 5.55316,65.91911 2.85805,62.66716 -0.83214,60.38200 -4.60650,57.21794 -11.21877,54.93278 -16.42287,52.82341 -21.89969,49.25455 -27.66664,42.75065 -31.18710,36.07096 -33.70848,28.51237 -36.15797,21.65690 -37.14512,',?longKaap,' ',?latKaap,',17.03490 -34.35846,14.92553 -30.50223,11.11303 -23.29844,5.65209  -15.34412,-8.80494 2.39809,-17.59401 10.08075,-22.00026 16.52025,-28.7247 30.78764,-26.85550 37.54813,-21.58206 43.00792,-17.01175 46.65251,-12.0898 48.75189,-6.03727 49.37919,-0.956103 50.02224,2.53750 51.63169,',?arrivalLong,' ',?arrivalLat,')')),
+             geo:wktLiteral) as ?shape3)
+  ?voyage
+    das:voydepartureedtf ?departureDate;
+    das:voycapedepartureedtf ?depCapeDate;
+    das:voyarrivaldateedtf ?arrivalDate;
+    das:voycapearrivaledtf ?arrCapeDate.
+  bind((?arrivalDate-?departureDate) / (24*60*60) as ?days)
+  bind('''
+       Vertrokken van {{departureName}}: {{departureDate}}<br>
+       Aangekomen op {{restName}}: {{arrCapeDate}}<br>
+       Vertrokken van {{restName}}: {{depCapeDate}}<br>
+       Aangekomen in {{arrivalName}}: {{arrivalDate}}<br>
+       Duur van de reis: {{days}} dagen
+       ''' as ?shape3Label)
+  bind(if(bound(?departureImageDescription),
+          '''
+          <h3>{{departureName}}</h3>
+          <p>Vertrokken op {{departureDate}}</p>
+          <figure>
+            {{departureImg}}
+            <figcaption>
+              “{{departureImageDescription}}” door {{departureImageCreator}}, {{departureImageYear}} [Herkomstcollectie: {{departureProvider}}].
+            </figcaption>
+          </figure>
+          ''',
+          '''<h3>{{departureName}}</h3>
+          <p>Vertrokken op {{departureDate}}</p>
+          ''') as ?departureShapeLabel)
+  bind('''
+       <h3>{{arrivalName}}</h3>
+       <p>Aangekomen op {{arrivalDate}}</p>
+       <figure>
+         {{arrivalImg}}
+         <figcaption>
+           {{arrivalImageDescription}} door {{arrivalImageCreator}}, {{arrivalImageYear}} [Herkomstcollectie: Nationaal Archief].
+         </figcaption>
+       </figure>
+       ''' as ?arrivalShapeLabel)
+  bind('''
+       <h3>{{restName}}</h3>
+       <p>Aangekomen op {{arrCapeDate}}</br>Vertrokken op {{depCapeDate}}</p>
+       <figure>
+         <img src="{{restImage}}" style="width:300px;height:300px;">
+         <figcaption>
+           “{{restImageDescription}}” door {{restImageCreator}}, {{restImageYear}} [Herkomstcollectie: Nationaal Archief].
+         </figcaption>
+       </figure>
+       ''' as ?restShapeLabel)
+  bind(if(strends(str(?voyage),'6'),'green','red') as ?shape3Color)
+}

@@ -1,0 +1,14 @@
+prefix bgb: <https://demo.triply.cc/huygens-ing/boekhouder-generaal-batavia/>
+prefix schema: <http://schema.org/>
+select ?item ?departureName ?arrivalName (count(?item) as ?totaalgeteld) {
+  ?cargo
+    bgb:voyageid [
+      bgb:voydepartureplaceid/schema:name ?departureName;
+      bgb:voyarrivalplaceid/schema:name ?arrivalName];
+    bgb:productid/schema:name ?item.
+  filter(str(?departureName) in ("Batavia", "Ceylon", "Cochin", "Surat", "Zeeland"))
+  filter(str(?arrivalName) in ("Batavia", "Ceylon", "Cochin", "Surat", "Zeeland"))
+}
+group by ?item ?departureName ?arrivalName
+order by desc(?totaalgeteld)
+limit 20
