@@ -44,7 +44,7 @@ WHERE {
 {
     SELECT ?district ?districtWKT ?districtLabel 
     WHERE { ?district a <http://rdf.histograph.io/district> .
-        ?district geo:hasGeometry ?districtWKT .
+        ?district geo:hasGeometry / geo:asWKT ?districtWKT .
         ?district rdfs:label ?districtLabel .
   } 
 }
