@@ -6,7 +6,7 @@
 #+ endpoint: ...
 
 PREFIX iisg: <https://iisg.amsterdam/vocab/>
-SELECT * WHERE {
+SELECT ?name ?url WHERE {
   ?cinema iisg:Name ?name .
   ?cinema  iisg:CinemaContextLink ?url .
 }
