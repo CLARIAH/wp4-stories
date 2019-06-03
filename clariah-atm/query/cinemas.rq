@@ -1,0 +1,12 @@
+#+ summary: Cinemas in Amsterdam 1907-1928
+#+ tags:
+#+      - Amsterdam
+#+      - GIS
+#+      - Cinema
+#+ endpoint: ...
+
+PREFIX iisg: <https://iisg.amsterdam/vocab/>
+SELECT * WHERE {
+  ?cinema iisg:Name ?name .
+  ?cinema  iisg:CinemaContextLink ?url .
+}
