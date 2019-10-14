@@ -16,4 +16,4 @@ WHERE {
   FILTER (?year > '1918'^^xsd:date && ?year < '1940'^^xsd:date)
 } 
 ORDER by ?year 
-LIMIT 10
+LIMIT 5
