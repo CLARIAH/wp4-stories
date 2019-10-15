@@ -1,13 +1,13 @@
 #+Author: Richard Zijdeman
 #+Description: The number of children of each parent.
 
-prefix iisg: <https://iisg.amsterdam/vocab/>
+prefix iisg: <https://iisg.amsterdam/vocab/adb-andb/>
 prefix schema: <http://schema.org/>
 select
   (concat(?parentGivenName," ",?parentFamilyName) as ?parentName)
   (count(?card) as ?children)
 {
-  ?card iisg:parent [
+  ?card iisg:aboutParent [
     schema:givenName ?parentGivenName;
     schema:familyName ?parentFamilyName].
 }
