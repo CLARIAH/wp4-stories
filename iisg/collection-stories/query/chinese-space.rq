@@ -14,4 +14,4 @@ SELECT * WHERE {
   ?sub schema:description ?desc .
   ?sub foaf:depiction/foaf:thumbnail ?thumb .
   bind('<figure><img src="{{thumb}}"><figcaption>{{desc}}</figcaption></figure>' as ?widget)
-} LIMIT 5
+} LIMIT 7
