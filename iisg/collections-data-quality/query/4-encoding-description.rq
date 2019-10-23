@@ -1,6 +1,0 @@
-prefix schema: <http://schema.org/>
-select * {
-  ?s schema:description ?name.
-  filter(contains(?name,"�"))
-}
-limit 100

@@ -25,8 +25,7 @@
         </div>
       </div>
     </nav>
-    <div class="container story"
-         data-endpoint="https://druid.datalegend.net/iisg-acceptatie/IISG/sparql/IISG">
+    <div class="container story">
       <h1>Quality Indicator 2: Persons &amp; locations with multiple labels</h1>
 
       <section class="alert alert-info" role="alert">
@@ -37,17 +36,27 @@
       <section>
         <h2>Potential misspellings of person names</h2>
         <p>The following table shows entities that have multiple labels.  As can be observed, alternative labels often are typographic mistakes of a correct label, or they are abbreviations of the full label.  In both cases, such labels are redundant (abbreviated labels do not need to be stored separately, but can be based on the full label).</p>
-        <query data-query-ref="../query/2-names-misspelled.rq"
-               data-config="https://api.triplydb.com/s/r12TAf6PX">
-        </query>
+        <figure id="missing-data">
+          <query
+            data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/iisg-kg/queries/2-names-misspelled"
+          ></query>
+          <figcaption>
+            Figuur 1 ― misspelled names.
+          </figcaption>
+        </figure>
       </section>
 
       <section>
         <h2>Potential misspellings of location names</h2>
-        <p>The following table shows a place that has two different names.</p>
-        <query data-query-ref="../query/2-places-misspelled.rq"
-               data-config="https://api.triplydb.com/s/rJBneQpD7">
-        </query>
+        <p>The following table shows a place that has two different names. This no longer occurs in the dataset!</p>
+        <figure id="missing-data">
+          <query
+            data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/iisg-kg/queries/2-places-misspelled"
+          ></query>
+          <figcaption>
+            Figuur 2 ― misspelled places.
+          </figcaption>
+        </figure>
       </section>
 
     </div>

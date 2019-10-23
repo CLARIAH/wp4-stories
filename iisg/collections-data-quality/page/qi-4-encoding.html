@@ -25,8 +25,7 @@
         </div>
       </div>
     </nav>
-    <div class="container story"
-         data-endpoint="https://druid.datalegend.net/iisg-acceptatie/IISG/sparql/IISG" >
+    <div class="container story">
       <h1>Quality Indicator 4: Encoding errors</h1>
 
       <section class="alert alert-info" role="alert">
@@ -39,18 +38,34 @@
         <p>The following tables enumerate encoding errors that occur with different properties.</p>
 
         <h3>Encoding errors for property <code>schema:description</code></h3>
-        <query data-query-ref="../query/4-encoding-description.rq"
-               data-config="https://api.triplydb.com/s/S1lUCSTD7" ></query>
+        <figure id="missing-data">
+          <query
+            data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/iisg-kg/queries/4-encoding-description"
+          ></query>
+          <figcaption>
+            Figuur 1 ― encoding issues in descriptions.
+          </figcaption>
+        </figure>
 
         <h3>Encoding errors for property <code>schema:name</code></h3>
-        <query data-query-ref="../query/4-encoding-name.rq"
-               data-config="https://api.triplydb.com/s/S1bK0BpP7">
-        </query>
+        <figure id="missing-data">
+          <query
+            data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/iisg-kg/queries/4-encoding-label"
+          ></query>
+          <figcaption>
+            Figuur 2 ― Encoding issues in labels.
+          </figcaption>
+        </figure>
 
         <h3>Encoding errors for property <code>rdfs:label</code></h3>
-        <query data-query-ref="../query/4-encoding-label.rq"
-               data-config="https://api.triplydb.com/s/HysJl8pvX">
-        </query>
+        <figure id="missing-data">
+          <query
+            data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/iisg-kg/queries/4-encoding-name"
+          ></query>
+          <figcaption>
+            Figuur 3 ― encoding issues in names.
+          </figcaption>
+        </figure>
       </section>
 
     </div>

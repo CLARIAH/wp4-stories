@@ -25,8 +25,7 @@
         </div>
       </div>
     </nav>
-    <div class="container story"
-         data-endpoint="https://druid.datalegend.net/iisg-acceptatie/IISG/sparql/IISG">
+    <div class="container story">
       <h1>Quality Indicator 3: Persons &amp; locations with multiple identifiers</h1>
       <section class="alert alert-info" role="alert">
         <h2>Multiple identifiers</h2>
@@ -35,16 +34,26 @@
       <section>
         <h2>Person identifiers with the same name</h2>
         <p>The following table enumerates persons with the exact same name.  While it is possible for different people to have the same name, this table may also include redundant identifiers that could be cleaned.</p>
-        <query data-query-ref="../query/3-persons-same-name.rq"
-               data-config="https://api.triplydb.com/s/HJqBrwpDQ">
-        </query>
+        <figure id="missing-data">
+          <query
+            data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/iisg-kg/queries/3-persons-same-name"
+          ></query>
+          <figcaption>
+            Figuur 1 ― double names.
+          </figcaption>
+        </figure>
       </section>
       <section>
         <h2>Location identifiers with the same name</h2>
         <p>The following table enumerates locations with the exact same name.  There are a number of places that have the same name but are given different identifiers.</p>
-        <query data-query-ref="../query/3-places-same-name.rq"
-               data-config="https://api.triplydb.com/s/SJIeEXpwm">
-        </query>
+        <figure id="missing-data">
+          <query
+            data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/iisg-kg/queries/3-places-same-name"
+          ></query>
+          <figcaption>
+            Figuur 2 ― double places.
+          </figcaption>
+        </figure>
       </section>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>

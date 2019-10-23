@@ -25,8 +25,7 @@
         </div>
       </div>
     </nav>
-    <div class="container story"
-         data-endpoint="https://druid.datalegend.net/iisg-acceptatie/IISG/sparql/IISG">
+    <div class="container story">
       <h1>Quality Indicator 6: Language differences</h1>
 
       <section class="alert alert-info" role="alert">
@@ -36,16 +35,26 @@
 
       <section>
         <p>The following table shows how many languages are denoted by IRIs (from Lexvo) versus those that are denoted by literals.</p>
-        <query data-query-ref="../query/6a-language.rq"
-               data-config="https://api.triplydb.com/s/HyhtszTv7">
-        </query>
+        <figure id="missing-data">
+          <query
+            data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/iisg-kg/queries/6a-language"
+          ></query>
+          <figcaption>
+            Figuur 1 ― language tags datatypes.
+          </figcaption>
+        </figure>
       </section>
 
       <section>
         <p>The following table enumerates the items whose languages are denoted by literals, even though Lexvo IRIs are already used (and preferred) for representing these languages.</p>
-        <query data-query-ref="../query/6b-language.rq"
-               data-config="https://api.triplydb.com/s/Bk0Bjfpv7">
-        </query>
+        <figure id="missing-data">
+          <query
+            data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/iisg-kg/queries/6b-language"
+          ></query>
+          <figcaption>
+            Figuur 2 ― language tags strings.
+          </figcaption>
+        </figure>
       </section>
 
     </div>

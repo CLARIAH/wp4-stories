@@ -25,23 +25,39 @@
         </div>
       </div>
     </nav>
-    <div class="container story" data-endpoint="https://api.druid.datalegend.net/datasets/IISG/iisg-kg/services/iisg-kg/sparql">
+    <div class="container story" >
       <h1>Quality Comparison: Person Entities</h1>
       <p>This overview shows the quality improvements that have been made to the person entities in the IISG Knowledge Graph.</p>
       <p>The first diagram shows the data <em>prior</em> to making the quality improvements (2017 version).  As shown in the diagram, there are many persons with more than one identifier.  The person identifiers are collected per combination of person name, title, and ‘word &amp; dates’ property.  The diagram only shows the persons with the largest number of works attributed to them.</p>
-      <query data-config="https://api.triplydb.com/s/BkXvkT1_7"
-             data-query-ref="../query/7-plot-old.rq">
-      </query>
+      <figure id="missing-data">
+        <query
+          data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/iisg-kg/queries/7-plot-new"
+          data-config="https://api.triplydb.com/s/BkXvkT1_7"
+          data-endpoint="https://api.druid.datalegend.net/datasets/iisg/iisg-kg/services/iisg-kg/sparql"></query>
+        <figcaption>
+          Figuur 1 ― Persons with more than one identifier before quality improvements.
+        </figcaption>
+      </figure>
+
       <p>The second diagram shows the data <em>after</em> quality improvements have been made (version 2018-09).  A value of 1 for <code>number_of_occurrences</code> (red line) means that there are no duplicates for the corresponding person (displayed on the horizontal axis).  While there are still some duplicates left, very many duplicates have been resolved.</p>
-      <query data-config="https://api.triplydb.com/s/BkXvkT1_7"
-             data-endpoint="https://druid.datalegend.net/iisg-acceptatie/IISG/sparql/IISG"
-             data-query-ref="../query/7-plot-new.rq">
-      </query>
+      <figure id="missing-data">
+        <query
+          data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/iisg-kg/queries/7-plot-new"
+        ></query>
+        <figcaption>
+          Figuur 2 ― Persons with more than one identifier after quality improvements.
+        </figcaption>
+      </figure>
+
       <p>The following table enumerates persons that still have multiple identifiers in the latest version of the data (2018-09).</p>
-      <query data-config="https://api.triplydb.com/s/HJuJYfpDm"
-             data-endpoint="https://druid.datalegend.net/iisg-acceptatie/IISG/sparql/IISG"
-             data-query-ref="../query/7-table-new.rq">
-      </query>
+      <figure id="missing-data">
+        <query
+          data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/iisg-kg/queries/7-table-new"
+        ></query>
+        <figcaption>
+          Figuur 3 ― table with the plotted data.
+        </figcaption>
+      </figure>
 
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>

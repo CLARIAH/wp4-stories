@@ -1,7 +1,0 @@
-PREFIX schema: <http://schema.org/>
-PREFIX rdf: <http://www.w3.org/2000/01/rdf-schema#>
-select * {
-  ?x rdf:label ?name.
-  filter(contains(?name,"�"))
-}
-limit 100

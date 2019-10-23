@@ -1,88 +1,198 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="author" content="Thomas de Groot and Wouter Beek">
-    <meta name="description" content="Quality Indicator 1 ― Person Authorities">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="/assets/imgs/clariah-logo-square.png" rel="icon" type="image/png">
-    <title>CLARIAH Data Stories ― IISG Knowledge Graph ― Quality Indicator 1</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <link href="/assets/css/main.css" rel="stylesheet" type="text/css">
-    <link href="/assets/css/stories.min.css" rel="stylesheet" type="text/css">
-    <link href="/assets/css/yasgui.bootstrap.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8" />
+    <meta name="author" content="Thomas de Groot and Wouter Beek" />
+    <meta
+      name="description"
+      content="Quality Indicator 1 ― Person Authorities"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      href="/assets/imgs/clariah-logo-square.png"
+      rel="icon"
+      type="image/png"
+    />
+    <title>
+      CLARIAH Data Stories ― IISG Knowledge Graph ― Quality Indicator 1
+    </title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+      integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+      crossorigin="anonymous"
+    />
+    <link href="/assets/css/main.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/stories.min.css" rel="stylesheet" type="text/css" />
+    <link
+      href="/assets/css/yasgui.bootstrap.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link href="./index.css" rel="stylesheet" />
   </head>
   <body class="withNavbar">
     <nav class="navbar fixed-top ">
       <div class="navbar-content">
         <div class="navbar-icon">
           <a class="navbar-brand" href="/">
-            <img alt="CLARIAH Data Stories home" src="/assets/imgs/clariah-logo-square.png">
+            <img
+              alt="CLARIAH Data Stories home"
+              src="/assets/imgs/clariah-logo-square.png"
+            />
           </a>
         </div>
         <div class="navbar-title">
-          <a class="navbar-brand" href="/iisg/collections-data-quality/">IISG Data Quality Overview</a>
+          <a class="navbar-brand" href="/iisg/collections-data-quality/"
+            >IISG Data Quality Overview</a
+          >
         </div>
       </div>
     </nav>
-    <div class="container story"
-         data-endpoint="https://api.druid.datalegend.net/datasets/IISG/iisg-kg/services/iisg-kg/sparql">
-      <h1>Quality Indicator 1: Dates &amp; Times</h1>
+    <div class="container story">
+      <div class="story">
+        <div class="flex text">
+          <div class="content">
+            <h1>Quality Indicator 1: Dates &amp; Times</h1>
 
-      <section class="alert alert-info" role="alert">
-        <h2>Datatype compatibility</h2>
-	      <p>Literal values for a given property must have datatypes that are mutually compatible.  Suppose a dataset contains the <code>dct:created</code> property.  If all corresponding literals have datatype IRI <code>xsd:date</code>, or datatype IRIs that can be cast to it (e.g., <code>xsd:gYear</code>), then creation dates can be uniformly filtered and aggregated over.  However, if only some literals have datatype IRI <code>xsd:date</code> while others have ― for example ― datatype IRI <code>xsd:string</code>, values cannot be uniformly filtered or aggregated over.</p>
-      </section>
-
-      <section class="row">
-        <h2>Datatype overview: date of publication/manufacturing</h2>
-        <p>The following pie charts give an overview of the datatype compatibility for the properties <code>iisg:dateOfPublication</code> and <code>iisg:dateOfManufacturing</code>.  They quantify the number of literals for each datatype IRI.  The left hand side shows the results for the 2017 version of the IISG Knowledge Graph, while the right hand side shows the results for the 2018-09 version.</p>
-        <query class="col-sm-6"
-               data-query-ref="../query/1-date-of-publication-datatypes.rq"
-               data-config="https://api.triplydb.com/s/ryC95WpDX">
-        </query>
-        <query class="col-sm-6"
-               data-query-ref="../query/1-date-of-publication-datatypes.rq"
-               data-config="https://api.triplydb.com/s/ryC95WpDX"
-               data-endpoint="https://druid.datalegend.net/iisg-acceptatie/IISG/sparql/IISG">
-        </query>
-      </section>
-      <section class="row">
-        <h2>Uninterpretable dates: date of publication</h2>
-        <p>The following diagram shows the 100 most common string values for the predicate <code>iisg:dateOfPublication</code>.  The diagram shows that cleaning only the 10 most common strings will significantly improve the data quality of this property.</p>
-        <query class="w-100" data-query-ref="../query/1-date-of-publication-strings.rq"
-               data-config="https://api.triplydb.com/s/SJHSjb6v7">
-        </query>
-      </section>
-
-      <section class="row">
-        <h2>Datatype overview: date of manufacturing</h2>
-        <p>The following pie charts give an overview of the datatype compatibility for the property <code>iisg:dateOfManfacturing</code>.  Notice that many values have datatype IRI <code>xsd:string</code>, i.e., cannot be interpreted as dates.</p>
-        <query class="col-sm-6"
-               data-query-ref="../query/1-date-of-manufacturing-datatypes.rq"
-               data-config="https://api.triplydb.com/s/B1Gxcb6w7">
-        </query>
-        <query class="col-sm-6"
-               data-query-ref="../query/1-date-of-manufacturing-datatypes.rq"
-               data-config="https://api.triplydb.com/s/B1Gxcb6w7"
-               data-endpoint="https://druid.datalegend.net/iisg-acceptatie/IISG/sparql/IISG">
-        </query>
-      </section>
-
-      <section class="row">
-        <h2>Uninterpretable dates: date of manufacturing</h2>
-        <p>In following table below the first 100 types of misclassified data values are shownfor the predicate <code>iisg:dateOfManufacturing</code>.  Changing the first 10 elements will lower the number of misclassifications significantly.</p>
-        <query class="w-100" data-query-ref="../query/1-date-of-manufacturing-strings.rq"
-               data-config="https://api.triplydb.com/s/Syn0jZpv7">
-        </query>
-      </section>
+            <section class="alert alert-info" role="alert">
+              <h2>Datatype compatibility</h2>
+              <p>
+                Literal values for a given property must have datatypes that are
+                mutually compatible. Suppose a dataset contains the
+                <code>dct:created</code> property. If all corresponding literals
+                have datatype IRI <code>xsd:date</code>, or datatype IRIs that
+                can be cast to it (e.g., <code>xsd:gYear</code>), then creation
+                dates can be uniformly filtered and aggregated over. However, if
+                only some literals have datatype IRI <code>xsd:date</code> while
+                others have ― for example ― datatype IRI
+                <code>xsd:string</code>, values cannot be uniformly filtered or
+                aggregated over.
+              </p>
+            </section>
+          </div>
+        </div>
+        <div class="flex text">
+          <div class="content">
+            <h2>Datatype overview: date of publication/manufacturing</h2>
+            <p>
+              The following pie charts give an overview of the datatype
+              compatibility for the properties
+              <code>iisg:dateOfPublication</code> and
+              <code>iisg:dateOfManufacturing</code>. They quantify the number of
+              literals for each datatype IRI. The left hand side shows the
+              results for the 2019 version of the IISG Knowledge Graph, while
+              the right hand side shows the results for the 2018-09 version.
+            </p>
+          </div>
+        </div>
+        <div class="side-by-side">
+          <figure id="missing-data">
+            <query
+              data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/iisg-kg/queries/1-date-of-publication-datatypes"
+            ></query>
+            <figcaption>
+              Figuur 1 ― date of publication datatypes 2018.
+            </figcaption>
+          </figure>
+          <figure id="missing-data">
+            <query
+              data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/iisg-kg/queries/1-date-of-publication-datatypes"
+              data-endpoint="https://api.druid.datalegend.net/datasets/iisg/iisg-kg/services/iisg-kg/sparql"
+            ></query>
+            <figcaption>
+              Figuur 2 ― date of publication datatypes 2019.
+            </figcaption>
+          </figure>
+        </div>
+        <div class="flex text">
+          <div class="content">
+            <h2>Uninterpretable dates: date of publication</h2>
+            <p>
+              The following diagram shows the 100 most common string values for
+              the predicate <code>iisg:dateOfPublication</code>. The diagram
+              shows that cleaning only the 10 most common strings will
+              significantly improve the data quality of this property.
+            </p>
+            <figure id="missing-data">
+              <query
+                data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/iisg-kg/queries/1-date-of-publication-strings"
+              ></query>
+              <figcaption>
+                Figuur 3 ― misconfigured datatypes on publications.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+        <div class="flex text">
+          <div class="content">
+            <h2>Datatype overview: date of manufacturing</h2>
+            <p>
+              The following pie charts give an overview of the datatype
+              compatibility for the property
+              <code>iisg:dateOfManfacturing</code>. Notice that many values have
+              datatype IRI <code>xsd:string</code>, i.e., cannot be interpreted
+              as dates.
+            </p>
+          </div>
+        </div>
+        <div class="side-by-side">
+          <figure id="missing-data">
+            <query
+              data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/iisg-kg/queries/1-date-of-manufacturing-datatypes"
+            ></query>
+            <figcaption>
+                Figuur 4 ―  date of manufacturing datatypes 2018.
+            </figcaption>
+          </figure>
+          <figure id="missing-data">
+            <query
+              data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/iisg-kg/queries/1-date-of-manufacturing-datatypes"
+              data-endpoint="https://api.druid.datalegend.net/datasets/iisg/iisg-kg/services/iisg-kg/sparql"
+            ></query>
+            <figcaption>
+                Figuur 5  ― date of manufacturing datatypes 2019.
+            </figcaption>
+          </figure>
+        </div>
+        <div class="flex text">
+          <div class="content">
+            <h2>Uninterpretable dates: date of manufacturing</h2>
+            <p>
+              In following table below the first 100 types of misclassified data
+              values are shownfor the predicate
+              <code>iisg:dateOfManufacturing</code>. Changing the first 10
+              elements will lower the number of misclassifications
+              significantly.
+            </p>
+            <figure id="missing-data">
+              <query
+                data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/iisg-kg/queries/1-date-of-manufacturing-strings"
+              ></query>
+              <figcaption>
+                Figuur 6 ― misconfigured datatypes on manufacturing.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/gh/thednp/bootstrap.native@2.0.24/dist/bootstrap-native-v4.min.js" crossorigin="anonymous"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+      integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/gh/thednp/bootstrap.native@2.0.24/dist/bootstrap-native-v4.min.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="/assets/js/stories.min.js"></script>
     <script>
-      window.onload = function () {
-        stories()
+      window.onload = function() {
+        stories();
       };
     </script>
   </body>

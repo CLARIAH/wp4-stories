@@ -1,5 +1,0 @@
-prefix schema: <http://schema.org/>
-select ?item ?lang {
-  ?item schema:inLanguage ?lang.
-  filter(isLiteral(?lang))
-}

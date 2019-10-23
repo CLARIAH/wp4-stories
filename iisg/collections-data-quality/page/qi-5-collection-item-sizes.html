@@ -25,8 +25,7 @@
         </div>
       </div>
     </nav>
-    <div class="container story"
-         data-endpoint="https://druid.datalegend.net/iisg-acceptatie/IISG/sparql/IISG">
+    <div class="container story">
       <h1>Quality Indicator 5: Size of collection items</h1>
       <section class="alert alert-info" role="alert">
         <h2>Deduplication of content</h2>
@@ -34,9 +33,15 @@
       </section>
       <section>
         <p>Many collection items have information about their width <code>iisg:widthInCm</code> and their height <code>iisg:heightInCm</code> readily available in their properties. While most images do have their values inserted some miss either the height or the width of the image while this is available in the property <code>iisg:size</code>.  As shown in the table below, these items miss either their <code>iisg:heigthInCm</code> or their <code>iisg:widthInCm</code> while the <code>iisg:size</code> is always known.</p>
-        <query data-query-ref="../query/5-missing-values-size.rq"
-               data-config="https://api.triplydb.com/s/HJuJYfpDm">
-        </query>
+        <figure id="missing-data">
+          <query
+            data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/iisg-kg/queries/5-missing-values-size"
+          ></query>
+          <figcaption>
+            Figuur 1 ― missing values.
+          </figcaption>
+        </figure>
+
       </section>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>

@@ -1,8 +1,0 @@
-prefix schema: <http://schema.org/>
-Select ?name (count(?place) as ?n) {
-  ?place a schema:Person;
-         schema:name ?name.
-}
-group by ?name1
-having(count(?place) > 1)
-order by desc(?n)
