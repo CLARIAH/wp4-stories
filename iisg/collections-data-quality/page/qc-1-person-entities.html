@@ -28,34 +28,34 @@
     <div class="container story" >
       <h1>Quality Comparison: Person Entities</h1>
       <p>This overview shows the quality improvements that have been made to the person entities in the IISG Knowledge Graph.</p>
-      <p>The first diagram shows the data <em>prior</em> to making the quality improvements (2017 version).  As shown in the diagram, there are many persons with more than one identifier.  The person identifiers are collected per combination of person name, title, and ‘word &amp; dates’ property.  The diagram only shows the persons with the largest number of works attributed to them.</p>
+      <p><a href="#figure-1">Figure 1</a> shows the data <em>prior</em> to making the quality improvements (2017 version).  As shown in the diagram, there are many persons with more than one identifier.  The person identifiers are collected per combination of person name, title, and ‘word &amp; dates’ property.  The diagram only shows the persons with the largest number of works attributed to them.</p>
       <figure id="missing-data">
         <query
           data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/iisg-kg/queries/7-plot-new"
           data-config="https://api.triplydb.com/s/BkXvkT1_7"
           data-endpoint="https://api.druid.datalegend.net/datasets/iisg/iisg-kg/services/iisg-kg/sparql"></query>
         <figcaption>
-          Figuur 1 ― Persons with more than one identifier before quality improvements.
+          Figure 1 ― Persons with more than one identifier before quality improvements.
         </figcaption>
       </figure>
 
-      <p>The second diagram shows the data <em>after</em> quality improvements have been made (version 2018-09).  A value of 1 for <code>number_of_occurrences</code> (red line) means that there are no duplicates for the corresponding person (displayed on the horizontal axis).  While there are still some duplicates left, very many duplicates have been resolved.</p>
+      <p><a href="#figure-2">Figure 2</a> shows the same quality aspects, but for the <em>current</em> version of the data.  A value of 1 for <code>number_of_occurrences</code> (red line) means that there are no duplicates for the corresponding person (displayed on the horizontal axis).  While there are still some duplicates left, many duplicates have been resolved.</p>
       <figure id="missing-data">
         <query
           data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/iisg-kg/queries/7-plot-new"
         ></query>
         <figcaption>
-          Figuur 2 ― Persons with more than one identifier after quality improvements.
+          Figure 2 ― Persons with more than one identifier after quality improvements.
         </figcaption>
       </figure>
 
-      <p>The following table enumerates persons that still have multiple identifiers in the latest version of the data (2018-09).</p>
+      <p><a href="#Table-1">Table 1</a> enumerates all persons that have more than one identifier in the latest version of the data.</p>
       <figure id="missing-data">
         <query
           data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/iisg-kg/queries/7-table-new"
         ></query>
         <figcaption>
-          Figuur 3 ― table with the plotted data.
+          Table 1 ― Full overview of persons with more than one identifier.
         </figcaption>
       </figure>
 
