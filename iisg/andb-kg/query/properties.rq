@@ -1,7 +1,0 @@
-select ?p (count(?s) as ?n) {
-  graph <https://iisg.amsterdam/graph/andb-kg> {
-    ?s ?p ?o.
-  }
-}
-group by ?p
-order by desc(?n)

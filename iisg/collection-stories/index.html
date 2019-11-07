@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
- <!-- change content below-->
+    <!-- change content below-->
     <meta name="description" content="CLARIAH Data Stories ― Template">
     <meta name="author" content="Mrs. Jones">
     <link href="/assets/imgs/clariah-logo-square.png" rel="icon" type="image/png">
-    <title>CLARIAH Data Stories ― A really nice title for the template</title>
+    <title>CLARIAH Data Stories ― IISH Collections</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link href="/assets/css/main.css" rel="stylesheet" type="text/css">
     <link href="/assets/css/stories.min.css" rel="stylesheet" type="text/css">
@@ -27,20 +27,25 @@
       </div>
     </nav>
     <div class="container story" data-endpoint="https://api.druid.datalegend.net/datasets/iisg/iisg-kg/services/iisg-kg/sparql">
-     <h1>IISH Collections - Sample stories and queries</h1>
-     <h3>Esperanto books 1919-1939</h3>
-     <p>IISH has a large library of more than 900.000 books and brochures on social history from all over the world. Esperanto, the artificial language created by dr Zamenhof,  was especially popular in the labour movement because it agreed with the ideals of international brotherhood. The railway workers, for example, already had their own international Esperanto federation in 1909, the "Internacia Fervojista Esperanto Federacio (IFEF)", with the slogan: "The rails connect the countries, Esperanto the peoples".<br>
-Here, a sample of books written in Esperanto and published between the world wars.</p>
-      <query data-query-ref="query/esperanto-books.rq" data-output="table"></query>
+      <h1>IISH Collections - Sample stories and queries</h1>
+      <h3>Esperanto books 1919-1939</h3>
+      <p>IISH has a large library of more than 900.000 books and brochures on social history from all over the world. Esperanto, the artificial language created by dr Zamenhof, was especially popular in the labour movement because it agreed with the ideals of international brotherhood.  The railway workers, for example, already had their own international Esperanto federation in 1909, the Internacia Fervojista Esperanto Federacio (IFEF), with the slogan: “The rails connect the countries, Esperanto the peoples”.  <a href="#figure-1">Figure 1</a> shows books written in Esperanto between the world ward, from the IISH collection.</p>
+      <figure>
+        <query data-query-ref="query/esperanto-books.rq" data-output="table">
+        </query>
+        <figcaption>
+          Figure 1 ― A sample of books written in Esperanto and published between the world wars.
+        </figcaption>
+      </figure>
       <h3>Cartoons of Albert Hahn</h3>
       <p>Albert Hahn (1877-1918) was probably the most influential political cartoonist in Dutch history. His work for social-democrat magazines and newspapers reached a large audience, giving humorous or biting comments on the daily news, always from the point of view of the social-democrat workers' movement. One of the hot topics in the 8,000 prints and drawings was the struggle for universal suffrage in the Netherlands.<br>
-Here, a query of Hahn's cartoons on universal suffrage in Dutch politics.</p>
+        Here, a query of Hahn's cartoons on universal suffrage in Dutch politics.</p>
       <p>The IISH has its own thesaurus for visual material, searchable as iisgvocabulary 'topic'. These terms have now been linked to the <a href="http://id.loc.gov/authorities/subjects.html">Library of Congress Subject Headings</a>. For the moment the thesaurus can be found on the <a href="https://digitaalerfgoed.poolparty.biz/iisg.html">Digitaalerfgoed Poolparty linked data server</a> with the LCSH id as exact or close match. In 2020 this will be added to the IISG knowledge graphs.</p>
-	  <query data-query-ref="query/hahn-cartoons.rq" data-output="gallery"></query>
-	<h3>Chinese posters about space travel.</h3>
-	    <p>The succesful launching of the Shenzhou V, the Divine Vessel, on 15 October 2003, with taikonaut Yang Liwei on board, marked a giant leap forward in the Chinese space program that saw its origins in the 1960s.
+    <query data-query-ref="query/hahn-cartoons.rq" data-output="gallery"></query>
+  <h3>Chinese posters about space travel.</h3>
+      <p>The succesful launching of the Shenzhou V, the Divine Vessel, on 15 October 2003, with taikonaut Yang Liwei on board, marked a giant leap forward in the Chinese space program that saw its origins in the 1960s.
  Space also appealed to the popular imagination, as can be seen from the relatively abundant use of space-related imagery in posters published in the 1980s and 1990s. See also <a href="https://chineseposters.net/themes/space-program.php">chineseposters.net</a>.  </p>
-	    <query data-query-ref="query/chinese-space.rq" data-output="gallery"></query>
+      <query data-query-ref="query/chinese-space.rq" data-output="gallery"></query>
 <p><a href="https://twitter.com/intent/tweet?screen_name=rlzijdeman&ref_src=twsrc%5Etfw" class="twitter-mention-button" data-size="large" data-text="Finding and coding high and low occupations from the past in multiple languages http://stories.datalegend.net/codingHistoricalOccupations/ #HISCO #HISCO #LOD #dataStories" data-related="rlzijdeman" data-lang="en" data-show-count="false">Tweet this data story</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
     </div>
     <script src="https://cdn.jsdelivr.net/gh/thednp/bootstrap.native@2.0.24/dist/bootstrap-native-v4.min.js" crossorigin="anonymous"></script>
