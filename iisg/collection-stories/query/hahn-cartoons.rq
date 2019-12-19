@@ -11,6 +11,7 @@ SELECT * WHERE {
   ?sub rdf:type <https://iisg.amsterdam/vocab/Drawing> .
   ?sub iisgv:topic <https://iisg.amsterdam/authority/topic/12660> .
   ?sub schema:author <https://iisg.amsterdam/authority/person/136339> .
-  ?sub schema:description ?widgetDescription.
+  ?sub schema:description ?widgetDescriptionString.
+  BIND(strdt(?widgetDescriptionString, rdf:HTML) as ?widgetDescription)
   ?sub foaf:depiction/foaf:thumbnail ?widgetImage.
 } LIMIT 5
