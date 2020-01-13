@@ -3,6 +3,7 @@ prefix dct: <http://purl.org/dc/terms/>
 prefix edm: <http://www.europeana.eu/schemas/edm/>
 prefix foaf: <http://xmlns.com/foaf/0.1/>
 prefix hsm: <https://demo.triply.cc/maritieme-musea/Het-Scheepvaartmuseum/>
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 select * {
   {
     select ?link ?name ?provider {
@@ -53,7 +54,7 @@ select * {
       bind('Het Scheepvaartmuseum' as ?provider)
     } limit 3
   }
-  bind('''
+  bind(strdt('''
     <div style="position: relative;">
       <img src="{{link}}" style="max-width: 400px;">
       <h1 style="position: absolute; top: -11px; left: 0; width: 100%; line-height: 0px;">
@@ -66,6 +67,6 @@ select * {
           {{provider}}
         </span>
       </h2>
-    </div>''' as ?widget)
+    </div>''',rdf:HTML)  as ?widget)
 }
 limit 1

@@ -11,7 +11,7 @@ SELECT * WHERE {
   ?sub rdf:type <https://iisg.amsterdam/vocab/Poster> .
   ?sub iisgv:topic <https://iisg.amsterdam/authority/topic/220986> .
   ?sub schema:about <https://iisg.amsterdam/authority/place/81989> .
-  ?sub schema:description ?desc .
-  ?sub foaf:depiction/foaf:thumbnail ?thumb .
-  bind('<figure><img src="{{thumb}}"><figcaption>{{desc}}</figcaption></figure>' as ?widget)
+  ?sub schema:description ?widgetDescriptionString.
+  BIND(strdt(?widgetDescriptionString, rdf:HTML) as ?widgetDescription)
+  ?sub foaf:depiction/foaf:thumbnail ?widgetImage.
 } LIMIT 7

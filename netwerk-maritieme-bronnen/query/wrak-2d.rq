@@ -8,6 +8,7 @@ prefix owl: <http://www.w3.org/2002/07/owl#>
 prefix schema: <http://schema.org/>
 prefix ship: <https://demo.triply.cc/huygens-ing/dutch-asiatic-shipping/id/ship/>
 prefix wgs84: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 select * {
   bind(ship:DAS_ship0010 as ?ship)# 't Vliegend Hart' == DAS_ship0010
   ?ship das:shipname ?shipName.
@@ -47,7 +48,7 @@ select * {
   bind(strdt(concat('Point(',?departureLong,' ',?departureLat,')'),geo:wktLiteral) as ?departureShape)
   bind(strdt(concat('Point(',?wreckLong,' ',?wreckLat,')'),geo:wktLiteral) as ?wreckShape)
   bind(str(concat('Polygon((',?wreckLong,' ',?wreckLat,',',?departureLong,' ',?departureLat,'))')) as ?routeShape).
-  bind('''
+  bind(strdt('''
        <h3>{{departureName}}</h3>
        <p>Vertrokken op {{departureDate}}</p>
        <figure>
@@ -56,6 +57,6 @@ select * {
            “{{departureImageDesc}}” door {{departureImageCreator}}, {{departureImageYear}} [Herkomstcollectie: {{provider}}].
          </figcaption>
        </figure>
-       ''' as ?departureShapeLabel)
-  bind('<p>Gezonken op: {{locatie}}, {{description}}</p>' as ?wreckShapeLabel)
+''',rdf:HTML) as ?departureShapeLabel)
+  bind(strdt('<p>Gezonken op: {{locatie}}, {{description}}</p>',rdf:HTML) as ?wreckShapeLabel)
 }

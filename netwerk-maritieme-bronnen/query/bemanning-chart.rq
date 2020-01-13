@@ -38,5 +38,5 @@ select
 	  }
   }
 }
-order by desc(?percentageVliegenthart)
+order by desc(?t_Vliegend_Hart)
 limit 20

@@ -1,6 +1,0 @@
-prefix iisg: <https://iisg.amsterdam/vocab/>
-select (str(?addition) as ?addition) (count(?address) as ?n) {
-  ?address iisg:houseNumberAddition ?addition.
-}
-group by ?addition
-order by desc(?n)

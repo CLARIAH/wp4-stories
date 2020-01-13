@@ -8,6 +8,7 @@ prefix owl: <http://www.w3.org/2002/07/owl#>
 prefix ship: <https://demo.triply.cc/huygens-ing/dutch-asiatic-shipping/id/ship/>
 prefix wgs84: <http://www.w3.org/2003/01/geo/wgs84_pos#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 select * {
   bind(ship:DAS_ship0010 as ?ship)# 't Vliegend Hart' == DAS_ship0010
   ?voyage
@@ -69,14 +70,14 @@ select * {
     das:voyarrivaldateedtf ?arrivalDate;
     das:voycapearrivaledtf ?arrCapeDate.
   bind((?arrivalDate-?departureDate) / (24*60*60) as ?days)
-  bind('''
+  bind(strdt('''
        Vertrokken van {{departureName}}: {{departureDate}}<br>
        Aangekomen op {{restName}}: {{arrCapeDate}}<br>
        Vertrokken van {{restName}}: {{depCapeDate}}<br>
        Aangekomen in {{arrivalName}}: {{arrivalDate}}<br>
        Duur van de reis: {{days}} dagen
-       ''' as ?shape3Label)
-  bind(if(bound(?departureImageDescription),
+''',rdf:HTML) as ?shape3Label)
+  bind(strdt(if(bound(?departureImageDescription),
           '''
           <h3>{{departureName}}</h3>
           <p>Vertrokken op {{departureDate}}</p>
@@ -89,8 +90,8 @@ select * {
           ''',
           '''<h3>{{departureName}}</h3>
           <p>Vertrokken op {{departureDate}}</p>
-          ''') as ?departureShapeLabel)
-  bind('''
+          '''),rdf:HTML) as ?departureShapeLabel)
+  bind(strdt('''
        <h3>{{arrivalName}}</h3>
        <p>Aangekomen op {{arrivalDate}}</p>
        <figure>
@@ -99,8 +100,8 @@ select * {
            {{arrivalImageDescription}} door {{arrivalImageCreator}}, {{arrivalImageYear}} [Herkomstcollectie: Nationaal Archief].
          </figcaption>
        </figure>
-       ''' as ?arrivalShapeLabel)
-  bind('''
+''',rdf:HTML) as ?arrivalShapeLabel)
+  bind(strdt('''
        <h3>{{restName}}</h3>
        <p>Aangekomen op {{arrCapeDate}}</br>Vertrokken op {{depCapeDate}}</p>
        <figure>
@@ -109,6 +110,6 @@ select * {
            “{{restImageDescription}}” door {{restImageCreator}}, {{restImageYear}} [Herkomstcollectie: Nationaal Archief].
          </figcaption>
        </figure>
-       ''' as ?restShapeLabel)
+''',rdf:HTML) as ?restShapeLabel)
   bind(if(strends(str(?voyage),'6'),'green','red') as ?shape3Color)
 }

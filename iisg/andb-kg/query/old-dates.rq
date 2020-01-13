@@ -1,8 +1,0 @@
-prefix iisg: <https://iisg.amsterdam/vocab/>
-prefix schema: <http://schema.org/>
-prefix xsd: <http://www.w3.org/2001/XMLSchema#>
-select distinct ?date0 (xsd:date(?date0) as ?date) {
-  ?s iisg:admissionDate|iisg:endOfApprenticeship|iisg:factoryDate|iisg:membershipDate|schema:birthDate ?date0.
-}
-order by ?date
-limit 100

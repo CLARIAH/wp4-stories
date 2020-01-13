@@ -83,28 +83,28 @@
               compatibility for the properties
               <code>iisg:dateOfPublication</code> and
               <code>iisg:dateOfManufacturing</code>. They quantify the number of
-              literals for each datatype IRI. The left hand side shows the
+              literals for each datatype IRI. The <a href="#1-date-of-publication-datatypes-e1">Figure 1</a> shows the
               results for the 2019 version of the IISG Knowledge Graph, while
-              the right hand side shows the results for live current version.
+              <a href="#1-date-of-publication-datatypes-e2">Figure 2</a> shows the results for live current version.
             </p>
           </div>
         </div>
         <div class="side-by-side">
-          <figure id="missing-data">
+          <figure id="1-date-of-publication-datatypes-e1">
             <query
               data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/iisg-kg/queries/1-date-of-publication-datatypes"
             ></query>
             <figcaption>
-              Figuur 1 ― date of publication datatypes (current version).
+              Figure 1 ― The different date of publication datatypes (in current version).
             </figcaption>
           </figure>
-          <figure id="missing-data">
+          <figure id="1-date-of-publication-datatypes-e2">
             <query
               data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/iisg-kg/queries/1-date-of-publication-datatypes"
               data-endpoint="https://api.druid.datalegend.net/datasets/iisg/iisg-kg/services/iisg-kg/sparql"
             ></query>
             <figcaption>
-              Figuur 2 ― date of publication datatypes 2019.
+              Figure 2 ― The different date of publication datatypes (2017 version).
             </figcaption>
           </figure>
         </div>
@@ -112,17 +112,17 @@
           <div class="content">
             <h2>Uninterpretable dates: date of publication</h2>
             <p>
-              The following diagram shows the 100 most common string values for
+              The <a href="#1-date-of-publication-string">Figure 3</a>  shows the 100 most common string values for
               the predicate <code>iisg:dateOfPublication</code>. The diagram
               shows that cleaning only the 10 most common strings will
               significantly improve the data quality of this property.
             </p>
-            <figure id="missing-data">
+            <figure id="1-date-of-publication-string">
               <query
                 data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/iisg-kg/queries/1-date-of-publication-strings"
               ></query>
               <figcaption>
-                Figuur 3 ― misconfigured datatypes on publications.
+                Figure 3 ― Misconfigured datatypes on publications with <code>"z.j."</code> on top.
               </figcaption>
             </figure>
           </div>
@@ -131,7 +131,7 @@
           <div class="content">
             <h2>Datatype overview: date of manufacturing</h2>
             <p>
-              The following pie charts give an overview of the datatype
+              The following pie charts <a href="#1-date-of-manufacturing-datatypes-e1">Figure 4</a>, <a href="#1-date-of-manufacturing-datatypes-e2">Figure 5</a> give an overview of the datatype
               compatibility for the property
               <code>iisg:dateOfManfacturing</code>. Notice that many values have
               datatype IRI <code>xsd:string</code>, i.e., cannot be interpreted
@@ -140,21 +140,21 @@
           </div>
         </div>
         <div class="side-by-side">
-          <figure id="missing-data">
+          <figure id="1-date-of-manufacturing-datatypes-e1">
             <query
               data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/iisg-kg/queries/1-date-of-manufacturing-datatypes"
             ></query>
             <figcaption>
-                Figuur 4 ―  date of manufacturing datatypes (current version).
+                Figure 4 ―  The different date of manufacturing datatypes (in current version).
             </figcaption>
           </figure>
-          <figure id="missing-data">
+          <figure id="1-date-of-manufacturing-datatypes-e2">
             <query
               data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/iisg-kg/queries/1-date-of-manufacturing-datatypes"
               data-endpoint="https://api.druid.datalegend.net/datasets/iisg/iisg-kg/services/iisg-kg/sparql"
             ></query>
             <figcaption>
-                Figuur 5  ― date of manufacturing datatypes 2019.
+                Figure 5  ― The different date of manufacturing datatypes (2017 version).
             </figcaption>
           </figure>
         </div>
@@ -162,18 +162,18 @@
           <div class="content">
             <h2>Uninterpretable dates: date of manufacturing</h2>
             <p>
-              In following table below the first 100 types of misclassified data
+              In <a href="#1-date-of-manufacturing-strings">Figure 6</a> below the first 100 types of misclassified data
               values are shownfor the predicate
               <code>iisg:dateOfManufacturing</code>. Changing the first 10
               elements will lower the number of misclassifications
               significantly.
             </p>
-            <figure id="missing-data">
+            <figure id="1-date-of-manufacturing-strings">
               <query
                 data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/iisg-kg/queries/1-date-of-manufacturing-strings"
               ></query>
               <figcaption>
-                Figuur 6 ― misconfigured datatypes on manufacturing.
+                Figure 6 ― Misconfigured datatypes on manufacturing.
               </figcaption>
             </figure>
           </div>
