@@ -1,0 +1,25 @@
+#+ summary: Top 6 dialect mentions in Lexicon
+#+ tags:
+#+      - Amsterdam
+#+      - GIS
+#+      - dialect
+#+ endpoint: ...
+
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX lemon: <http://lemon-model.net/lemon#>
+
+SELECT ?dialect (COUNT(?dialect) as ?n) WHERE {
+  ?entryURI lemon:sense/lemon:context/lemon:usage ?dialect .
+  #?entryURI rdf:type lemon:LexicalEntry .
+  #?entryURI lemon:canonicalform/lemon:writtenRep ?prefWriting .
+  #?entryURI lemon:otherForm/lemon:writtenRep ?otherWriting .
+  #?entryURI lemon:sense/lemon:reference ?meaning .
+  #?entryURI lemon:sense/lemon:context/prov:wasDerivedFrom ?source .
+  #?entryURI lemon:sense/lemon:context/prov:wasDerivedFrom/dc:title ?sourceTitle .
+}
+GROUP BY ?dialect
+ORDER BY DESC(?n)
+LIMIT 6
