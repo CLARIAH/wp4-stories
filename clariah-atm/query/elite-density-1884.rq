@@ -13,18 +13,17 @@ PREFIX sdmx-code: <http://purl.org/linked-data/sdmx/2009/code#>
 PREFIX geo: <http://www.opengis.net/ont/geosparql#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
-SELECT ?districtLabel ?districtWKT ?totPop ?elitePop 
-(1000*(5*(xsd:float(?elitePop))/(xsd:float(?totPop))) AS ?eliteDensity) 
-((?eliteDensity / 50) AS ?eliteDensityIndex)
-(?eliteDensity AS ?districtWKTTooltip)
+#select *
+SELECT ?districtLabel ?districtWKT ?totPop ?elitePop ?districtWKTTooltip
+
 (CONCAT('viridis,', STR(?eliteDensityIndex)) AS ?districtWKTColor)
 WHERE {
 
 # determine population per district
 {
   SELECT ?district (SUM(?pop) AS ?totPop)
-  WHERE { ?obs a qb:Observation . 
-          ?obs cedar:population ?pop . 
+  WHERE { ?obs a qb:Observation .
+          ?obs cedar:population ?pop .
           ?obs sdmx-dimension:refArea ?district .
           ?slice a qb:Slice.
           ?slice qb:observation ?obs.
@@ -32,7 +31,7 @@ WHERE {
   } GROUP BY ?district
 }
 
-# determine elite per district  
+# determine elite per district
 {
   SELECT ?district (count(?obs) AS ?elitePop)
   WHERE {   ?obs <http://purl.org/linked-data/sdmx/2009/dimension#refPeriod> "1884" .
@@ -42,11 +41,22 @@ WHERE {
 
 # get data about districts
 {
-    SELECT ?district ?districtWKT ?districtLabel 
+    SELECT ?district ?districtWKT ?districtLabel
     WHERE { ?district a <http://rdf.histograph.io/district> .
-        ?district geo:hasGeometry / geo:asWKT ?districtWKT .
-        ?district rdfs:label ?districtLabel .
-  } 
+     # ?district geo:hasGeometry / geo:asWKT ?districtWKT .
+     # 2020-05-31 by @rlzijdeman: line above ought to be correct,
+     # but data have no asWKT. Therefore replaced with line below:
+      ?district geo:hasGeometry ?districtWKT  .
+      ?district rdfs:label ?districtLabel .
+  }
 }
+  BIND(1000*(5*(xsd:float(?elitePop))/(xsd:float(?totPop))) AS ?eliteDensity)
+  BIND(CONCAT(
+              "Neighbourhood: ", ?districtLabel, "\n",
+              "Year: 1899", "\n",
+      		  "Elite density: ", STR(?eliteDensity), "\n",
+      "Source: ", "https://github.com/CLARIAH/ATM"
+    ) AS ?districtWKTTooltip)
+  BIND((?eliteDensity / 50) AS ?eliteDensityIndex)
 
 } ORDER BY ?districtLabel
