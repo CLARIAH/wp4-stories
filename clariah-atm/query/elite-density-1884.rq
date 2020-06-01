@@ -53,7 +53,7 @@ WHERE {
   BIND(1000*(5*(xsd:float(?elitePop))/(xsd:float(?totPop))) AS ?eliteDensity)
   BIND(CONCAT(
               "Neighbourhood: ", ?districtLabel, "\n",
-              "Year: 1899", "\n",
+              "Year: 1884/1889", "\n",
       		  "Elite density: ", STR(?eliteDensity), "\n",
       "Source: ", "https://github.com/CLARIAH/ATM"
     ) AS ?districtWKTTooltip)
