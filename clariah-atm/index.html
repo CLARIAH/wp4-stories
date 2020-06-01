@@ -34,11 +34,6 @@
       </p>
 <br>
 
-<p><em>Top 6 dialects in Amsterdam Time Machine lexicon</em></p>
-<query
-        data-query-ref="query/atm-dialect-lexicon-top6-occurrence.rq"
-        data-output="table">
-</query>
 <br>
 <!-- ELITE -->
       <h2>Elite 1854 and 1884</h2>
@@ -72,10 +67,20 @@
       <h2>Dialects and Sociolects (19th century)</h2>
       <p>There are many primary and secondary sources and recordings (of speakers born in the 19th century) of the language spoken in Amsterdam in the 19th century. Until now, our knowledge was fragmentary and incomplete, because sources were mostly studied in isolation. This use case was the first to link a large amount of data in order to make a reconstruction. In previous publications it was stated that there was an abundance of dialect variation in historical Amsterdam: according to the 19th-century linguist Johan Winkler and the historian Jan ter Gouw there was a whopping number of nineteen dialects spoken in 19th-century Amsterdam, distributed over various neighbourhoods. One of the questions we wanted to answer was whether it is possible to reconstruct this large amount of dialect variation. Alongside these neighbourhood-specific dialects there were also sociolects spoken throughout the city, roughly those of the lower, middle and higher social class. In the database we have collected 8,020 data points, and we categorized them into the following language domains: words, names, idiomatic expressions, speech sounds, word formation, syntax, songs, speech recordings. For each entry we recorded the information given in the original source, such as meaning, informant, district (dialect) or street were it was found, or sociolect. Furthermore, we enriched the entries with various information. Below is a top 6 of the dialects from these sources.
       </p>
+      <p><em>Top 6 dialects in Amsterdam Time Machine lexicon</em></p>
 
+      <!-- can't seem to get this to work... ought to represent this query:
+      https://druid.datalegend.net/ATM-DEMO/-/queries/atm-dialect-occurrence/1
+      <query
+              data-query-ref="query/atm-dialect-lexicon-top6-occurrence.rq"
+              data-output="gchart">
+      </query>
+      -->
 
-      <p><em>Ipsum lorem ...</em></p>
-
+      <p><em>howdie ...</em></p>
+      <query
+          data-config-ref="https://druid.datalegend.net/ATM-DEMO/-/queries/dialect-structure-query/2">
+      </query>
 
 
 <!-- BACK MATTER -->
