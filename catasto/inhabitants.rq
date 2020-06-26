@@ -4,18 +4,19 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX catastodim: <https://iisg.amsterdam/catasto/dimension/>
 PREFIX catasto: <https://iisg.amsterdam/catasto/>
 PREFIX b2lvoc: <https://iisg.amsterdam/B2L/vocab/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 SELECT (count(distinct ?sub) as ?households_catasto_Florence) (count(?member) as ?inhab_catasto_florence) ((?B2L_pop_1400 * 1000) as ?baghdadtolondon_estimate)
 WHERE {
- 
+
  ?sub a catasto:household ;
  	catastodim:NUMSER / skos:prefLabel ?regionlabel ;
- 	catastodim:householdMember ?member . 
+ 	catastodim:householdMember ?member .
 
- ?city b2lvoc:city <https://iisg.amsterdam/B2L/code/city/Firenze> ; 
+ ?city b2lvoc:city <https://iisg.amsterdam/B2L/code/city/Firenze> ;
  	b2lvoc:year "1400-01-01"^^xsd:gYear ;
  	b2lvoc:citypop_le5 ?B2L_pop_1400 .
- 
+
 FILTER regex(?regionlabel, "Fi")
 FILTER (!regex(?regionlabel, "C"))
 }
