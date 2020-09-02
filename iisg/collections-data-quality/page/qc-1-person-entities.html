@@ -31,7 +31,7 @@
       <p><a href="#7-plot-new-e1">Figure 1</a> shows the data <em>prior</em> to making the quality improvements (2017 version).  As shown in the diagram, there are many persons with more than one identifier.  The person identifiers are collected per combination of person name, title, and ‘word &amp; dates’ property.  The diagram only shows the persons with the largest number of works attributed to them.</p>
       <figure id="7-plot-new-e1">
         <query
-          data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/-/queries/7-plot-new"
+          data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/-/queries/plot-new"
           data-config="https://api.triplydb.com/s/BkXvkT1_7"
           data-endpoint="https://api.druid.datalegend.net/datasets/iisg/iisg-kg/services/iisg-kg/sparql"></query>
         <figcaption>
@@ -42,7 +42,7 @@
       <p><a href="#7-plot-new-e2">Figure 2</a> shows the same quality aspects, but for the <em>current</em> version of the data.  A value of 1 for <code>number_of_occurrences</code> (red line) means that there are no duplicates for the corresponding person (displayed on the horizontal axis).  While there are still some duplicates left, many duplicates have been resolved.</p>
       <figure id="7-plot-new-e2">
         <query
-          data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/-/queries/7-plot-new"
+          data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/-/queries/plot-new"
         ></query>
         <figcaption>
           Figure 2 ― Persons with more than one identifier after quality improvements.
@@ -52,7 +52,7 @@
       <p><a href="#7-table-new">Table 1</a> enumerates all persons that have more than one identifier in the latest version of the data.</p>
       <figure id="7-table-new">
         <query
-          data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/-/queries/7-table-new"
+          data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/-/queries/table-new"
         ></query>
         <figcaption>
           Table 1 ― Full overview of persons with more than one identifier.

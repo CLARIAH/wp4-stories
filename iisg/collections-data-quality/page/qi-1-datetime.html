@@ -92,7 +92,7 @@
         <div class="side-by-side">
           <figure id="1-date-of-publication-datatypes-e1">
             <query
-              data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/-/queries/1-date-of-publication-datatypes"
+              data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/-/queries/datatypes-used-for-dates"
             ></query>
             <figcaption>
               Figure 1 ― The different date of publication datatypes (in current version).
@@ -100,7 +100,7 @@
           </figure>
           <figure id="1-date-of-publication-datatypes-e2">
             <query
-              data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/-/queries/1-date-of-publication-datatypes"
+              data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/-/queries/datatypes-used-for-dates"
               data-endpoint="https://api.druid.datalegend.net/datasets/iisg/iisg-kg/services/iisg-kg/sparql"
             ></query>
             <figcaption>
@@ -119,61 +119,10 @@
             </p>
             <figure id="1-date-of-publication-string">
               <query
-                data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/-/queries/1-date-of-publication-strings"
+                data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/-/queries/dates-that-are-strings"
               ></query>
               <figcaption>
                 Figure 3 ― Misconfigured datatypes on publications with <code>"z.j."</code> on top.
-              </figcaption>
-            </figure>
-          </div>
-        </div>
-        <div class="flex text">
-          <div class="content">
-            <h2>Datatype overview: date of manufacturing</h2>
-            <p>
-              The following pie charts <a href="#1-date-of-manufacturing-datatypes-e1">Figure 4</a>, <a href="#1-date-of-manufacturing-datatypes-e2">Figure 5</a> give an overview of the datatype
-              compatibility for the property
-              <code>iisg:dateOfManfacturing</code>. Notice that many values have
-              datatype IRI <code>xsd:string</code>, i.e., cannot be interpreted
-              as dates.
-            </p>
-          </div>
-        </div>
-        <div class="side-by-side">
-          <figure id="1-date-of-manufacturing-datatypes-e1">
-            <query
-              data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/-/queries/1-date-of-manufacturing-datatypes"
-            ></query>
-            <figcaption>
-                Figure 4 ―  The different date of manufacturing datatypes (in current version).
-            </figcaption>
-          </figure>
-          <figure id="1-date-of-manufacturing-datatypes-e2">
-            <query
-              data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/-/queries/1-date-of-manufacturing-datatypes"
-              data-endpoint="https://api.druid.datalegend.net/datasets/iisg/iisg-kg/services/iisg-kg/sparql"
-            ></query>
-            <figcaption>
-                Figure 5  ― The different date of manufacturing datatypes (2017 version).
-            </figcaption>
-          </figure>
-        </div>
-        <div class="flex text">
-          <div class="content">
-            <h2>Uninterpretable dates: date of manufacturing</h2>
-            <p>
-              In <a href="#1-date-of-manufacturing-strings">Figure 6</a> below the first 100 types of misclassified data
-              values are shownfor the predicate
-              <code>iisg:dateOfManufacturing</code>. Changing the first 10
-              elements will lower the number of misclassifications
-              significantly.
-            </p>
-            <figure id="1-date-of-manufacturing-strings">
-              <query
-                data-config-ref="https://druid.datalegend.net/iisg-etl-acceptatie/-/queries/1-date-of-manufacturing-strings"
-              ></query>
-              <figcaption>
-                Figure 6 ― Misconfigured datatypes on manufacturing.
               </figcaption>
             </figure>
           </div>
