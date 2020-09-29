@@ -30,7 +30,7 @@
       <h1>The 'Spanish' Flu Epidemic in The Netherlands 1918-19</h1>
       <br>
       <p>
-        This datastory uses Dutch death certificates from 1910-20 to map the temporal, spatial and social distribution of the 'Spanish' flu epidemic that hit The Netherlands in 1918-19.
+      This datastory uses Dutch death certificates from 1910-20 to map the temporal, spatial and social distribution of the 'Spanish' flu epidemic that hit The Netherlands in 1918-19.
       </p>
       <br>
 <!-- openarch dataset -->
@@ -42,23 +42,32 @@
       </p>
       <p> The table below demonstrates the success of the standardization efforts, presented as Linked Data.
 
-      <h3>Share of standardized places of death and occupations (coded into HISCO and HISCAM):</h3>
+      <h3>Share of death certificates with standardized places of death and occupations between 1910 an 1920:</h3>
       <query data-query-ref="queries/standardization_share.rq">
       </query>
+
        <p><em>Sources:</em><br>
        Gerrit Bloothooft & Kees Mandemakers, <em><a href="http://www.gerritbloothooft.nl/Publications/The%20Zeeland%20Challenge%20v2-2.pdf">The Zeeland Challenge</em/></a>, document for benchmark, presented at workshop Data Linkage: Techniques, Challenges and Applications at Isaac Newton Institute for Mathematics, Cambridge, UK, 15 September 2016;
        Van Leeuwen, M. H. D. , Maas, I. & Miles, A. (2003). <em>HISCO: Historical International Standard Classification of Occupations</em>. Leuven: Leuven University Press;
        Zijdeman, R., & Lambert, P. (2010). <em>Measuring social structure in the past: A comparison of historical class schemes and occupational stratification scales on Dutch 19th and early 20th century data</em>. Journal of Belgian History/Belgisch Tijdschrift voor Nieuwste Geschiedenis/Revue Belge de Histoire Contemporaine, 40(1-2), 111-141.
       </em></p>
       <br>
+
       <p> Because archives generally decide for themselves which variables from the civil registry they will index, occupations of the deceased are not available for all regions. Archives from the provinces of Drenthe, Gelderland, and Zeeland are, regrettably, the only ones to have structurally indexed all occupations of the deceased for this period.</p>
-      <h3>Share of known occupations of deceased aged eighteen and over, by municipality:</h3>
+
+      <h3>Share of known occupations of the deceased, aged eighteen and over, by municipality:</h3>
         <query data-query-ref="queries/occupation_share.rq" data-output="geo"> >
         </query>
 
-      <h2>Death certificates as Linked Data</h2>
-<!-- Converting into linked data -->
-
+      <h2>When and where did the flu hit The Netherlands?</h2>
+      <p> The first query already demonstrated that the fle did most damage in flu in 1918, with much more deaths than surrounding years. As with most flu epidemics, seasonality played a role as well. Deaths surged in the fall in particular, with November 1918 being the most deadly month. But also in January through March 1919 many people seem to have succumbed to the flu when compared to a more ordinary year such as 1910. 
+      </p>
+      <h3>Total deaths in The Netherlands by month:</h3>
+        <query data-query-ref="queries/deaths_month.rq" data-output="chart"> >
+        </query>
+        
+      <h2>Who were hit hardest?</h2>
+      <p> AGE/ OCC</p>
 
   <br>
       <h2>Colophon</h2>
