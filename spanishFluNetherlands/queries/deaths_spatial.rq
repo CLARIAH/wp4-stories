@@ -1,0 +1,53 @@
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX schema: <http://schema.org/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX iisgv: <https://iisg.amsterdam/openarchdeaths1910_1920/vocab/>
+PREFIX iisgv2: <https://iisg.amsterdam/openarchdeath/vocab/>
+PREFIX gg: <http://www.gemeentegeschiedenis.nl/gg-schema#>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX bio: <http://purl.org/vocab/bio/0.1/>
+PREFIX bif: <http://www.openlinksw.com/schemas/bif#>
+
+SELECT ?amco ?gg_gemeente ?mean ?1918 ?excess ?index ?wkt ?wktColor ?wktTooltip 
+WHERE { 
+     
+  FILTER(?mean >10)   # to avoid 'division by 0' error
+  FILTER(?1918 >0)
+ # FILTER(?1914 > 0) maybe exclude places with 0 deaths?
+ # FILTER(?1915 > 0)
+ # FILTER(?1916 > 0)
+  {
+    select ?amco ?wkt ?gg_gemeente 
+         
+     (sum(if(?year = "1918"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?1918)
+    (sum(if(?year = "1910"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?1910)
+    (sum(if(?year = "1911"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?1911)
+     (sum(if(?year = "1912"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?1912) 
+     (sum(if(?year = "1913"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?1913)  
+    (sum(if(?year = "1914"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?1914) 
+     (sum(if(?year = "1915"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?1915)
+     (sum(if(?year = "1916"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?1916)
+     (sum(if(?year = "1917"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?1917)
+          {
+        
+  ?death a bio:Death .
+  ?death iisgv:deceased ?deceased .
+  ?death bio:date ?date .
+  ?death iisgv:event_location ?gemeente .
+  ?gemeente gg:amsterdamCode ?amco .
+  ?amco gg:identifies  ?gg_gemeente .
+  ?gg_gemeente geo:hasGeometry/geo:asWKT ?wkt .
+ 
+  BIND(year(?date) as ?year)
+   
+        }}   
+      
+  BIND(xsd:float(?1910+?1911+?1912+?1913+?1914+?1915+?1916+?1917)/8 as ?mean)
+  BIND(xsd:float(?1918/?mean) as ?excess)
+  BIND((?excess-0.35)/(2.6-0.35) as ?index) # normalize excess mortality and exclude outliers from wktColor by setting max excess
+  BIND(concat('reds,', (?index)) as ?wktColor)
+  BIND(concat((?excess),'_', STRAFTER(STR(?gg_gemeente), 'gemeentenaam/')) as ?wktTooltip)
+    }
+  
+ORDER BY ASC (?excess)
