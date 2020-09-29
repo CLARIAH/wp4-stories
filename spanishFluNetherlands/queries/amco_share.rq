@@ -1,0 +1,27 @@
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX schema: <http://schema.org/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX iisgv: <https://iisg.amsterdam/openarchdeaths1910_1920/vocab/>
+PREFIX gg: <http://www.gemeentegeschiedenis.nl/gg-schema#>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX bio: <http://purl.org/vocab/bio/0.1/>
+
+SELECT  ?year ?n_deceased ?n_amco ((xsd:decimal(?n_amco))/(xsd:decimal(?n_deceased))*100 as ?share_amco)
+WHERE {
+  
+SELECT 
+?year (count(?deceased) as ?n_deceased)(count(?amco) as ?n_amco) 
+ WHERE { 
+   
+   ?death a bio:Death .
+   ?death bio:date ?date .
+   ?death iisgv:deceased ?deceased .
+   optional{ ?death iisgv:event_location ?gemeente .
+   ?gemeente gg:amsterdamCode ?amco }.
+    
+ BIND(year(?date) as ?year)
+ FILTER(?year != 1 && ?year != 1940)
+
+  }}
+  ORDER BY ASC (?year)
