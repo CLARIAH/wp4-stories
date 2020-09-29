@@ -1,0 +1,25 @@
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX schema: <http://schema.org/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX iisgv: <https://iisg.amsterdam/openarchdeaths1910_1920/vocab/>
+PREFIX iisgv2: <https://iisg.amsterdam/openarchdeath/vocab/>
+PREFIX gg: <http://www.gemeentegeschiedenis.nl/gg-schema#>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX bio: <http://purl.org/vocab/bio/0.1/>
+
+SELECT ?month (sum(if(?year = "1910"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?1910) 
+      (sum(if(?year = "1913"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?1913) 
+      (sum(if(?year = "1918"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?1918)
+      (sum(if(?year = "1919"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?1919)
+
+WHERE {
+      
+  ?death a bio:Death .
+  ?death iisgv:deceased ?deceased .
+  ?death bio:date ?date .
+ 
+  BIND(month(?date) as ?month)
+  BIND(year(?date) as ?year)   
+    
+} ORDER BY ASC (?month)
