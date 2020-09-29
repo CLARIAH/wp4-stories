@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en-en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="The 1918-19 flu epidemic in The Netherlands">
+    <meta name="author" content="Thomas de Groot and Wouter Beek">
+    <link href="/assets/imgs/clariah-logo-square.png" rel="icon" type="image/png">
+    <title>CLARIAH Data Stories ― The 1918-19 flu epidemic in The Netherlands</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link href="/assets/css/main.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/stories.min.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/yasgui.bootstrap.css" rel="stylesheet" type="text/css">
+  </head>
+  <body class="withNavbar">
+    <nav class="navbar fixed-top ">
+      <div class="navbar-content">
+        <div class="navbar-icon">
+          <a class="navbar-brand" href="/">
+            <img alt="CLARIAH Data Stories home" src="/assets/imgs/clariah-logo-square.png">
+          </a>
+        </div>
+        <div class="navbar-title">
+          <a class="navbar-brand" href="/">CLARIAH Data Stories</a>
+        </div>
+      </div>
+    </nav>
+    <div class="container story"
+         data-endpoint="https://druid.datalegend.net/dataLegend/deaths-1910-1920/sparql/deaths-1910-1920">
+      <h1>The 'Spanish' Flu Epidemic in The Netherlands 1918-19</h1>
+      <br>
+      <p>
+        This datastory uses Dutch death certificates to map the temporal, spatial and social distribution of the 'Spanish' flu epidemic that hit The Netherlands in 1918-19.
+      </p>
+<br>
+<!-- openarch dataset -->
+      <h2>The dataset</h2>
+      <p> Thanks to the indexation efforts of archives, large parts of the Dutch civil registry (<em>'Burgerlijke Stand'</em>) are now available for historians. The death certificates used here are retrieved from openarch.nl (available <a href="https://www.openarch.nl/exports/5cfb55ebaf9fe5aaf216f6da1229c632/">here</a>). Of the individual csv files provided per archive, one master file was created. One challenge working with these data is that that the same certificate may have been indexed by more than one archive. These were de-duplicated using a combination of date of death, location and similar full names (using string distances). Key variables were subsequently cleaned and standardized, such as age at death, placenames, and occupations. Using different string match combinations, place names were standardized against the <a href="https://iisg.amsterdam/en/hsn/data/place-names">Historical Dutch Toponyms dataset</a>,
+      and occupations against <a href="https://iisg.amsterdam/en/hsn/data/occupations">Historical Dutch Toponyms dataset</a>.   
+      </p>
+
+      <h2>Elite-density 1884</h2>
+
+
+      <query
+        data-query-ref="###.rq"
+        data-output="geo3d">
+      </query>
