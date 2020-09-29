@@ -33,18 +33,19 @@
         This datastory uses Dutch death certificates from 1910-20 to map the temporal, spatial and social distribution of the 'Spanish' flu epidemic that hit The Netherlands in 1918-19.
       </p>
       <br>
-
-      <br>
 <!-- openarch dataset -->
       <h2>The dataset</h2>
       <p> Thanks to the indexation efforts of archives, large parts of the Dutch civil registry (<em>'Burgerlijke Stand'</em>) are now available for historians. The death certificates used here are retrieved from openarch.nl (available <a href="https://www.openarch.nl/exports/5cfb55ebaf9fe5aaf216f6da1229c632/">here</a>). Of the individual csv files provided per archive, one master file was created. One challenge working with these data is that that the same certificate may have been indexed by more than one archive. These were de-duplicated using a combination of date of death, location and similar full names (using string distances). Key variables were subsequently cleaned and standardized, such as age at death, placenames, and occupations. Using different string match combinations, place names were standardized against the <a href="https://iisg.amsterdam/en/hsn/data/place-names">Historical Dutch Toponyms dataset</a>,
-      and occupations against <a href="https://iisg.amsterdam/en/hsn/data/occupations">Historical Dutch Toponyms dataset</a>.
+      and occupations against <a href="https://iisg.amsterdam/en/hsn/data/occupations">Historical Dutch Toponyms dataset</a>. The related R scripts can be found <a href="https://github.com/CLARIAH/wp4-civreg">here</a>.
       </p>
+      <p> The queries below demonstrate the effectiveness of our standardization efforts.
+      </p>
+      <query data-query-ref="queries/amco_share.rq">
+      </query>
+      <h2>Death certificates as Linked Data</h2>
+<!-- Converting into linked data -->
 
-      <h2>Elite-density 1884</h2>
 
-
-      
   <br>
       <h2>Colophon</h2>
    <p>This data story was created by the CLARIAH project.</p>
