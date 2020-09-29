@@ -9,15 +9,15 @@ PREFIX geo: <http://www.opengis.net/ont/geosparql#>
 PREFIX bio: <http://purl.org/vocab/bio/0.1/>
 PREFIX bif: <http://www.openlinksw.com/schemas/bif#>
 
-SELECT ?gg_gemeente ?mean ?1918 ?excess_death_rate 
+SELECT ?gg_gemeente ?mean ?1918 ?excess_death_rate
 WHERE { 
      
   FILTER(?mean >1)   # to avoid 'division by 0' error
   FILTER(?1918 >1)
   FILTER(?month = "11"^^xsd:integer)
-
-  {
-    select ?amco ?wkt ?gg_gemeente ?month
+ 
+    {
+    select ?amco ?wkt ?gg_gemeente ?month 
          
      (sum(if(?year = "1918"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?1918)
     (sum(if(?year = "1910"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?1910)
@@ -39,7 +39,7 @@ WHERE {
  
  
   BIND(year(?date) as ?year)
-      BIND(month(?date) as ?month)
+  BIND(month(?date) as ?month)
    
         }}   
       
