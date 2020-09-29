@@ -3,15 +3,17 @@ PREFIX schema: <http://schema.org/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX iisgv: <https://iisg.amsterdam/openarchdeaths1910_1920/vocab/>
+PREFIX iisgv2: <https://iisg.amsterdam/openarchdeath/vocab/>
 PREFIX gg: <http://www.gemeentegeschiedenis.nl/gg-schema#>
 PREFIX geo: <http://www.opengis.net/ont/geosparql#>
 PREFIX bio: <http://purl.org/vocab/bio/0.1/>
 
-SELECT  ?year ?n_deceased ?n_amco ((xsd:decimal(?n_amco))/(xsd:decimal(?n_deceased))*100 as ?share_amco)
+SELECT  ?year ?n_deceased ((xsd:decimal(?n_amco))/(xsd:decimal(?n_deceased))*100 as ?share_coded_placenames)  ((xsd:decimal(?n_hisco))/(xsd:decimal(?n_deceased))*100 as ?share_coded_occupations)
+
 WHERE {
   
 SELECT 
-?year (count(?deceased) as ?n_deceased)(count(?amco) as ?n_amco) 
+  ?year (count(?deceased) as ?n_deceased)(count(?amco) as ?n_amco) (count(?hisco) as ?n_hisco)
  WHERE { 
    
    ?death a bio:Death .
@@ -19,6 +21,7 @@ SELECT
    ?death iisgv:deceased ?deceased .
    optional{ ?death iisgv:event_location ?gemeente .
    ?gemeente gg:amsterdamCode ?amco }.
+   optional{?deceased schema:hasOccupation/schema:categoryCode ?hisco }.
     
  BIND(year(?date) as ?year)
  FILTER(?year != 1 && ?year != 1940)
