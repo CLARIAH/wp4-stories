@@ -1,0 +1,45 @@
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX schema: <http://schema.org/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX iisgv: <https://iisg.amsterdam/openarchdeaths1910_1920/vocab/>
+PREFIX iisgv2: <https://iisg.amsterdam/openarchdeath/vocab/>
+PREFIX gg: <http://www.gemeentegeschiedenis.nl/gg-schema#>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX bio: <http://purl.org/vocab/bio/0.1/>
+
+SELECT ?amco ?gg_gemeente ?occ_n ?deceased_n ?occshare ?wktColor ?wkt ?wktTooltip
+WHERE { 
+     
+  
+  {
+    select ?amco ?wkt ?gg_gemeente 
+         
+     (count(?occ) as ?occ_n)
+     (count(?deceased) as ?deceased_n)
+          {
+        
+  ?death a bio:Death .
+  ?death iisgv:deceased ?deceased .
+   optional{?deceased schema:hasOccupation ?occ }.
+  ?death bio:date ?date .
+  ?death iisgv:event_location ?gemeente .
+  ?gemeente gg:amsterdamCode ?amco .
+  ?amco gg:identifies  ?gg_gemeente .
+  ?gg_gemeente geo:hasGeometry/geo:asWKT ?wkt .
+ 
+  BIND(year(?date) as ?year)
+ # FILTER(?year = "1918"^^<http://www.w3.org/2001/XMLSchema#int>)
+ # FILTER(!REGEX(?occ, "zonder", "i"))
+ # FILTER(!REGEX(?occ, "geen"))
+ # FILTER(!REGEX(?occ, "-"))
+  
+ 
+        }}   
+      
+  BIND(xsd:float(?occ_n)/xsd:float(?deceased_n) * 100 as ?occshare)# normalize excess mortality and exclude outliers from wktColor by setting max excess
+  BIND(concat('reds,', (?occshare/ 100)) as ?wktColor)
+  BIND(concat((?occshare),'_', STRAFTER(STR(?gg_gemeente), 'gemeentenaam/')) as ?wktTooltip)
+    }
+  
+ORDER BY ASC (?occ_n)
