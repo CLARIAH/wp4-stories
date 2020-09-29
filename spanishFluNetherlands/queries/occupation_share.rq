@@ -22,6 +22,7 @@ WHERE {
   ?death a bio:Death .
   ?death iisgv:deceased ?deceased .
    optional{?deceased schema:hasOccupation ?occ }.
+  ?deceased iisgv:ageYears ?age . # used to exclude children
   ?death bio:date ?date .
   ?death iisgv:event_location ?gemeente .
   ?gemeente gg:amsterdamCode ?amco .
@@ -29,6 +30,7 @@ WHERE {
   ?gg_gemeente geo:hasGeometry/geo:asWKT ?wkt .
  
   BIND(year(?date) as ?year)
+  FILTER(?age >= "18"^^<http://www.w3.org/2001/XMLSchema#int>)
  # FILTER(?year = "1918"^^<http://www.w3.org/2001/XMLSchema#int>)
  # FILTER(!REGEX(?occ, "zonder", "i"))
  # FILTER(!REGEX(?occ, "geen"))
