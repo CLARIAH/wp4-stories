@@ -8,12 +8,12 @@ PREFIX gg: <http://www.gemeentegeschiedenis.nl/gg-schema#>
 PREFIX geo: <http://www.opengis.net/ont/geosparql#>
 PREFIX bio: <http://purl.org/vocab/bio/0.1/>
 
-SELECT  ?year ?n_deceased ((xsd:decimal(?n_amco))/(xsd:decimal(?n_deceased))*100 as ?share_coded_placenames)  ((xsd:decimal(?n_hisco))/(xsd:decimal(?n_deceased))*100 as ?share_coded_occupations)
+SELECT  ?year ?n_deceased ((xsd:decimal(?n_amco))/(xsd:decimal(?n_deceased))*100 as ?share_coded_placenames)  ((xsd:decimal(?n_hisco))/(xsd:decimal(?n_occ))*100 as ?share_coded_occupations)
 
 WHERE {
   
 SELECT 
-  ?year (count(?deceased) as ?n_deceased)(count(?amco) as ?n_amco) (count(?hisco) as ?n_hisco)
+  ?year (count(?deceased) as ?n_deceased)(count(?amco) as ?n_amco) (count(?hisco) as ?n_hisco) (count(?occ) as ?n_occ)
  WHERE { 
    
    ?death a bio:Death .
@@ -21,7 +21,8 @@ SELECT
    ?death iisgv:deceased ?deceased .
    optional{ ?death iisgv:event_location ?gemeente .
    ?gemeente gg:amsterdamCode ?amco }.
-   optional{?deceased schema:hasOccupation/schema:categoryCode ?hisco }.
+    optional{?deceased schema:hasOccupation ?occ }.
+    optional {?deceased schema:hasOccupation/schema:categoryCode ?hisco }.
     
  BIND(year(?date) as ?year)
  FILTER(?year != 1 && ?year != 1940)
