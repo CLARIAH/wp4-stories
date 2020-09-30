@@ -9,7 +9,7 @@ PREFIX geo: <http://www.opengis.net/ont/geosparql#>
 PREFIX bio: <http://purl.org/vocab/bio/0.1/>
 PREFIX bif: <http://www.openlinksw.com/schemas/bif#>
 
-SELECT ?amco ?gg_gemeente ?mean ?1918 ?excess ?index ?wktColor ?wktTooltip 
+SELECT ?amco ?gg_gemeente ?mean ?1918 ?excess ?index ?wktColor ?wktTooltip ?wkt
 WHERE { 
      
   FILTER(?mean >10)   # to avoid 'division by 0' error
