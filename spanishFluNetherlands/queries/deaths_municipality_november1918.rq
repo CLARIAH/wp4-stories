@@ -13,7 +13,7 @@ SELECT ?gg_gemeente ?mean ?november_1918 ?excess_death_rate
 WHERE { 
      
   FILTER(?mean >1)   # to avoid 'division by 0' error
-  FILTER(?1918 >1)
+  FILTER(?november_1918 >1)
   FILTER(?month = "11"^^xsd:integer)
  
     {
@@ -44,7 +44,7 @@ WHERE {
         }}   
       
   BIND(xsd:float(?1910+?1911+?1912+?1913+?1914+?1915+?1916+?1917)/8 as ?mean)
-  BIND(xsd:float(?1918/?mean) as ?excess_death_rate)
+  BIND(xsd:float(?november_1918/?mean) as ?excess_death_rate)
   
     }
   
