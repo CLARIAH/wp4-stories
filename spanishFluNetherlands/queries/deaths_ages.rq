@@ -1,0 +1,52 @@
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX schema: <http://schema.org/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX iisgv: <https://iisg.amsterdam/openarchdeaths1910_1920/vocab/>
+PREFIX iisgv2: <https://iisg.amsterdam/openarchdeath/vocab/>
+PREFIX gg: <http://www.gemeentegeschiedenis.nl/gg-schema#>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX bio: <http://purl.org/vocab/bio/0.1/>
+
+SELECT ?age (?1910/xsd:decimal(?total_1910)*100 as ?share_1910) (?november_1918/xsd:decimal(?november_1918_total)*100 as ?share_november_1918) 
+			(?winter_1919/xsd:decimal(?winter_1919_total)*100 as ?share_winter_1919)
+WHERE { 
+  
+   {
+  
+      select  ?total_1910 ?age ?november_1918_total ?winter_1919_total
+    (sum(if(?year = "1918"^^<http://www.w3.org/2001/XMLSchema#int> && ?month = 11, 1, 0)) as ?november_1918) 
+    (sum(if(?year = "1910"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?1910) 
+    (sum(if(?year = "1919"^^<http://www.w3.org/2001/XMLSchema#int> && ?month >= 3, 1, 0)) as ?winter_1919) 
+    {
+      
+      ?death a bio:Death .
+  ?death iisgv:deceased ?deceased .
+ # ?deceased schema:gender "m" .
+  ?deceased iisgv:ageYears ?age.
+  ?death bio:date ?date .
+ 
+  BIND(year(?date) as ?year)
+      BIND(month(?date) as ?month)
+  FILTER(?age > 0) # excluded because there may still be an issue with age=0
+    
+     { select (sum(if(?year = "1910"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?total_1910) 
+      (sum(if(?year = "1918"^^<http://www.w3.org/2001/XMLSchema#int> && ?month = 11, 1, 0)) as ?november_1918_total) 
+    (sum(if(?year = "1919"^^<http://www.w3.org/2001/XMLSchema#int> && ?month >= 3, 1, 0)) as ?winter_1919_total) 
+      {
+      
+  ?death a bio:Death .
+  ?death iisgv:deceased ?deceased .
+  #?deceased schema:gender "m" .
+  ?deceased iisgv:ageYears ?age.
+  ?death bio:date ?date .
+ 
+  BIND(year(?date) as ?year)
+          BIND(month(?date) as ?month)
+  FILTER(?age > 0) # excluded because there may still be a slight issue with age=0
+ 
+       
+      }}
+
+} 
+  }} ORDER BY ASC (?age)
