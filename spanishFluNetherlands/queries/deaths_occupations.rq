@@ -47,4 +47,4 @@ WHERE {
  
       }
   
-ORDER BY DESC (?excess)
+ORDER BY DESC (?excess_death_rate)
