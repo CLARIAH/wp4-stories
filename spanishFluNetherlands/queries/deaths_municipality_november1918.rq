@@ -10,7 +10,7 @@ PREFIX geo: <http://www.opengis.net/ont/geosparql#>
 PREFIX bio: <http://purl.org/vocab/bio/0.1/>
 PREFIX bif: <http://www.openlinksw.com/schemas/bif#>
 
-SELECT  ?amco ?gg_gemeente ?startdate ?mean ?november_1918 ?excess_death_rate
+SELECT  ?gg_gemeente ?startdate ?mean ?november_1918 ?excess_death_rate
 WHERE { 
      
   FILTER(?mean >1)   # to avoid 'division by 0' error
