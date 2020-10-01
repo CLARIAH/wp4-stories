@@ -1,3 +1,4 @@
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX schema: <http://schema.org/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -9,15 +10,16 @@ PREFIX geo: <http://www.opengis.net/ont/geosparql#>
 PREFIX bio: <http://purl.org/vocab/bio/0.1/>
 PREFIX bif: <http://www.openlinksw.com/schemas/bif#>
 
-SELECT ?gg_gemeente ?mean ?november_1918 ?excess_death_rate
+SELECT  ?amco ?gg_gemeente ?startdate ?mean ?november_1918 ?excess_death_rate
 WHERE { 
      
   FILTER(?mean >1)   # to avoid 'division by 0' error
   FILTER(?november_1918 >1)
   FILTER(?month = "11"^^xsd:integer)
+  
  
     {
-    select ?amco ?wkt ?gg_gemeente ?month 
+    select ?amco  ?gg_gemeente ?month 
          
      (sum(if(?year = "1918"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?november_1918)
     (sum(if(?year = "1910"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?1910)
@@ -36,7 +38,14 @@ WHERE {
   ?death iisgv:event_location ?gemeente .
   ?gemeente gg:amsterdamCode ?amco .
   ?amco gg:identifies  ?gg_gemeente .
- 
+  FILTER  NOT EXISTS {
+     ?gg_gemeente gg:startDate ?startdate 
+        FILTER(?startdate >= "1920-01-01"^^<http://www.w3.org/2001/XMLSchema#date>)
+   }
+      FILTER  NOT EXISTS {
+     ?gg_gemeente gg:endDate ?enddate 
+        FILTER(?enddate <= "1920-01-01"^^<http://www.w3.org/2001/XMLSchema#date>)
+   }
  
   BIND(year(?date) as ?year)
   BIND(month(?date) as ?month)
@@ -45,7 +54,7 @@ WHERE {
       
   BIND(xsd:float(?1910+?1911+?1912+?1913+?1914+?1915+?1916+?1917)/8 as ?mean)
   BIND(xsd:float(?november_1918/?mean) as ?excess_death_rate)
-  
+ 
     }
   
 ORDER BY DESC (?excess_death_rate)
