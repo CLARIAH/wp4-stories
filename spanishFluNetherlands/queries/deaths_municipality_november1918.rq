@@ -10,7 +10,7 @@ PREFIX geo: <http://www.opengis.net/ont/geosparql#>
 PREFIX bio: <http://purl.org/vocab/bio/0.1/>
 PREFIX bif: <http://www.openlinksw.com/schemas/bif#>
 
-SELECT  ?gg_gemeente ?startdate ?mean ?november_1918 ?excess_death_rate
+SELECT   ?municipality  ?mean ?november_1918 ?excess_death_rate
 WHERE { 
      
   FILTER(?mean >1)   # to avoid 'division by 0' error
@@ -19,7 +19,7 @@ WHERE {
   
  
     {
-    select ?amco  ?gg_gemeente ?month 
+    select ?amco  ?municipality  ?month 
          
      (sum(if(?year = "1918"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?november_1918)
     (sum(if(?year = "1910"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?1910)
@@ -38,6 +38,7 @@ WHERE {
   ?death iisgv:event_location ?gemeente .
   ?gemeente gg:amsterdamCode ?amco .
   ?amco gg:identifies  ?gg_gemeente .
+  ?gg_gemeente gg:name ?municipality .
   FILTER  NOT EXISTS {
      ?gg_gemeente gg:startDate ?startdate 
         FILTER(?startdate >= "1920-01-01"^^<http://www.w3.org/2001/XMLSchema#date>)
