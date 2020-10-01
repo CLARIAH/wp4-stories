@@ -9,16 +9,17 @@ PREFIX geo: <http://www.opengis.net/ont/geosparql#>
 PREFIX bio: <http://purl.org/vocab/bio/0.1/>
 PREFIX bif: <http://www.openlinksw.com/schemas/bif#>
 
-SELECT ?amco ?gg_gemeente ?mean ?1918 ?excess ?index ?wktColor ?wktTooltip ?wkt
+SELECT distinct ?amco  ?mean ?1918 ?excess ?wktColor ?wktTooltip ?wkt
 WHERE { 
      
   FILTER(?mean >10)   # to avoid 'division by 0' error
   FILTER(?1918 >0)
+  
  # FILTER(?1914 > 0) maybe exclude places with 0 deaths?
  # FILTER(?1915 > 0)
  # FILTER(?1916 > 0)
   {
-    select ?amco ?wkt ?gg_gemeente 
+    select ?amco ?wkt ?gg_gemeente
          
      (sum(if(?year = "1918"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?1918)
     (sum(if(?year = "1910"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?1910)
@@ -40,15 +41,15 @@ WHERE {
   ?gg_gemeente geo:hasGeometry/geo:asWKT ?wkt .
  
   BIND(year(?date) as ?year)
-   
+         
         }}   
       
   BIND(xsd:float(?1910+?1911+?1912+?1913+?1914+?1915+?1916+?1917)/8 as ?mean)
   BIND(xsd:decimal(?1918/?mean) as ?excess)
-  BIND((?excess-0.35)/(2.6-0.35) as ?index) # normalize excess mortality and exclude outliers from wktColor by setting max excess
-  BIND(concat('reds,', (?index)) as ?wktColor)
+  BIND ( IF ( ?excess > 1.60, 1, IF ( ?excess < 1.38, 0.35, IF (?excess >= 1.38 &&  ?excess <= 1.60, 0.65, ?v ) )) AS ?category)
+  BIND(concat('reds,', (?category)) as ?wktColor)
   BIND(concat(substr(STR(?excess), 0, 4),'_', STRAFTER(STR(?gg_gemeente), 'gemeentenaam/')) as ?wktTooltip)
-  
+   
     }
   
 ORDER BY ASC (?excess)
