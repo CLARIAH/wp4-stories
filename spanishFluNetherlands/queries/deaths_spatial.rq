@@ -15,11 +15,12 @@ WHERE {
   FILTER(?mean >10)   # to avoid 'division by 0' error
   FILTER(?1918 >0)
   
+  
  # FILTER(?1914 > 0) maybe exclude places with 0 deaths?
  # FILTER(?1915 > 0)
  # FILTER(?1916 > 0)
   {
-    select ?amco ?wkt ?gg_gemeente
+    select ?amco  ?wkt ?gg_gemeente
          
      (sum(if(?year = "1918"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?1918)
     (sum(if(?year = "1910"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?1910)
@@ -38,10 +39,14 @@ WHERE {
   ?death iisgv:event_location ?gemeente .
   ?gemeente gg:amsterdamCode ?amco .
   ?amco gg:identifies  ?gg_gemeente .
-  ?gg_gemeente geo:hasGeometry/geo:asWKT ?wkt .
+  ?gg_gemeente geo:hasGeometry ?geo .
+      ?geo geo:asWKT ?wkt .
+      ?geo gg:year ?wktyear .
+      FILTER(?wktyear <= "1818"^^xsd:gYear)
+    
  
   BIND(year(?date) as ?year)
-         
+        
         }}   
       
   BIND(xsd:float(?1910+?1911+?1912+?1913+?1914+?1915+?1916+?1917)/8 as ?mean)
@@ -52,4 +57,4 @@ WHERE {
    
     }
   
-ORDER BY ASC (?excess)
+ORDER BY ASC (?amco)
