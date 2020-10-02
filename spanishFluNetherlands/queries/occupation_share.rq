@@ -27,7 +27,10 @@ WHERE {
   ?death iisgv:event_location ?gemeente .
   ?gemeente gg:amsterdamCode ?amco .
   ?amco gg:identifies  ?gg_gemeente .
-  ?gg_gemeente geo:hasGeometry/geo:asWKT ?wkt .
+  ?gg_gemeente geo:hasGeometry ?geo .
+      ?geo geo:asWKT ?wkt .
+      ?geo gg:year ?wktyear .
+      FILTER(?wktyear <= "1818"^^xsd:gYear)
  
   BIND(year(?date) as ?year)
   FILTER(?age >= "18"^^<http://www.w3.org/2001/XMLSchema#int>)
