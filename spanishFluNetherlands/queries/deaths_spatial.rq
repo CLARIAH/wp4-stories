@@ -8,53 +8,46 @@ PREFIX gg: <http://www.gemeentegeschiedenis.nl/gg-schema#>
 PREFIX geo: <http://www.opengis.net/ont/geosparql#>
 PREFIX bio: <http://purl.org/vocab/bio/0.1/>
 PREFIX bif: <http://www.openlinksw.com/schemas/bif#>
-
-SELECT distinct ?amco  ?mean ?1918 ?excess ?wktColor ?wktTooltip ?wkt
-WHERE { 
-     
-  FILTER(?mean >10)   # to avoid 'division by 0' error
-  FILTER(?1918 >0)
-  
-  
- # FILTER(?1914 > 0) maybe exclude places with 0 deaths?
- # FILTER(?1915 > 0)
- # FILTER(?1916 > 0)
+SELECT  DISTINCT ?amco  ?mean ?1918 ?excess ?wktColor ?wktTooltip  ?max ?wkt
+WHERE {
+  FILTER(?mean >5)   # to avoid 'division by 0' error
+  FILTER(?1918 >1)
   {
-    select ?amco  ?wkt ?gg_gemeente
-         
-     (sum(if(?year = "1918"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?1918)
+    select ?amco   ?gg_gemeente  ?max ?wkt
+    (sum(if(?year = "1918"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?1918)
     (sum(if(?year = "1910"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?1910)
     (sum(if(?year = "1911"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?1911)
-     (sum(if(?year = "1912"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?1912) 
-     (sum(if(?year = "1913"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?1913)  
+    (sum(if(?year = "1912"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?1912) 
+    (sum(if(?year = "1913"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?1913)  
     (sum(if(?year = "1914"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?1914) 
-     (sum(if(?year = "1915"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?1915)
-     (sum(if(?year = "1916"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?1916)
-     (sum(if(?year = "1917"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?1917)
-          {
-        
-  ?death a bio:Death .
-  ?death iisgv:deceased ?deceased .
-  ?death bio:date ?date .
-  ?death iisgv:event_location ?gemeente .
-  ?gemeente gg:amsterdamCode ?amco .
-  ?amco gg:identifies  ?gg_gemeente .
-  ?gg_gemeente geo:hasGeometry ?geo .
-      ?geo geo:asWKT ?wkt .
-      ?geo gg:year ?wktyear .
-      FILTER(?wktyear <= "1818"^^xsd:gYear)
-    
- 
-  BIND(year(?date) as ?year)
-        
-        }}   
-      
-  BIND(xsd:float(?1910+?1911+?1912+?1913+?1914+?1915+?1916+?1917)/8 as ?mean)
+    (sum(if(?year = "1915"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?1915)
+    (sum(if(?year = "1916"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?1916)
+    (sum(if(?year = "1917"^^<http://www.w3.org/2001/XMLSchema#int>, 1, 0)) as ?1917)
+    {
+      {
+        select (max(?wktyear) as ?max) ?gg_gemeente
+        {
+          ?gg_gemeente geo:hasGeometry ?geo .
+          ?geo gg:year ?wktyear .
+          FILTER(?wktyear <= "1918"^^xsd:gYear) 
+        } GROUP BY ?gg_gemeente
+      }
+      ?gg_gemeente geo:hasGeometry [gg:year ?max ;
+                                    geo:asWKT ?wkt ] .
+      ?death a bio:Death .
+      ?death iisgv:deceased ?deceased .
+      ?death bio:date ?date .
+      ?death iisgv:event_location ?gemeente .
+      ?gemeente gg:amsterdamCode ?amco .
+      ?amco gg:identifies  ?gg_gemeente .
+      BIND(year(?date) as ?year)
+    }
+  }
+  BIND(xsd:float(?1910+?1911+?1912+?1913+?1914+?1915+?1916+?1917)/8 as ?mean) 
   BIND(xsd:decimal(?1918/?mean) as ?excess)
   BIND ( IF ( ?excess > 1.60, 1, IF ( ?excess < 1.38, 0.35, IF (?excess >= 1.38 &&  ?excess <= 1.60, 0.65, ?v ) )) AS ?category)
   BIND(concat('reds,', (?category)) as ?wktColor)
   BIND(concat(substr(STR(?excess), 0, 4),'_', STRAFTER(STR(?gg_gemeente), 'gemeentenaam/')) as ?wktTooltip)
-   
-    }
-  
+
+}
 ORDER BY ASC (?amco)
