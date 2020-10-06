@@ -8,6 +8,7 @@ PREFIX gg: <http://www.gemeentegeschiedenis.nl/gg-schema#>
 PREFIX geo: <http://www.opengis.net/ont/geosparql#>
 PREFIX bio: <http://purl.org/vocab/bio/0.1/>
 PREFIX bif: <http://www.openlinksw.com/schemas/bif#>
+
 SELECT  DISTINCT ?amco  ?mean ?1918 ?excess ?wktColor ?wktTooltip  ?max ?wkt
 WHERE {
   FILTER(?mean >5)   # to avoid 'division by 0' error
@@ -39,7 +40,7 @@ WHERE {
       ?death bio:date ?date .
       ?death iisgv:event_location ?gemeente .
       ?gemeente gg:amsterdamCode ?amco .
-      ?amco gg:identifies  ?gg_gemeente .
+      ?amco   ^gg:amsterdamCode ?gg_gemeente .
       BIND(year(?date) as ?year)
       FILTER  NOT EXISTS {
      ?gg_gemeente gg:startDate ?startdate 
@@ -56,6 +57,6 @@ WHERE {
   BIND ( IF ( ?excess > 1.60, 1, IF ( ?excess < 1.38, 0.35, IF (?excess >= 1.38 &&  ?excess <= 1.60, 0.65, ?v ) )) AS ?category)
   BIND(concat('reds,', (?category)) as ?wktColor)
   BIND(concat(substr(STR(?excess), 0, 4),'_', STRAFTER(STR(?gg_gemeente), 'gemeentenaam/')) as ?wktTooltip)
-#  FILTER(?amco = <http://www.gemeentegeschiedenis.nl/amco/10004> || ?amco =  <http://www.gemeentegeschiedenis.nl/amco/10836>)
+
 }
 ORDER BY ASC (?amco)
