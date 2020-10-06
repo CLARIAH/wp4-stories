@@ -7,44 +7,53 @@ PREFIX iisgv2: <https://iisg.amsterdam/openarchdeath/vocab/>
 PREFIX gg: <http://www.gemeentegeschiedenis.nl/gg-schema#>
 PREFIX geo: <http://www.opengis.net/ont/geosparql#>
 PREFIX bio: <http://purl.org/vocab/bio/0.1/>
+PREFIX bif: <http://www.openlinksw.com/schemas/bif#>
 
-SELECT ?amco ?gg_gemeente ?occ_n ?deceased_n ?occshare ?wktColor ?wkt ?wktTooltip
-WHERE { 
-     
-  
+SELECT  DISTINCT ?amco ?gg_gemeente ?occ_n ?deceased_n ?occshare ?wktColor ?wkt ?wktTooltip
+WHERE {
+ 
   {
     select ?amco ?wkt ?gg_gemeente 
          
      (count(?occ) as ?occ_n)
      (count(?deceased) as ?deceased_n)
-          {
-        
-  ?death a bio:Death .
-  ?death iisgv:deceased ?deceased .
-   optional{?deceased schema:hasOccupation ?occ }.
+    {
+      {
+        select (max(?wktyear) as ?max) ?gg_gemeente
+        {
+          ?gg_gemeente geo:hasGeometry ?geo .
+          ?geo gg:year ?wktyear .
+          FILTER(?wktyear <= "1918"^^xsd:gYear) 
+        } GROUP BY ?gg_gemeente
+      }
+      ?gg_gemeente geo:hasGeometry [gg:year ?max ;
+                                    geo:asWKT ?wkt ] .
+      ?death a bio:Death .
+      ?death iisgv:deceased ?deceased .
+      optional{?deceased schema:hasOccupation ?occ }.
   ?deceased iisgv:ageYears ?age . # used to exclude children
-  ?death bio:date ?date .
-  ?death iisgv:event_location ?gemeente .
-  ?gemeente gg:amsterdamCode ?amco .
-  ?amco gg:identifies  ?gg_gemeente .
-  ?gg_gemeente geo:hasGeometry ?geo .
-      ?geo geo:asWKT ?wkt .
-      ?geo gg:year ?wktyear .
-      FILTER(?wktyear <= "1818"^^xsd:gYear)
+      ?death bio:date ?date .
+      ?death iisgv:event_location ?gemeente .
+      ?gemeente gg:amsterdamCode ?amco .
+      ?amco   ^gg:amsterdamCode ?gg_gemeente .
+      BIND(year(?date) as ?year)
+       FILTER(?age >= "18"^^<http://www.w3.org/2001/XMLSchema#int>)
  
-  BIND(year(?date) as ?year)
-  FILTER(?age >= "18"^^<http://www.w3.org/2001/XMLSchema#int>)
- # FILTER(?year = "1918"^^<http://www.w3.org/2001/XMLSchema#int>)
  # FILTER(!REGEX(?occ, "zonder", "i"))
  # FILTER(!REGEX(?occ, "geen"))
  # FILTER(!REGEX(?occ, "-"))
-  
- 
-        }}   
-      
-  BIND(xsd:float(?occ_n)/xsd:float(?deceased_n) * 100 as ?occshare)# normalize excess mortality and exclude outliers from wktColor by setting max excess
-  BIND(concat('reds,', (?occshare/ 100)) as ?wktColor)
-  BIND(concat((?occshare),'_', STRAFTER(STR(?gg_gemeente), 'gemeentenaam/')) as ?wktTooltip)
+      FILTER  NOT EXISTS {
+     ?gg_gemeente gg:startDate ?startdate 
+        FILTER(?startdate >= "1918-01-01"^^<http://www.w3.org/2001/XMLSchema#date>)
+   }
+      FILTER  NOT EXISTS {
+     ?gg_gemeente gg:endDate ?enddate 
+        FILTER(?enddate <= "1918-01-01"^^<http://www.w3.org/2001/XMLSchema#date>)
+   }
     }
-  
-ORDER BY ASC (?occ_n)
+  }
+  BIND(xsd:float(?occ_n)/xsd:float(?deceased_n) * 100 as ?occshare)
+  BIND(concat('reds,', (?occshare/ 100)) as ?wktColor)
+  BIND(concat(substr(STR(?occshare), 0, 4),'%_', STRAFTER(STR(?gg_gemeente), 'gemeentenaam/')) as ?wktTooltip)
+}
+ORDER BY ASC (?amco)
