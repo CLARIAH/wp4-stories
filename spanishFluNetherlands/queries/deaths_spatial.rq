@@ -11,7 +11,7 @@ PREFIX bif: <http://www.openlinksw.com/schemas/bif#>
 
 SELECT  DISTINCT ?amco  ?mean ?1918 ?excess ?wktColor ?wktTooltip  ?max ?wkt
 WHERE {
-  FILTER(?mean >5)   # to avoid 'division by 0' error
+  FILTER(?mean >1)   # to avoid 'division by 0' error
   FILTER(?1918 >1)
   {
     select ?amco   ?gg_gemeente  ?max ?wkt
