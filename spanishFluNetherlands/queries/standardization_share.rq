@@ -8,7 +8,7 @@ PREFIX gg: <http://www.gemeentegeschiedenis.nl/gg-schema#>
 PREFIX geo: <http://www.opengis.net/ont/geosparql#>
 PREFIX bio: <http://purl.org/vocab/bio/0.1/>
 
-SELECT  ?year ?n_deceased (ROUND(xsd:int(xsd:decimal(?n_amco))/(xsd:decimal(?n_deceased))*100) as ?percent_coded_placenames)  (ROUND(xsd:int(xsd:decimal(?n_hisco))/(xsd:decimal(?n_occ))*100) as ?percent_coded_occupations) 
+SELECT  ?year ?n_deceased ((xsd:float(?n_amco)/(xsd:float(?n_deceased))*100) as ?percent_coded_placenames)  ((xsd:float(?n_hisco)/(xsd:float(?n_occ))*100) as ?percent_coded_occupations) 
 
 WHERE {
   
