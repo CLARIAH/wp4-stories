@@ -9,7 +9,7 @@ PREFIX geo: <http://www.opengis.net/ont/geosparql#>
 PREFIX bio: <http://purl.org/vocab/bio/0.1/>
 PREFIX bif: <http://www.openlinksw.com/schemas/bif#>
 
-SELECT  ?unit_group ?occupational_group ?mean ?1918 ?excess_death_rate 
+SELECT  ?group_code ?occupational_group ?mean ?1918 ?excess_death_rate 
 WHERE { 
      
   FILTER(?mean >5)   # to avoid 'division by 0' error
@@ -44,7 +44,7 @@ WHERE {
       
   BIND(xsd:float(?1910+?1911+?1912+?1913+?1914+?1915+?1916+?1917)/8 as ?mean)
   BIND(xsd:decimal(?1918/?mean) as ?excess_death_rate)
- 
+  BIND(STR(STRAFTER(STR(?unit_group), 'https://iisg.amsterdam/hisco/code/hisco/')) as ?group_code)
       }
   
 ORDER BY DESC (?excess_death_rate)
