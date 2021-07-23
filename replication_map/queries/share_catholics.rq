@@ -40,6 +40,6 @@ SELECT DISTINCT ?gemeente ?gg ?popm ?popf ?cath ?share_cath  ?wkt ?wktColor ?wkt
   BIND((xsd:float(?cath) /(?popm + ?popf) * 100 ) as ?share_cath)
   BIND ( IF ( ?share_cath > 79, 1, IF ( ?share_cath > 59, 0.65, IF (?share_cath > 39, 0.50, IF(?share_cath > 19, 0.35,   0.1 )))) AS ?category)
   BIND(concat('greens,', (?category)) as ?wktColor)
-  bind((strafter(str(?gg_gemeente), 'gemeentenaam/')) as ?wktTooltip)
+  BIND(concat(STRAFTER(STR(?gg_gemeente), 'gemeentenaam/'),": ",substr(STR(?share_cath), 0, 4),'%') as ?wktTooltip)
   
  
