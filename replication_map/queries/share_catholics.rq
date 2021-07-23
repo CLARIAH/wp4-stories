@@ -9,10 +9,17 @@ PREFIX hdngvar: <https://iisg.amsterdam/hdng/variable/>
 PREFIX gg: <http://www.gemeentegeschiedenis.nl/gg-schema#>
 PREFIX geo: <http://www.opengis.net/ont/geosparql#>
 
-SELECT ?gemeente ?gg ?popm ?popf ?cath ?share_cath  ?wkt ?wktColor ?wktTooltip  WHERE
+SELECT DISTINCT ?gemeente ?gg ?popm ?popf ?cath ?share_cath  ?wkt ?wktColor ?wktTooltip ?max ?mapEndpoint  WHERE
 
  {
- 
+ {
+        select (max(?wktyear) as ?max) ?gg_gemeente
+        {
+          ?gg_gemeente geo:hasGeometry ?geo .
+          ?geo gg:year ?wktyear .
+          FILTER(?wktyear <= "1900"^^xsd:gYear) 
+        } GROUP BY ?gg_gemeente
+      }
   ?gemeente a hdng:gemeente ;
   			schema:hasObservation ?observation .
   ?observation hdngvar:RKA3 ?cath ;
@@ -20,21 +27,19 @@ SELECT ?gemeente ?gg ?popm ?popf ?cath ?share_cath  ?wkt ?wktColor ?wktTooltip  
                hdngvar:BEV2 ?popf ;
                hdngv:year ?year .
  ?gemeente gg:amsterdamCode ?acodegg .
-    ?acodegg gg:identifies  ?gg .
-  ?gg geo:hasGeometry/geo:asWKT ?wkt .
+    ?acodegg gg:identifies  ?gg_gemeente .
+  ?gg_gemeente geo:hasGeometry [gg:year ?max ;
+                                    geo:asWKT ?wkt ] .
   
   filter(?year = "1899"^^xsd:gYear  )
   filter(?cath > 1)
   filter(?popm > 1)
   filter(?popf > 1)
   
-  
-  bind((xsd:float(?cath) /(?popm + ?popf) * 100 ) as ?share_cath)
-  #BIND ( IF ( ?share_cath > 79, 1, 0.1 ) AS ?category)
+
+  BIND((xsd:float(?cath) /(?popm + ?popf) * 100 ) as ?share_cath)
   BIND ( IF ( ?share_cath > 79, 1, IF ( ?share_cath > 59, 0.65, IF (?share_cath > 39, 0.50, IF(?share_cath > 19, 0.35,   0.1 )))) AS ?category)
   BIND(concat('greens,', (?category)) as ?wktColor)
-  bind((strafter(str(?gg), 'gemeentenaam/')) as ?wktTooltip)
+  bind((strafter(str(?gg_gemeente), 'gemeentenaam/')) as ?wktTooltip)
   
-   
-} 
-#LIMIT 20
+ 
