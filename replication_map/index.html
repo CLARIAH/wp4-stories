@@ -45,7 +45,7 @@
       <h2>I. The datasets</h2>
 
       	In this attempt we will replicate Figure 2 from their paper, showing the percentage of Roman Catholics per municipality, 1899. First, we'll replicate the table underlying the map, using the HNDG, giving the share of Roman Catholics per municipality in 1899.
-        For this, we can resort to the readily available <a href="https://druid.datalegend.net/dataLegend/-/queries/go-to-HDNG-query/4" target="_blank">'go-to-HDNG-query'</a>. We'll use the search function in the results of query to find the relevant variable in the HNDG, which is "RKA3". You'll notice that the "sex" field does not give a M/F code, meaning that the value of "RKA3" refers to both sexes.
+        For this, we can resort to the readily available <a href="https://druid.datalegend.net/dataLegend/-/queries/go-to-HDNG-query/4" target="_blank">'go-to-HDNG-query'</a>. We'll use the search function in the query to find the relevant variable in the HNDG, which is "RKA3". You'll notice that the "sex" field does not give a M/F code, meaning that the value of "RKA3" refers to both sexes.
         We also see that the value is available for 1899 - which is not a surprise, since Boomen & Ekamper used the same dataset.
         Now, we need to use the same steps to get population figures for 1899. These turn out to be variables "BEV1" (male) and "BEV2" (female). The query below uses these variables to get the share of Roman Catholics per Dutch municipality in 1899, for the fifteen largest cities.
       <br>
