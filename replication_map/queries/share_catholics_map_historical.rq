@@ -1,0 +1,45 @@
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX schema: <http://schema.org/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX hdng: <https://iisg.amsterdam/hdng/>
+PREFIX hdngv: <https://iisg.amsterdam/hdng/vocab/>
+PREFIX hdngvar: <https://iisg.amsterdam/hdng/variable/>
+PREFIX gg: <http://www.gemeentegeschiedenis.nl/gg-schema#>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+
+SELECT DISTINCT ?gemeente ?gg ?popm ?popf ?cath ?share_cath  ?wkt ?wktColor ?wktTooltip ?mapEndpoint WHERE
+
+ {
+ {
+        select (max(?wktyear) as ?max) ?gg_gemeente
+        {
+          ?gg_gemeente geo:hasGeometry ?geo .
+          ?geo gg:year ?wktyear .
+          FILTER(?wktyear <= "1900"^^xsd:gYear) # latest year for the map polygon
+        } GROUP BY ?gg_gemeente
+      }
+  ?gemeente a hdng:gemeente ;
+  			schema:hasObservation ?observation .
+  ?observation hdngvar:RKA3 ?cath ;
+               hdngvar:BEV1 ?popm ;
+               hdngvar:BEV2 ?popf ;
+               hdngv:year ?year .
+ ?gemeente gg:amsterdamCode ?acodegg .
+    ?acodegg gg:identifies  ?gg_gemeente .
+  ?gg_gemeente geo:hasGeometry [gg:year ?max ;
+                                    geo:asWKT ?wkt ] .
+  
+  filter(?year = "1899"^^xsd:gYear)
+  filter(?cath >= 1)
+  filter(?popm >= 1)
+  filter(?popf >= 1)
+  
+
+  BIND((xsd:float(?cath) /(?popm + ?popf) * 100 ) as ?share_cath)
+  BIND ( IF ( ?share_cath > 79, 1, IF ( ?share_cath > 59, 0.65, IF (?share_cath > 39, 0.50, IF(?share_cath > 19, 0.35,   0.1 )))) AS ?category)
+  BIND(concat('greens,', (?category)) as ?wktColor)
+  BIND(concat(STRAFTER(STR(?gg_gemeente), 'gemeentenaam/'),": ",substr(STR(?share_cath), 0, 4),'%') as ?wktTooltip)
+  BIND("https://mapwarper.net/maps/wms/38227?request=GetCapabilities&service=WMS&version=1.1.1" as ?mapEndpoint)
+}
