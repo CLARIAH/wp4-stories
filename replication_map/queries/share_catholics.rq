@@ -1,0 +1,33 @@
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX schema: <http://schema.org/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX hdng: <https://iisg.amsterdam/hdng/>
+PREFIX hdngv: <https://iisg.amsterdam/hdng/vocab/>
+PREFIX hdngvar: <https://iisg.amsterdam/hdng/variable/>
+PREFIX gg: <http://www.gemeentegeschiedenis.nl/gg-schema#>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+
+SELECT  ?gemeente ?popm ?popf ?cath ?share_cath  
+
+WHERE
+
+ {
+   ?gemeente a hdng:gemeente ;
+  			schema:hasObservation ?observation .
+   ?observation hdngvar:RKA3 ?cath ;
+               hdngvar:BEV1 ?popm ;
+               hdngvar:BEV2 ?popf ;
+               hdngv:year ?year .
+   
+  filter(?year = "1899"^^xsd:gYear)
+  filter(?cath >= 1)
+  filter(?popm >= 1)
+  filter(?popf >= 1)
+  
+
+  BIND((xsd:float(?cath) /(?popm + ?popf) * 100 ) as ?share_cath)
+}
+ORDER BY DESC (?popm)
+LIMIT 15
