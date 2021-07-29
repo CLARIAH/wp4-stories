@@ -48,9 +48,9 @@
         For this, we can resort to the readily available <a href="https://druid.datalegend.net/dataLegend/-/queries/go-to-HDNG-query/4" target="_blank">"go-to-HDNG-query"</a>. We'll use the search function in the results of query to find the relevant variable in the HNDG, which is "RKA3". You'll notice that the "sex" field does not give a M/F code, meaning that the value of "RKA3" refers to both sexes.
         We also see that the value is available for 1899 - which is not a surprise, since Boomen & Ekamper used the same dataset.
         Now, we need to use the same steps to get population figures for 1899. These turn out to be variables "BEV1" (male) and "BEV2" (female). The query below uses these variables to get the share of Roman Catholics per Dutch municipality in 1899, for the fifteen largest cities.
-
+      <br>
       <h4>Share of Roman Catholics per municipality in 1899 (table):</h4>
-        <query data-query-ref="queries/share_catholic.rq" data-output="table">
+        <query data-query-ref="queries/share_catholics.rq" data-output="table">
         </query>
       <br>
 
@@ -62,7 +62,7 @@
       <h4>Share of Roman Catholics per municipality in 1899 (map):</h4>
         <query data-query-ref="queries/share_catholics_map.rq" data-output="geo"
         </query>
-
+      <br>
 
       <p>
         By hovering over the map, you will see that both the name of the municipality and the share of Roman Catholics will show. A nice interactive feature that Linked Data allows for.
