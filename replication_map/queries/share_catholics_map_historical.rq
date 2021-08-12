@@ -32,7 +32,7 @@ SELECT DISTINCT ?gemeente ?gg ?popm ?popf ?cath ?share_cath  ?wkt ?wktColor ?wkt
                                     geo:asWKT ?wkt ] .
   
   filter(?year = "1899"^^xsd:gYear)
-  filter(?cath >= 1)
+  filter(?cath >= 0)
   filter(?popm >= 1)
   filter(?popf >= 1)
   
